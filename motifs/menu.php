@@ -21,7 +21,7 @@ ul#<?=$id?> {
     font: bold 11px arial, sans-serif;
     list-style-type: none;
     padding-bottom: 22px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #1D1D1B;
     margin: 0;
     padding-left: 230px;
 }
@@ -29,12 +29,12 @@ ul#<?=$id?> {
 ul#<?=$id?> li {
     float: left;
     height: 21px;
-    background-color: #000;
+    background-color: #1D1D1B;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 2px;
     margin-right: 2px;
-    border: 1px solid #000;
+    border: 1px solid #1D1D1B;
 }
 
 ul#<?=$id?> li.active {

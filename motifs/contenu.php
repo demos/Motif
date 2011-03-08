@@ -7,7 +7,7 @@
 <style>
 
 #<?=$id?> {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #1D1D1B;
 	height: 80%;
 	text-align: center;
 	background-color: #bbb;
