@@ -47,4 +47,14 @@ include "motif.php";
 $motif = new Motif($conf);
 echo $motif->lit("demo");
 
+/* Explications :
+ * $motif va chercher "demo" dans "." puis "motifs".
+ * Il le trouve dans "." et l'évalue.
+ * Il affiche le résultat.
+ * Allez voir demo.php pour voir la structure du site.
+ * 
+ */
+
+
+
 ?>
