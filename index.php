@@ -39,12 +39,12 @@ function incluable( $nom=false ){
 }
 
 $conf = array(
-	"dossiers" => array("motifs"),
-	"motifs" => array( "menu", "page", "contenu")
+	"dossiers" => array(".", "motifs"),
+	"motifs" => array( "menu", "demo", "contenu")
 );
 
 include "motif.php";
 $motif = new Motif($conf);
-echo $motif->lit("page");
+echo $motif->lit("demo");
 
 ?>

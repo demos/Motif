@@ -38,12 +38,12 @@ ul#<?=$id?> li {
 }
 
 ul#<?=$id?> li.active {
-    border-bottom: 1px solid #535353;
-    background-color: #535353;
+    border-bottom: 1px solid #bbb;
+    background-color: #bbb;
 }
 
 ul#<?=$id?> li.active a {
-    color: #ccc;
+    color: #000;
 }
 
 #<?=$id?> a {
