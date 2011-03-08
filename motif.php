@@ -1,5 +1,22 @@
 <?
-/* 
+/*
+ * Copyright 2011 Jean Claveau
+ * This file is part of Motif.
+ * 
+ * Motif is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Motif is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Motif.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ *  
  * Le contrôleur de modèle permet d'enchâsser différents documents html les uns dans les autres très facilement
  * A faire :
  * + lier à la configuration : dossiers
@@ -12,9 +29,11 @@
 class Motif {
 	var $app;
 	var $dbg = false;
+	var $conf;
 	
 	function Motif( $app=false ) {										if( !$app ) { echo "erreur"; return; }
 		$this->app = $app;
+		$this->conf = $this->app->conf;
 		
 		// lier le parametre initial à la conf
 	}
@@ -32,7 +51,7 @@ class Motif {
 		return $rtr;
 	}
 	
-	function cherche( $nom ) {											$t = $this; $conf = $t->app->conf;
+	function cherche( $nom ) {											$t = $this; $conf = $t->conf;
 		// cherche un modèle dans les dossiers référencés.
 		$dossiers = $conf["ctrl"]["modèles"]["dossiers"];				if( !$dossiers ) {echo "pas de dossiers".sdl;return;}
 		foreach( $dossiers as $dossier ) {								if( $t->dbg ) echo "cherche $nom dans $dossier".sdl;
@@ -93,15 +112,12 @@ class Motif {
 
 
 
-	function scane( $noeud ) {
-		$t = $this;
-		$conf = $t->app->conf;
-		if( !$noeud ) {
-			echo "scane : pas de motifs".sdl;return;}
-			
+	function scane( $noeud ) {											$t = $this; $conf = $t->app->conf;
+																		if( !$noeud ) { echo "scane : pas de motifs".sdl;return;}
+		// 
 		if( is_a($noeud, 'DOMDocument') ) 	$dom = $noeud;
 		else  								$dom = $noeud->ownerDocument;
-		$conf = $this->app->conf;
+		
 		$modèles = $conf["ctrl"]["modèles"]["modèles"];					if( !$modèles ) {echo "scane : pas de motifs".sdl;return;}
 		//print_r($modèles);
 		foreach( $modèles as $modèle) {
@@ -198,7 +214,7 @@ class Motif {
 
 	
 	function cdataEnfants( $nom, $chaineXML ) {
-		// cherche un modèle dans les dossiers référencés.
+		// Passe le contenus des elements de type $nom en cdata
 		$modèle = '/(<'.$nom.'[^>]*>)/i';
 		$nouveau = '$1<![CDATA[';
 		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
@@ -210,7 +226,7 @@ class Motif {
 	
 	
 	function cdataDoctype( $chaineXML ) {
-		// Protège les doctypes du traitement xml
+		// Protège les doctypes du traitement xml (inclusion dans un cdata)
 		$modèle = '/(<!DOCTYPE [^>]*>)/i';
 		$nouveau = '<![CDATA[$1]]>';
 		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
@@ -218,7 +234,7 @@ class Motif {
 	}
 
 	function retireCdata( $chaineXML ) {
-		// retrait des cdata de protection (pour style et script)
+		// retrait des cdata de tout le document
 		$chaineXML = str_replace( "<![CDATA[", "", $chaineXML );
 		$chaineXML = str_replace( "]]>", "", $chaineXML );
 		return $chaineXML;
