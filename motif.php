@@ -27,13 +27,11 @@
 
 
 class Motif {
-	var $app;
 	var $dbg = false;
 	var $conf;
 	
-	function Motif( $app=false ) {										if( !$app ) { echo "erreur"; return; }
-		$this->app = $app;
-		$this->conf = $this->app->conf;
+	function Motif( $conf=false ) {
+		$this->conf = $conf;
 		
 		// lier le parametre initial à la conf
 	}
@@ -53,7 +51,7 @@ class Motif {
 	
 	function cherche( $nom ) {											$t = $this; $conf = $t->conf;
 		// cherche un modèle dans les dossiers référencés.
-		$dossiers = $conf["ctrl"]["modèles"]["dossiers"];				if( !$dossiers ) {echo "pas de dossiers".sdl;return;}
+		$dossiers = $conf["dossiers"];									if( !$dossiers ) {echo "pas de dossiers".sdl;return;}
 		foreach( $dossiers as $dossier ) {								if( $t->dbg ) echo "cherche $nom dans $dossier".sdl;
 			$tmp = incluable("$dossier/$nom.php");
 			if( $tmp ) return $tmp;
@@ -62,11 +60,8 @@ class Motif {
 		return incluable("$nom.php");
 	}
 
-	function charge( $modèle, $attributs=array() ) {
-		global $bdd;
-		$t = $this;
-		$conf = $t->app->conf;
-		$_SERVER['INCLUDE_SCRIPT_NAME'] = "http://".$_SERVER['HTTP_HOST']."/".$conf["racine"]."/modèles/".$modèle.".php";
+	function charge( $modèle, $attributs=array() ) {					$t = $this; $conf = $t->conf;
+		//$_SERVER['INCLUDE_SCRIPT_NAME'] = "http://".$_SERVER['HTTP_HOST']."/".$conf["racine"]."/modèles/".$modèle.".php";
 		$id = "anonyme";
 		// Transformation des attributs en variables php
 		if( is_a( $attributs, 'DOMNamedNodeMap') )
@@ -112,13 +107,13 @@ class Motif {
 
 
 
-	function scane( $noeud ) {											$t = $this; $conf = $t->app->conf;
+	function scane( $noeud ) {											$t = $this; $conf = $t->conf;
 																		if( !$noeud ) { echo "scane : pas de motifs".sdl;return;}
 		// 
 		if( is_a($noeud, 'DOMDocument') ) 	$dom = $noeud;
 		else  								$dom = $noeud->ownerDocument;
 		
-		$modèles = $conf["ctrl"]["modèles"]["modèles"];					if( !$modèles ) {echo "scane : pas de motifs".sdl;return;}
+		$modèles = $conf["motifs"];										if( !$modèles ) {echo "scane : pas de motifs".sdl;return;}
 		//print_r($modèles);
 		foreach( $modèles as $modèle) {
 			$occurences = $noeud->getElementsByTagName($modèle);
