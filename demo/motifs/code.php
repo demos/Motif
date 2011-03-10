@@ -5,11 +5,9 @@
 ?>
 
 <a href="#" id="cacher-<?=$id;?>">Plier / Déplier</a> 
-<div id="<?=$id;?>">
-<pre class="brush: <?=$lang;?>">
+<pre id="<?=$id;?>" class="brush: <?=$lang;?>">
 	<enfants/>
 </pre>
-</div>
 <js>
 $(document).ready(function(){
 	$("#cacher-<?=$id;?>").click(function(){

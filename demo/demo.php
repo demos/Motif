@@ -66,15 +66,15 @@
 	<body>
 		<logo href="/motif" src="demo/images/logo.png" txt="Motif" id="logo"/>
 		<onglets id="menu">
-			<onglet href="?ctn=projet" label="Projet"/>
+			<onglet href="?ctn=projet"  ctrl="(ctn=projet)|(^\/motif\/$)" label="Projet"/>
 			<onglet href="?ctn=exp" label="Exemple"/>
 			<onglet href="?ctn=GPL" label="License"/>
 		</onglets>
 		<contenu id="ctn">
-			<fichier src="demo/contenu/projet.php" type="html" ctrl=".*?ctn=projet"/>
-			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl=".*?ctn=exp"/>
+			<fichier src="demo/contenu/projet.php" type="html" ctrl="(ctn=projet)|(^\/motif\/$)"/>
+			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl="ctn=exp"/>
 			<pre>
-				<fichier src="demo/contenu/GPL.php" type="txt" ctrl=".*?ctn=GPL"/>
+				<fichier src="demo/contenu/GPL.php" type="txt" ctrl="ctn=GPL"/>
 			</pre>
 		</contenu>
 		<logo href="http://www.collectif277.fr" src="demo/images/c277.png" txt="Collectif 277" id="c277"/>

@@ -23,10 +23,12 @@
 
 
 if( !function_exists('activitéOnglet') ) {
-	function activitéOnglet( $href ) {
-		if( isset($href) && !preg_match( "/.*$href.*/", $_SERVER['REQUEST_URI'] ) )
-			return "";
-		return "active";
+	function activitéOnglet( $href, $ctrl ) {
+		if(	isset($href) && preg_match( "/.*$href/", $_SERVER['REQUEST_URI']) ) 
+			return "active";
+		if( isset($ctrl) && preg_match( "/$ctrl/", $_SERVER['REQUEST_URI']) )
+			return "active";
+		return "";
 	}
 }
 
@@ -34,6 +36,6 @@ if( !function_exists('activitéOnglet') ) {
 ?>
 
 
-<li id="<?=$id?>" class="<?=activitéOnglet($href);?>">
+<li id="<?=$id?>" class="<?=activitéOnglet($href, $ctrl);?>">
 	<a href="<?=$href?>"><?=$label;?></a>
 </li>
