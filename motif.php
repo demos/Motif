@@ -25,6 +25,14 @@
  * + Gestion fine de l'encodage
  */
 
+/*
+function erreurs($no, $msg, $fichier, $ligne, $context) {
+	print_r( $context );
+	
+	//throw new DomException($msg);
+}
+set_error_handler("erreurs");
+//*/
 
 class Motif {
 	var $dbg = false;
@@ -45,7 +53,8 @@ class Motif {
 		$rtr = $dom->ownerDocument->saveXML( $dom );					if( !$rtr ) {echo "Le document xml n'a pas été transformé en chaine : $motif".sdl;return;}
 		$rtr = $this->retireCdata( $rtr );
 		// on vire manuellement l'encapsulation
-		$rtr = substr( $rtr, 9, strlen($rtr)-19 );//*/
+		$rtr = substr( $rtr, 8, strlen($rtr)-17 );//*/
+		$rtr = htmlspecialchars_decode( $rtr );
 		return $rtr;
 	}
 	
@@ -98,10 +107,22 @@ class Motif {
 			//echo $xml;
 			$dom = new DomDocument('1.0', 'UTF-8');
 			$dom->formatOutput = true;
-			$dom->loadXML($xml);
+			//$dom->validateOnParse = true;
+			//$dom->substituteEntities = true;
+			//$dom->strictErrorChecking = false;
+			$tmp = $dom->loadXML($xml);
+			if( !$tmp ) {
+				echo "<pre>";
+				echo "$modèle\n";
+				echo $xml;
+				echo "</pre>";
+				$xml = $t->cdataEnfants( "style", $xml);
+				$xml = $t->cdataEnfants( "script", $xml);
+				$dom->loadXML($xml);
+			}
 			$t->scane($dom);
 		}
-		$dom = $dom->getElementsByTagName("modèle")->item(0);
+		$dom = $dom->getElementsByTagName("motif")->item(0);
 		return $dom;
 	}
 
@@ -160,16 +181,18 @@ class Motif {
 		$t = $this;
 		if( !isset($id) ) $id = "anonyme";
 		$chaineXML = $t->cdataDoctype( $chaineXML);
-		$chaineXML = $t->cdataEnfants( "pre", $chaineXML);
+		//$chaineXML = $t->cdataEnfants( "pre", $chaineXML);			// sur la sellette
 		$chaineXML = $t->cdataEnfants( "textarea", $chaineXML);
-		$chaineXML = $t->cdataEnfants( "style", $chaineXML);
-		$chaineXML = $t->cdataEnfants( "script", $chaineXML);
+		$chaineXML = $t->preserveEntités( $chaineXML );
+		//$chaineXML = $t->cdataEnfants( "style", $chaineXML);
+		//$chaineXML = $t->cdataEnfants( "script", $chaineXML);
 		$xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		$xml .= "<modèle>\n";
+		//$xml .= "<!DOCTYPE motif PUBLIC \"-//W3C//DTD MOTIF 1.1//EN\" \"test.dtd\">\n";
+		$xml .= "<motif>\n";
 		$xml .= "<!-- ".strtoupper($modèle)." : ".$id." -->\n";
 		$xml .= $chaineXML;
 		$xml .= "\n<!-- FIN ".strtoupper($modèle)." : ".$id." -->\n";
-		$xml .= "</modèle>\n";
+		$xml .= "</motif>\n";
 		return $xml;
 	}
 
@@ -218,6 +241,15 @@ class Motif {
 		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
 		return $chaineXML;
 	}
+
+	// Echappe les caractères clés html (a finir)
+	function htmlEnfants( $nom, $chaineXML ) {
+		// Passe le contenus des elements de type $nom en cdata
+		$modèle = '/(<'.$nom.'[^>]*>)(.*)(<\/'.$nom.'>)/i';
+		$nouveau = '$1'.'$2'.'$3';
+		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
+		return $chaineXML;
+	}//*/
 	
 	
 	function cdataDoctype( $chaineXML ) {
@@ -228,6 +260,12 @@ class Motif {
 		return $chaineXML;
 	}
 
+	function preserveEntités( $chaineXML ) {
+		// remplace les & pour ne pas cause de soucis d'entités avec xml
+		$chaineXML = str_replace( "&", "&amp;", $chaineXML );
+		return $chaineXML;
+	}
+	
 	function retireCdata( $chaineXML ) {
 		// retrait des cdata de tout le document
 		$chaineXML = str_replace( "<![CDATA[", "", $chaineXML );

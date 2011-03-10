@@ -16,4 +16,10 @@ Merci à Hugues Faipoux pour le logo.
 <br/>
 
 <h2>Liens</h2>
-<a href="https://github.com/demos/Motif" >Motif sur GitHub</a>
+<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
+
+
+<h2>Classe PHP</h2>
+<code lang="php">
+	<fichier id="code" src="motif.php" type="txt"/>
+</code>

@@ -23,6 +23,11 @@
 define("sdl", "<br/>\n");	// Saut de ligne
 
 
+function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+}
+
+
 // Vérifie si un fichier se trouve dans les includepaths
 // retourne le chemin absolu du fichier s'il est trouvé
 // retourne false sinon
@@ -39,8 +44,19 @@ function incluable( $nom=false ){
 }
 
 $conf = array(
-	"dossiers" => array(".", "motifs"),
-	"motifs" => array( "menu", "demo", "contenu")
+	"dossiers" => array(".", "motifs communs", "demo", "demo/motifs"),
+	"motifs" => array(
+		"onglets",
+		"onglet",
+		"demo",
+		"contenu",
+		"logo",
+		"fichier",
+		"ctrl",
+		"menu",
+		"code",
+		"js",
+		"css")
 );
 
 include "motif.php";

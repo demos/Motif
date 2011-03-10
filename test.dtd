@@ -1,0 +1,111 @@
+
+
+
+<!ENTITY % attrs
+ "id          ID             #IMPLIED
+  class       CDATA          #IMPLIED
+  name        CDATA          #IMPLIED
+  ereg        CDATA          #IMPLIED
+  label       CDATA          #IMPLIED
+  ctrl        CDATA          #IMPLIED
+  defaut      CDATA          #IMPLIED
+  rel         CDATA          #IMPLIED
+  target      CDATA          #IMPLIED
+  lang        CDATA          #IMPLIED
+  type        CDATA          #IMPLIED
+  alt         CDATA          #IMPLIED
+  style       CDATA          #IMPLIED
+  src         CDATA          #IMPLIED
+  href        CDATA          #IMPLIED
+  txt         CDATA          #IMPLIED"
+  >
+
+
+
+<!ELEMENT title ANY>
+<!ATTLIST title %attrs; >
+
+<!ELEMENT css ANY>
+<!ATTLIST css %attrs; >
+
+<!ELEMENT js ANY>
+<!ATTLIST js %attrs; >
+
+<!ELEMENT onglets ANY>
+<!ATTLIST onglets %attrs; >
+
+<!ELEMENT onglet ANY>
+<!ATTLIST onglet %attrs; >
+
+<!ELEMENT style (#PCDATA)>
+<!ATTLIST style %attrs; >
+
+<!ELEMENT head ANY>
+<!ATTLIST head %attrs; >
+
+<!ELEMENT logo ANY>
+<!ATTLIST logo %attrs; >
+
+<!ELEMENT contenu ANY>
+<!ATTLIST contenu %attrs; >
+
+<!ELEMENT fichier ANY>
+<!ATTLIST fichier %attrs; >
+
+<!ELEMENT ctrl ANY>
+<!ATTLIST ctrl %attrs; >
+
+<!ELEMENT pre ANY>
+<!ATTLIST pre %attrs; >
+
+<!ELEMENT body ANY>
+<!ATTLIST body %attrs; >
+
+<!ELEMENT html ANY>
+<!ATTLIST html %attrs; >
+
+<!ELEMENT motif ANY>
+<!ATTLIST motif %attrs; >
+
+<!ELEMENT ul ANY>
+<!ATTLIST ul %attrs; >
+
+<!ELEMENT li ANY>
+<!ATTLIST li %attrs; >
+
+<!ELEMENT a ANY>
+<!ATTLIST a %attrs; >
+
+<!ELEMENT br ANY>
+<!ATTLIST br %attrs; >
+
+<!ELEMENT h1 ANY>
+<!ATTLIST h1 %attrs; >
+
+<!ELEMENT h2 ANY>
+<!ATTLIST h2 %attrs; >
+
+<!ELEMENT code ANY>
+<!ATTLIST code %attrs; >
+
+<!ELEMENT img ANY>
+<!ATTLIST img %attrs; >
+
+<!ELEMENT b ANY>
+<!ATTLIST b %attrs; >
+
+<!ELEMENT div ANY>
+<!ATTLIST div %attrs; >
+
+<!ELEMENT enfants ANY>
+<!ATTLIST enfants %attrs; >
+
+<!ELEMENT script ANY>
+<!ATTLIST script %attrs; >
+
+<!ELEMENT link ANY>
+<!ATTLIST link %attrs; >
+
+<!ELEMENT menu ANY>
+<!ATTLIST menu %attrs; >
+
