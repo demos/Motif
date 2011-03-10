@@ -48,6 +48,8 @@
 			#logo {
 				margin-left: 20px;
 				margin-top: 5px;
+				position : absolute;
+				top: 0;
 			}
 			
 			#ctn {
@@ -58,7 +60,12 @@
 			
 			#c277 {
 				float: right;
-				margin: 2%;
+				margin: 1%;
+			}
+			
+			#menu {
+				margin: 0;
+				margin-top: 4%;
 			}
 
 		</style>

@@ -22,7 +22,6 @@ ul#<?=$id?> {
     list-style-type: none;
     padding-bottom: 22px;
     border-bottom: 1px solid #1D1D1B;
-    margin: 0;
     padding-left: 230px;
 }
 
