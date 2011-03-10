@@ -25,8 +25,11 @@
  * 
  * Ajouter vauleurs par défaut
  */
+
+// les liens distants sont en _blank
+$cible = ( $href && substr($href, 0, 4) == "http" )? "target=\"_blank\"" : "";
 ?>
 
-<a href="<?=$href?>" >
+<a href="<?=$href?>" <?=$cible?> >
 	<img id="<?=$id?>" src="<?=$src?>" class="<?=$css?>" alt="<?=$txt?>" style="border:0;"/>
 </a>

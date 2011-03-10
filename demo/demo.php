@@ -54,6 +54,11 @@
 				height: 80%;
 				background-color: #bbb;
 			}
+			
+			#c277 {
+				float: right;
+				margin: 2%;
+			}
 
 		</style>
 	</head>
@@ -71,5 +76,6 @@
 				<fichier src="demo/contenu/GPL.php" type="txt" ctrl=".*?ctn=GPL"/>
 			</pre>
 		</contenu>
+		<logo href="http://www.collectif277.fr" src="demo/images/c277.png" txt="Collectif 277" id="c277"/>
 	</body>
 </html>

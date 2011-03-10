@@ -54,6 +54,7 @@ $conf = array(
 		"fichier",
 		"ctrl",
 		"menu",
+		"bouton_menu",
 		"code",
 		"js",
 		"css")

@@ -14,10 +14,10 @@
 </style>
 
 <menu id="menu-exemple">
-	<a class="menu" href="?ctn=exp&p=pre" style="margin-left: 0%;"> PRÉSENTATION</a> 
-	<a class="menu" href="?ctn=exp&p=src" style=""> CONTENU</a>
-	<a class="menu" href="?ctn=exp&p=mtf" style=""> MOTIFS</a>
-	<a class="menu" href="?ctn=exp&p=com" style=""> MOTIFS COMMUNS</a>
+	<bouton_menu href="?ctn=exp&p=pre" label=" PRÉSENTATION"/>
+	<bouton_menu href="?ctn=exp&p=src" label=" CONTENU"/>
+	<bouton_menu href="?ctn=exp&p=mtf" label=" MOTIFS"/>
+	<bouton_menu href="?ctn=exp&p=com" label=" MOTIFS COMMUNS"/>
 </menu>
 
 <br/>
