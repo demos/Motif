@@ -20,6 +20,6 @@ Merci à Hugues Faipoux pour le logo.
 
 
 <h2>Classe PHP</h2>
-<code lang="php">
+<code id="codeclassemotif" lang="php">
 	<fichier id="code" src="motif.php" type="txt"/>
 </code>

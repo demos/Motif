@@ -26,6 +26,7 @@
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushJScript.js"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushXml.js"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushPhp.js"/>
+		<js src="demo/ext/jquery-1.5.1.min.js"/>
 		<js> SyntaxHighlighter.all(); </js>
 		<style>
 			html, body {

@@ -53,19 +53,19 @@
 	
 	<a name="demo.php"></a><br/>
 	<h2>demo.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="demophp" lang="php; html-script: true;">
 		<fichier src="demo/demo.php" type="txt"/>
 	</code>
 	
 	<a name="projet.php"></a><br/>
 	<h2>projet.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="projetphp" lang="php; html-script: true;">
 		<fichier src="demo/contenu/projet.php" type="txt"/>
 	</code>
 	
 	<a name="exp.php"></a><br/>
 	<h2>exp.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="expphp" lang="php; html-script: true;">
 		<fichier src="demo/contenu/exp.php" type="txt"/>
 	</code>
 	
@@ -81,19 +81,19 @@
 	
 	<a name="code.php"></a><br/>
 	<h2>code.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="codephp" lang="php; html-script: true;">
 		<fichier src="demo/motifs/code.php" type="txt"/>
 	</code>
 
 	<a name="contenu.php"></a><br/>
 	<h2>contenu.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="ctnphp" lang="php; html-script: true;">
 		<fichier src="demo/motifs/contenu.php" type="txt"/>
 	</code>
 
 	<a name="menu.php"></a><br/>
 	<h2>menu.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="menuphp" lang="php; html-script: true;">
 		<fichier src="demo/motifs/menu.php" type="txt"/>
 	</code>
 </ctrl>
@@ -109,19 +109,19 @@
 	
 	<a name="logo.php"></a><br/>
 	<h2>logo.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="logophp" lang="php; html-script: true;">
 		<fichier src="motifs communs/logo.php" type="txt"/>
 	</code>
 
 	<a name="js.php"></a><br/>
 	<h2>js.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="jsphp" lang="php; html-script: true;">
 		<fichier src="motifs communs/js.php" type="txt"/>
 	</code>
 	
 	<a name="css.php"></a><br/>
 	<h2>css.php</h2>
-	<code lang="php; html-script: true;">
+	<code id="cssphp" lang="php; html-script: true;">
 		<fichier src="motifs communs/css.php" type="txt"/>
 	</code>
 
