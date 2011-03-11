@@ -56,6 +56,7 @@ $conf = array(
 		"menu",
 		"bouton_menu",
 		"code",
+		"rss",
 		"js",
 		"css")
 );

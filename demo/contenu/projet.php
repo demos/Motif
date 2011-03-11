@@ -15,11 +15,45 @@ Merci à Hugues Faipoux pour le logo.
 + Étayer le site de présentation.<br/>
 <br/>
 
-<h2>Liens</h2>
-<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
+<style>
+#fluxrss {
+	margin:0;
+	padding:5px;
+	float:right;
+	width:40%;
+	height: 300px;
+	font-size:10px;
+	border:1px solid #CCCCCC;
+	overflow: auto;
+}
+.clear{clear:both;
+  display:block;
+  height: 0;
+  font-size: 1px;
+  line-height: 0px;
+} 
+#liens {
+	float: left;
+}
+</style>
+
+<div id="liens">
+	<h2>Liens</h2>
+	<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
+</div>
+
+
+<rss id="fluxrss"/>
+
+<br class="clear" /> 
+<br/>
+<br/>
+
 
 
 <h2>Classe PHP</h2>
 <code id="codeclassemotif" lang="php">
 	<fichier id="code" src="motif.php" type="txt"/>
 </code>
+
+

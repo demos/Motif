@@ -21,13 +21,17 @@
 <html>
 	<head>
 		<title>Exemple Simple Motif</title>
+		<!-- syntaxhighlighter -->
 		<css src="demo/ext/syntaxhighlighter/styles/shCoreDefault.css"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shCore.js"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushJScript.js"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushXml.js"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushPhp.js"/>
-		<js src="demo/ext/jquery-1.5.1.min.js"/>
 		<js> SyntaxHighlighter.all(); </js>
+		<!-- JQuery -->
+		<js src="demo/ext/jquery-1.5.1.min.js"/>
+		<!--<js src="demo/ext/jquery-1.2.6.min.js"/>-->
+		<js src="demo/ext/rssreader/rssReader-src.js"/>
 		<style>
 			html, body {
 				width: 100%;
