@@ -26,13 +26,13 @@
 <ctrl defaut="ctn=exp$" ereg="ctn=exp&p=pre">
 	<h1>Démonstration</h1>
 	Le site de démonstration est contenu dans le dossier demo.<br/>
-	Il contient un fichier <a href="?ctn=exp&p=src#demo.php">demo.php</a> qui correspond au motif élémentaire du site.<br/>
-	Il contient la declaration du doctype, la structure html basique et décrit les grandes lignes du site.<br/>
+	Il contient un fichier <a href="?ctn=exp&p=src#demo.php">demo.php</a> qui correspond au motif élémentaire du site : <br/>
+	Doctype, structure html basique plus description des grandes lignes du site.<br/>
 	<br/>
 	Respectivement, les sous-dossiers de demo contiennent :<br/>
 	+ contenu : Les pages de contenu du site (les noeuds du plan de site).<br/>
 	+ motifs : Les motifs propre au site demo uniquement.<br/>
-	+ ext : les librairies externes utilisées (syntaxhighlighter uniquement pour l'instant).<br/>
+	+ ext : les librairies externes utilisées (syntaxhighlighter, jquery et rssreader).<br/>
 	+ images : les images du site demo.<br/>
 	<br/>
 	Il existe aussi un dossiers "motifs communs" au même niveau que le dossier demo. Il concentre les motifs <br/>
