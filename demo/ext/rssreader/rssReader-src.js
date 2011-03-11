@@ -1,4 +1,9 @@
 (function ($) {
+	// Code inspiré de http://www.rssreader.magix-cjquery.com/
+	// Support de feed, simplification de l'abstraction, optimisation
+	// pas encore testé sur ie
+	// A faire : infos globales sur le flux
+	// option pour crossdomain
     $.fn.rssReader = function (j) {
         
 		/*Exemple = {

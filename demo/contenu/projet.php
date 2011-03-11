@@ -51,7 +51,8 @@ Merci à Hugues Faipoux pour le logo.
 
 
 
-<h2>Classe PHP</h2>
+<h2>Classe Motif</h2>
+Il s'agit du coeur du système. Ce script inteprète les motifs 
 <code id="codeclassemotif" lang="php">
 	<fichier id="code" src="motif.php" type="txt"/>
 </code>
