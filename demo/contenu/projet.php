@@ -8,12 +8,6 @@ Avec la participation d'Alexandre Dubreuil, nous cherchons maintenant à permett
 Merci à Hugues Faipoux pour le logo.
 <br/>
 <br/>
-<h2>Feuille de route</h2>
-+ Integration de motifs écrits en Python via PIP.<br/>
-+ Reflexion sur les paramètres de lecture de motif : DTD, dossiers sources...<br/>
-+ Définir une architecture orientée pour l'optimisation (actuellement il s'agit d'un simple design fonctionnel rangé dans une classe).<br/>
-+ Étayer le site de présentation.<br/>
-<br/>
 
 <style>
 #fluxrss {
@@ -23,23 +17,43 @@ Merci à Hugues Faipoux pour le logo.
 	width:40%;
 	height: 300px;
 	font-size:10px;
-	border:1px solid #CCCCCC;
+	/*border:1px solid #CCCCCC;*/
+	background-color: none;
 	overflow: auto;
+	overflow-x: hidden;
 }
-.clear{clear:both;
-  display:block;
-  height: 0;
-  font-size: 1px;
-  line-height: 0px;
+.clear{
+	clear:both;
+	display:block;
+	height: 0;
+	font-size: 1px;
+	line-height: 0px;
 } 
 #liens {
 	float: left;
+	width: 55%;
 }
 </style>
 
+<h2>Suivi du projet</h2>
 <div id="liens">
-	<h2>Liens</h2>
+	<h3>Liens</h3>
 	<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
+	<br/>
+	<br/>
+	<h3>Bugs remarqués</h3>
+	+ Problème d'interprétation des éléments vides qui ne devraient pas l'être comme &lt;div/&gt;<br/>
+	Si l'analyseur en trouve, il faut les transformer en &lt;div&gt;&lt;/div&gt;<br/>
+	
+	
+	<h3>Feuille de route</h3>
+	+ Appliquer thème préparé par Hugues sur le site de démo.<br/>
+	+ Ajouter beautifyCode à l'élément code si JQ est présent<br/>
+	+ Integration de motifs écrits en Python via PIP.<br/>
+	+ Reflexion sur les paramètres de lecture de motif : DTD, dossiers sources...<br/>
+	+ Définir une architecture orientée pour l'optimisation (actuellement il s'agit d'un simple design fonctionnel rangé dans une classe).<br/>
+	<br/>
+
 </div>
 
 
@@ -52,7 +66,7 @@ Merci à Hugues Faipoux pour le logo.
 
 
 <h2>Classe Motif</h2>
-Il s'agit du coeur du système. Ce script inteprète les motifs 
+Il s'agit du coeur du système. Ce script intègre les motifs les uns dans les autres.<br/>
 <code id="codeclassemotif" lang="php">
 	<fichier id="code" src="motif.php" type="txt"/>
 </code>

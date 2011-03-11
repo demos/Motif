@@ -6,7 +6,6 @@
 
 <style>
 	#<?=$id?> {
-		text-align: center;
 		overflow: auto;
 	}
 </style>

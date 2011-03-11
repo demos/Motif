@@ -55,6 +55,8 @@ $conf = array(
 		"ctrl",
 		"menu",
 		"bouton_menu",
+		"menu-deroulant",
+		"item-menu-deroulant",
 		"code",
 		"rss",
 		"js",

@@ -39,55 +39,96 @@
 				margin: 0;
 				font-family: arial;
 				font-size: 12px;
+				background-color: #f6f6f6;
 			}
 			
-			a {
-				color: #000;
-			}
+			img { border: 0; }
+			a { color: #000; }
 			
-			a:hover {
-				color: #BE7A40;
-			}
+			a:hover { color: #BE7A40; }
 			
 			#logo {
-				margin-left: 20px;
-				margin-top: 5px;
+				left: 5%;
+				margin-top: -40px;
+				top: 10%;
 				position : absolute;
-				top: 0;
 			}
 			
 			#ctn {
+				position : absolute;
 				border-bottom: 1px solid #1D1D1B;
-				height: 80%;
-				background-color: #bbb;
+				height: 76%;
+				width: 90%;
+				left: 5%;
+				top: 14%;
 			}
 			
 			#c277 {
-				float: right;
+				position : absolute;
+				top : 92%;
 				margin: 1%;
+				right: 0;
 			}
 			
-			#menu {
-				margin: 0;
-				margin-top: 4%;
+			#menus {
+				border-top: 1px solid #1D1D1B;
+				position: absolute;
+				width: 90%;
+				top : 10%;
+				left: 5%;
+				text-align:center;
 			}
+			
+			.menu {
+				font-family: arial;
+				font-size: 16px;
+				margin: 0;
+				margin-left:30px;
+				margin-right:30px;
+				display: inline;
+				width: 150px;
+			}
+			.menu a {
+				text-decoration: none;
+			}
+			
+			
+			#menudemo ul {
+				text-align: left;
+				width: 300px;
+			}
+
 
 		</style>
 	</head>
 	<body>
 		<logo href="/motif" src="demo/images/logo.png" txt="Motif" id="logo"/>
-		<onglets id="menu">
+		<!--<onglets id="menu">
 			<onglet href="?ctn=projet"  ctrl="(ctn=projet)|(^\/motif\/$)" label="Projet"/>
 			<onglet href="?ctn=exp" label="Exemple"/>
 			<onglet href="?ctn=GPL" label="License"/>
-		</onglets>
+		</onglets>-->
 		<contenu id="ctn">
 			<fichier src="demo/contenu/projet.php" type="html" ctrl="(ctn=projet)|(^\/motif\/$)"/>
 			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl="ctn=exp"/>
-			<pre>
-				<fichier src="demo/contenu/GPL.php" type="txt" ctrl="ctn=GPL"/>
-			</pre>
+			<fichier src="demo/contenu/GPL.php" type="html" ctrl="ctn=GPL"/>
 		</contenu>
+		<img src="demo/images/trois-tiret-droite.png" style="position : absolute; top: 10%; margin-top: -10px; right: 8%;"/>
+		<div id="menus">
+			<menu-deroulant id="menuprojet" css="menu" titre="Projet" href="?ctn=projet"/>
+			<img src="demo/images/tiret-menu.png" style="position: absolute; margin-top: -5px; margin-left: -5px;"/>
+			<menu-deroulant id="menudemo" css="menu" titre="Exemple" href="?ctn=exp">
+				<li>&nbsp;</li>
+				<item-menu-deroulant href="?ctn=exp&p=pre" label="Présentation"/>
+				<item-menu-deroulant href="?ctn=exp&p=src" label="Contenu"/>
+				<item-menu-deroulant href="?ctn=exp&p=mtf" label="Motifs"/>
+				<item-menu-deroulant href="?ctn=exp&p=com" label="Motifs Communs"/>
+				<li>&nbsp;</li>
+			</menu-deroulant>
+			<img src="demo/images/tiret-menu.png" style="position: absolute; margin-top: -5px; margin-left: -5px;"/>
+			<menu-deroulant id="menulicense" css="menu" titre="License" href="?ctn=GPL"/>
+		</div>
+		<img src="demo/images/ombre.png" style="height: 60px; width: 80%; margin-left: 10%; top: 90%; position:absolute"/>
 		<logo href="http://www.collectif277.fr" src="demo/images/c277.png" txt="Collectif 277" id="c277"/>
 	</body>
 </html>

@@ -1,3 +1,25 @@
+<?
+
+function listeDossier($dossier){
+	$rtr = array();
+	$monDossier = opendir($dossier) or die('Erreur');
+	while($entrée = @readdir($monDossier)) {
+		if( $entrée == '.' || $entrée == '..' ){;}
+		else if( is_dir($dossier.'/'.$entrée) ) {
+            //echo '<ul>'.$dossier;
+			//listeDossier($dossier.'/'.$entrée);
+            //echo '</ul>';
+		}
+		else 
+			$rtr[] = $entrée;
+	}
+	closedir($monDossier);
+	return $rtr;
+}
+
+
+
+?>
 <style>
 	#menu-exemple {
 		font-size: 13px;
@@ -13,15 +35,6 @@
 	}
 </style>
 
-<menu id="menu-exemple">
-	<bouton_menu href="?ctn=exp&p=pre" label=" PRÉSENTATION"/>
-	<bouton_menu href="?ctn=exp&p=src" label=" CONTENU"/>
-	<bouton_menu href="?ctn=exp&p=mtf" label=" MOTIFS"/>
-	<bouton_menu href="?ctn=exp&p=com" label=" MOTIFS COMMUNS"/>
-</menu>
-
-<br/>
-<br/>
 
 <ctrl defaut="ctn=exp$" ereg="ctn=exp&p=pre">
 	<h1>Démonstration</h1>
@@ -77,25 +90,16 @@
 	<a href="#code.php">code.php</a><br/>
 	<a href="#contenu.php">contenu.php</a><br/>
 	<a href="#menu.php">menu.php</a><br/>
-	
-	
-	<a name="code.php"></a><br/>
-	<h2>code.php</h2>
-	<code id="codephp" lang="php; html-script: true;">
-		<fichier src="demo/motifs/code.php" type="txt"/>
-	</code>
-
-	<a name="contenu.php"></a><br/>
-	<h2>contenu.php</h2>
-	<code id="ctnphp" lang="php; html-script: true;">
-		<fichier src="demo/motifs/contenu.php" type="txt"/>
-	</code>
-
-	<a name="menu.php"></a><br/>
-	<h2>menu.php</h2>
-	<code id="menuphp" lang="php; html-script: true;">
-		<fichier src="demo/motifs/menu.php" type="txt"/>
-	</code>
+	<?
+	$motifs = listeDossier("demo/motifs");
+	foreach( $motifs as $fichier ) {
+		$tmp = str_replace( ".", "", $fichier); ?>
+		<a name="<?=$fichier?>"></a><br/>
+		<h2><?=$fichier?></h2>
+		<code id="<?=$tmp?>" lang="php; html-script: true;">
+			<fichier src="demo/motifs/<?=$fichier?>" type="txt"/>
+		</code>
+	<?}?>
 </ctrl>
 
 
@@ -106,25 +110,16 @@
 	<a href="#js.php">js.php</a><br/>
 	<a href="#css.php">css.php</a><br/>
 	
-	
-	<a name="logo.php"></a><br/>
-	<h2>logo.php</h2>
-	<code id="logophp" lang="php; html-script: true;">
-		<fichier src="motifs communs/logo.php" type="txt"/>
-	</code>
-
-	<a name="js.php"></a><br/>
-	<h2>js.php</h2>
-	<code id="jsphp" lang="php; html-script: true;">
-		<fichier src="motifs communs/js.php" type="txt"/>
-	</code>
-	
-	<a name="css.php"></a><br/>
-	<h2>css.php</h2>
-	<code id="cssphp" lang="php; html-script: true;">
-		<fichier src="motifs communs/css.php" type="txt"/>
-	</code>
-
+	<?
+	$motifs = listeDossier("motifs communs");
+	foreach( $motifs as $fichier ) {
+		$tmp = str_replace( ".", "", $fichier); ?>
+		<a name="<?=$fichier?>"></a><br/>
+		<h2><?=$fichier?></h2>
+		<code id="<?=$tmp?>" lang="php; html-script: true;">
+			<fichier src="motifs communs/<?=$fichier?>" type="txt"/>
+		</code>
+	<?}?>
 </ctrl>
 
 

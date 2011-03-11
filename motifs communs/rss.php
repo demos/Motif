@@ -50,7 +50,7 @@ $(function(){
     
     var avant = function () {
 		conteneur.css({
-			backgroundColor: '#ccc',
+			//backgroundColor: '#ccc',
 			'z-index': 90,
 			'opacity': 0.4
 		});
@@ -61,7 +61,7 @@ $(function(){
     
 	var affiche = function( titre, date, lien, texte) {
 		conteneur.css({
-			backgroundColor: '#fff',
+			//backgroundColor: '#fff',
 			'opacity': 1
 		});
 		$('#<?=$id?> img').remove();
@@ -80,10 +80,11 @@ $(function(){
 });
 
 --></js>
+
 <style>
 #<?=$id?> a {
 	color:#FF9900;
-	font-size:10px;
+	font-size:12px;
 }
 #<?=$id?> .date {
 	margin:0;
