@@ -109,3 +109,6 @@
 <!ELEMENT menu ANY>
 <!ATTLIST menu %attrs; >
 
+<!ELEMENT titre ANY>
+<!ATTLIST titre %attrs; >
+

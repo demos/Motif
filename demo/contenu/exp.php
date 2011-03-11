@@ -95,11 +95,13 @@ function listeDossier($dossier){
 	foreach( $motifs as $fichier ) {
 		$tmp = str_replace( ".", "", $fichier); ?>
 		<a name="<?=$fichier?>"></a><br/>
-		<h2><?=$fichier?></h2>
+		<titre label="<?=$fichier?>"/>
 		<code id="<?=$tmp?>" lang="php; html-script: true;">
 			<fichier src="demo/motifs/<?=$fichier?>" type="txt"/>
 		</code>
 	<?}?>
+	<br/>
+	<br/>
 </ctrl>
 
 
@@ -115,11 +117,13 @@ function listeDossier($dossier){
 	foreach( $motifs as $fichier ) {
 		$tmp = str_replace( ".", "", $fichier); ?>
 		<a name="<?=$fichier?>"></a><br/>
-		<h2><?=$fichier?></h2>
+		<titre label="<?=$fichier?>"/>
 		<code id="<?=$tmp?>" lang="php; html-script: true;">
 			<fichier src="motifs communs/<?=$fichier?>" type="txt"/>
 		</code>
 	<?}?>
+	<br/>
+	<br/>
 </ctrl>
 
 

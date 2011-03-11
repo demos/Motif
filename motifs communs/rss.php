@@ -73,7 +73,7 @@ $(function(){
 	
 	conteneur.rssReader({
 			targeturl: 'demo/ext/rssreader/rss.php',
-			max: 10,
+			max: 3,
 			init : avant,
 			succes : affiche
 	});
@@ -83,7 +83,7 @@ $(function(){
 
 <style>
 #<?=$id?> a {
-	color:#FF9900;
+	color:#BE7A40;
 	font-size:12px;
 }
 #<?=$id?> .date {

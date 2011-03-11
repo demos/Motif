@@ -35,7 +35,7 @@ Merci à Hugues Faipoux pour le logo.
 }
 </style>
 
-<h2>Suivi du projet</h2>
+<titre label="Suivi du projet"/>
 <div id="liens">
 	<h3>Liens</h3>
 	<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
@@ -65,7 +65,7 @@ Merci à Hugues Faipoux pour le logo.
 
 
 
-<h2>Classe Motif</h2>
+<titre label="Classe Motif"/>
 Il s'agit du coeur du système. Ce script intègre les motifs les uns dans les autres.<br/>
 <code id="codeclassemotif" lang="php">
 	<fichier id="code" src="motif.php" type="txt"/>

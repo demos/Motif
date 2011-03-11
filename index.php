@@ -53,6 +53,7 @@ $conf = array(
 		"logo",
 		"fichier",
 		"ctrl",
+		"titre",
 		"menu",
 		"bouton_menu",
 		"menu-deroulant",
