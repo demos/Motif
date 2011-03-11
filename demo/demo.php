@@ -29,7 +29,13 @@
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushPhp.js"/>
 		<js> SyntaxHighlighter.all(); </js>
 		<!-- JQuery -->
-		<js src="demo/ext/jquery-1.5.1.min.js"/>
+		<js src="demo/ext/jquery/jquery-1.5.1.min.js"/>
+		<js src="demo/ext/jquery/jquery.tools.min.js"/>
+		<js src="demo/ext/jquery/ui.core-1.7.2.js"/>
+		<js src="demo/ext/jquery/ui.draggable-1.7.2.js"/>
+		<js src="demo/ext/jquery/jquery.mousewheel.min.js"/>
+		<js src="demo/ext/jquery/plugin.scrollbar-min.js"/>
+		<js src="demo/ext/jquery/plugin.scrollbar.js"/>
 		<!--<js src="demo/ext/jquery-1.2.6.min.js"/>-->
 		<js src="demo/ext/rssreader/rssReader-src.js"/>
 		<style>
@@ -54,13 +60,14 @@
 				position : absolute;
 			}
 			
-			#ctn {
+			#contenu {
 				position : absolute;
 				border-bottom: 1px solid #1D1D1B;
 				height: 76%;
 				width: 90%;
 				left: 5%;
 				top: 14%;
+				color: #666;
 			}
 			
 			#c277 {
@@ -108,7 +115,22 @@
 			<onglet href="?ctn=exp" label="Exemple"/>
 			<onglet href="?ctn=GPL" label="License"/>
 		</onglets>-->
-		<contenu id="ctn">
+		<contenu id="contenu">
+<!-- our scrollable element -->
+<div id="scrollwrap">
+	<div id="scroll">
+		jQuery TOOLS 1.2.5 Rangeinput. HTML5 ranges for humans.
+	</div>
+</div>
+
+<!-- rangeinput that controls the scroll -->
+<input type="range" max="2600" step="10" />
+<js>
+$(document).ready(function(){
+	//$("#contenu").scrollbar();
+});
+</js>
+
 			<fichier src="demo/contenu/projet.php" type="html" ctrl="(ctn=projet)|(^\/motif\/$)"/>
 			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl="ctn=exp"/>
 			<fichier src="demo/contenu/GPL.php" type="html" ctrl="ctn=GPL"/>
