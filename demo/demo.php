@@ -125,8 +125,8 @@ $(document).ready(function(){
 		<div id="menus">
 			<menu-deroulant id="menuprojet" css="menu" titre="Projet" href="?ctn=projet">
 				<li>&nbsp;</li>
-				<item-menu-deroulant href="?ctn=exp&p=pyt" label="Python"/>
-				<item-menu-deroulant href="?ctn=exp&p=com" label="Motifs Communs"/>
+				<item-menu-deroulant href="?ctn=projet&p=pyt" label="Python"/>
+				<item-menu-deroulant href="?ctn=projet&p=com" label="Motifs Communs"/>
 				<li>&nbsp;</li>
 			</menu-deroulant>
 			<img src="demo/images/tiret-menu.png" style="position: absolute; margin-top: -5px; margin-left: -5px;"/>

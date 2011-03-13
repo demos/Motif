@@ -1,4 +1,17 @@
-<ctrl defaut="[^\?]" ereg="ctn=projet$">
+<ctrl ereg="ctn=projet&p=pyt$">
+
+
+		<? 
+$code = <<<END
+texte = ['Ce', 'texte ','est', 'affiché ', 'en', 'Python!!']
+for mot in texte:
+	print mot
+
+END;
+python_exec($code);
+		?>
+</ctrl>
+<ctrl defaut="^\/motif\/$" ereg="ctn=projet$">
 	<br/>
 	<br/>
 	<b>Motif</b> est un projet opensource d'assemblage de segments html (ou autre langage basé sur xml).<br/>
@@ -46,6 +59,7 @@
 		<h3>Bugs remarqués</h3>
 		+ Problème d'interprétation des éléments vides qui ne devraient pas l'être comme &lt;div/&gt;<br/>
 		Si l'analyseur en trouve, il faut les transformer en &lt;div&gt;&lt;/div&gt;<br/>
+		+ PIP fait beuguer Apache sur Maverick Server. Sur Lucid pas de soucis.<br/>
 		
 		
 		<h3>Feuille de route</h3>
@@ -73,13 +87,4 @@
 		<fichier id="code" src="motif.php" type="txt"/>
 	</code>
 </ctrl>
-		<? 
-$code = <<<END
-fruits = ['apples', 'oranges', 'pears']
-for fruit in fruits:
-	print fruit
-
-END;
-python_exec($code);
-		?>
 
