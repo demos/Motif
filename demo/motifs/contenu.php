@@ -2,6 +2,8 @@
 /* Décrit le cadre d'affichage du contenu
  * 
  */
+if( !isset($css) ) $css="";
+
 ?>
 
 <style>

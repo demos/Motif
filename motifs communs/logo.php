@@ -25,6 +25,7 @@
  * 
  * Ajouter vauleurs par défaut
  */
+if( !isset($css) ) $css="";
 
 // les liens distants sont en _blank
 $cible = ( $href && substr($href, 0, 4) == "http" )? "target=\"_blank\"" : "";

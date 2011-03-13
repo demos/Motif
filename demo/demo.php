@@ -34,8 +34,8 @@
 		<js src="demo/ext/jquery/ui.core-1.7.2.js"/>
 		<js src="demo/ext/jquery/ui.draggable-1.7.2.js"/>
 		<js src="demo/ext/jquery/jquery.mousewheel.min.js"/>
-		<js src="demo/ext/jquery/plugin.scrollbar-min.js"/>
-		<js src="demo/ext/jquery/plugin.scrollbar.js"/>
+		<!--<js src="demo/ext/jquery/plugin.scrollbar-min.js"/>
+		<js src="demo/ext/jquery/plugin.scrollbar.js"/>-->
 		<!--<js src="demo/ext/jquery-1.2.6.min.js"/>-->
 		<js src="demo/ext/rssreader/rssReader-src.js"/>
 		<style>
@@ -110,21 +110,7 @@
 	</head>
 	<body>
 		<logo href="/motif" src="demo/images/logo.png" txt="Motif" id="logo"/>
-		<!--<onglets id="menu">
-			<onglet href="?ctn=projet"  ctrl="(ctn=projet)|(^\/motif\/$)" label="Projet"/>
-			<onglet href="?ctn=exp" label="Exemple"/>
-			<onglet href="?ctn=GPL" label="License"/>
-		</onglets>-->
 		<contenu id="contenu">
-<!-- our scrollable element -->
-<div id="scrollwrap">
-	<div id="scroll">
-		jQuery TOOLS 1.2.5 Rangeinput. HTML5 ranges for humans.
-	</div>
-</div>
-
-<!-- rangeinput that controls the scroll -->
-<input type="range" max="2600" step="10" />
 <js>
 $(document).ready(function(){
 	//$("#contenu").scrollbar();
@@ -137,7 +123,12 @@ $(document).ready(function(){
 		</contenu>
 		<img src="demo/images/trois-tiret-droite.png" style="position : absolute; top: 10%; margin-top: -10px; right: 8%;"/>
 		<div id="menus">
-			<menu-deroulant id="menuprojet" css="menu" titre="Projet" href="?ctn=projet"/>
+			<menu-deroulant id="menuprojet" css="menu" titre="Projet" href="?ctn=projet">
+				<li>&nbsp;</li>
+				<item-menu-deroulant href="?ctn=exp&p=pyt" label="Python"/>
+				<item-menu-deroulant href="?ctn=exp&p=com" label="Motifs Communs"/>
+				<li>&nbsp;</li>
+			</menu-deroulant>
 			<img src="demo/images/tiret-menu.png" style="position: absolute; margin-top: -5px; margin-left: -5px;"/>
 			<menu-deroulant id="menudemo" css="menu" titre="Exemple" href="?ctn=exp">
 				<li>&nbsp;</li>
