@@ -1,15 +1,29 @@
 <ctrl ereg="ctn=projet&p=pyt$">
-
-
-		<? 
-$code = <<<END
-texte = ['Ce', 'texte ','est', 'affiché ', 'en', 'Python!!']
+		<pre><![CDATA[<? 
+		$test = "texte (variable php)";
+		$code = <<<END
+texte = ['Ce', '$test','est', 'affiché ', 'en', 'Python!!']
 for mot in texte:
 	print mot
 
 END;
-python_exec($code);
-		?>
+		if( function_exists('python_exec') ) python_exec($code);
+		else echo "PIP n'est pas activé";
+		?>]]></pre>
+		<code id="code" lang="php">
+		$test = "texte (variable php)";
+		$code = &lt;&lt;&lt;END
+texte = ['Ce', '$test','est', 'affiché ', 'en', 'Python!!']
+for mot in texte:
+	print mot
+
+END;
+		python_exec($code);
+		</code>
+		
+		<br/>
+		Les fonction python_eval, python_exec et python_call sont disponibles. La doc est obsolète 
+		donc je ne sais pas exactement comment elles tournent.<br/>
 </ctrl>
 <ctrl defaut="^\/motif\/$" ereg="ctn=projet$">
 	<br/>
@@ -59,7 +73,7 @@ python_exec($code);
 		<h3>Bugs remarqués</h3>
 		+ Problème d'interprétation des éléments vides qui ne devraient pas l'être comme &lt;div/&gt;<br/>
 		Si l'analyseur en trouve, il faut les transformer en &lt;div&gt;&lt;/div&gt;<br/>
-		+ PIP fait beuguer Apache sur Maverick Server. Sur Lucid pas de soucis.<br/>
+		+ PIP fait beuguer Apache sur Maverick Server et lucid.<br/>
 		
 		
 		<h3>Feuille de route</h3>
@@ -88,3 +102,47 @@ python_exec($code);
 	</code>
 </ctrl>
 
+
+<?
+
+function listeDossier($dossier){
+	$rtr = array();
+	$monDossier = opendir($dossier) or die('Erreur');
+	while($entrée = @readdir($monDossier)) {
+		if( $entrée == '.' || $entrée == '..' ){;}
+		else if( is_dir($dossier.'/'.$entrée) ) {
+            //echo '<ul>'.$dossier;
+			//listeDossier($dossier.'/'.$entrée);
+            //echo '</ul>';
+		}
+		else 
+			$rtr[] = $entrée;
+	}
+	closedir($monDossier);
+	return $rtr;
+}
+
+
+
+?>
+
+<ctrl ereg="ctn=projet&p=com">
+	<h1>Motifs communs</h1>
+	Ces motifs sont dans "/motifs communs"<br/>
+	<a href="#logo.php">logo.php</a><br/>
+	<a href="#js.php">js.php</a><br/>
+	<a href="#css.php">css.php</a><br/>
+	
+	<?
+	$motifs = listeDossier("motifs communs");
+	foreach( $motifs as $fichier ) {
+		$tmp = str_replace( ".", "", $fichier); ?>
+		<a name="<?=$fichier?>"></a><br/>
+		<titre label="<?=$fichier?>"/>
+		<code id="<?=$tmp?>" lang="php; html-script: true;">
+			<fichier src="motifs communs/<?=$fichier?>" type="txt"/>
+		</code>
+	<?}?>
+	<br/>
+	<br/>
+</ctrl>

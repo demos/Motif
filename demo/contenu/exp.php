@@ -105,26 +105,7 @@ function listeDossier($dossier){
 </ctrl>
 
 
-<ctrl ereg="ctn=exp&p=com">
-	<h1>Motifs communs</h1>
-	Ces motifs sont dans "/motifs communs"<br/>
-	<a href="#logo.php">logo.php</a><br/>
-	<a href="#js.php">js.php</a><br/>
-	<a href="#css.php">css.php</a><br/>
-	
-	<?
-	$motifs = listeDossier("motifs communs");
-	foreach( $motifs as $fichier ) {
-		$tmp = str_replace( ".", "", $fichier); ?>
-		<a name="<?=$fichier?>"></a><br/>
-		<titre label="<?=$fichier?>"/>
-		<code id="<?=$tmp?>" lang="php; html-script: true;">
-			<fichier src="motifs communs/<?=$fichier?>" type="txt"/>
-		</code>
-	<?}?>
-	<br/>
-	<br/>
-</ctrl>
+
 
 
 

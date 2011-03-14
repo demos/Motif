@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 38
+*.diff
+*.exp
+*.log
+*.out
+*.pyc
+phpt.*
+
+END

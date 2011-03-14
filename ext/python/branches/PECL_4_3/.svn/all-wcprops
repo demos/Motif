@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repository/!svn/ver/284003/pecl/python/branches/PECL_4_3
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/Makefile.in
+END
+python.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/python.c
+END
+config.m4
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/config.m4
+END
+python.dsp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/python.dsp
+END
+pip_convert.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/147133/pecl/python/branches/PECL_4_3/pip_convert.c
+END
+package.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/!svn/ver/284003/pecl/python/branches/PECL_4_3/package.xml
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/CREDITS
+END
+EXPERIMENTAL
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/EXPERIMENTAL
+END
+php_python.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/php_python.h
+END
+pip_convert.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/pip_convert.h
+END

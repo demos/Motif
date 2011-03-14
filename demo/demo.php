@@ -104,6 +104,11 @@
 				text-align: left;
 				width: 300px;
 			}
+			
+			#menuprojet ul {
+				text-align: left;
+				width: 300px;
+			}
 
 
 		</style>
@@ -135,7 +140,6 @@ $(document).ready(function(){
 				<item-menu-deroulant href="?ctn=exp&p=pre" label="Présentation"/>
 				<item-menu-deroulant href="?ctn=exp&p=src" label="Contenu"/>
 				<item-menu-deroulant href="?ctn=exp&p=mtf" label="Motifs"/>
-				<item-menu-deroulant href="?ctn=exp&p=com" label="Motifs Communs"/>
 				<li>&nbsp;</li>
 			</menu-deroulant>
 			<img src="demo/images/tiret-menu.png" style="position: absolute; margin-top: -5px; margin-left: -5px;"/>

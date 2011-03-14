@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests
+END
+006.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/006.phpt
+END
+007.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/007.phpt
+END
+001.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/001.phpt
+END
+002.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/002.phpt
+END
+003.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/003.phpt
+END
+TestModule.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/TestModule.py
+END
+004.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/004.phpt
+END
+skipif.inc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/skipif.inc
+END
+005.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/117210/pecl/python/branches/PECL_4_3/tests/005.phpt
+END

@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/repository/!svn/ver/297236/pecl/python/trunk
+END
+config.w32
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repository/!svn/ver/266968/pecl/python/trunk/config.w32
+END
+python_streams.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/!svn/ver/266968/pecl/python/trunk/python_streams.c
+END
+package.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repository/!svn/ver/276317/pecl/python/trunk/package.php
+END
+python_handlers.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/276316/pecl/python/trunk/python_handlers.c
+END
+python.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repository/!svn/ver/297236/pecl/python/trunk/python.c
+END
+python_convert.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/!svn/ver/273803/pecl/python/trunk/python_convert.c
+END
+config.m4
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repository/!svn/ver/266968/pecl/python/trunk/config.m4
+END
+python_object.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/266434/pecl/python/trunk/python_object.c
+END
+python_php.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repository/!svn/ver/273816/pecl/python/trunk/python_php.c
+END
+package.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repository/!svn/ver/284003/pecl/python/trunk/package.xml
+END
+php_python_internal.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/!svn/ver/266970/pecl/python/trunk/php_python_internal.h
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repository/!svn/ver/90287/pecl/python/trunk/CREDITS
+END
+EXPERIMENTAL
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repository/!svn/ver/90287/pecl/python/trunk/EXPERIMENTAL
+END
+php_python.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repository/!svn/ver/266652/pecl/python/trunk/php_python.h
+END

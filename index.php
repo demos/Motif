@@ -45,23 +45,6 @@ function incluable( $nom=false ){
 
 $conf = array(
 	"dossiers" => array(".", "motifs communs", "demo", "demo/motifs"),
-	"motifs" => array(
-		"onglets",
-		"onglet",
-		"demo",
-		"contenu",
-		"logo",
-		"fichier",
-		"ctrl",
-		"titre",
-		"menu",
-		"bouton_menu",
-		"menu-deroulant",
-		"item-menu-deroulant",
-		"code",
-		"rss",
-		"js",
-		"css")
 );
 
 include "motif.php";

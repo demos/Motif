@@ -19,7 +19,6 @@
  *  
  * Le contrôleur de modèle permet d'enchâsser différents documents html les uns dans les autres très facilement
  * A faire :
- * + lier à la configuration : dossiers
  * + segmenter en fonctions plus courtes
  * + options : cacher/grouper script ou styles, ...
  * + Gestion fine de l'encodage
@@ -37,21 +36,23 @@ set_error_handler("erreurs");
 class Motif {
 	var $dbg = false;
 	var $conf;
+	var $motifs;
 	
-	function Motif( $conf=false ) {
-		$this->conf = $conf;
-		
+	function Motif( $conf=false ) {										$t = $this;
+		$t->conf = $conf;
+		$t->motifs = $t->chargeMotifs($conf["dossiers"]);
+		//print_r($t->motifs);
 		// lier le parametre initial à la conf
 	}
 	
 	
 	// Lance la lecture d'un motif
-	function lit( $motif, $attributs=array() ) {
+	function lit( $motif, $attributs=array() ) {						$t = $this; $conf = $t->conf;
 		header( 'Content-type: text/html; charset=utf-8' );
-		$dom = $this->charge($motif, $attributs);						if( !$dom ) {echo "le motif $motif n'a pas été trouvé ".sdl;return;}
-		$this->scane($dom);
-		$rtr = $dom->ownerDocument->saveXML( $dom );					if( !$rtr ) {echo "Le document xml n'a pas été transformé en chaine : $motif".sdl;return;}
-		$rtr = $this->retireCdata( $rtr );
+		$dom = $t->charge($motif, $attributs);							if( !$dom ) { $t->log("le motif $motif n'a pas été trouvé ");return;}
+		$t->scane($dom);
+		$rtr = $dom->ownerDocument->saveXML( $dom );					if( !$rtr ) { $t->log("Le document xml n'a pas été transformé en chaine : $motif"); return;}
+		$rtr = $t->retireCdata( $rtr );
 		// on vire manuellement l'encapsulation
 		$rtr = substr( $rtr, 8, strlen($rtr)-17 );//*/
 		$rtr = htmlspecialchars_decode( $rtr );
@@ -60,14 +61,42 @@ class Motif {
 	
 	function cherche( $nom ) {											$t = $this; $conf = $t->conf;
 		// cherche un modèle dans les dossiers référencés.
-		$dossiers = $conf["dossiers"];									if( !$dossiers ) {echo "pas de dossiers".sdl;return;}
-		foreach( $dossiers as $dossier ) {								if( $t->dbg ) echo "cherche $nom dans $dossier".sdl;
+		$dossiers = $conf["dossiers"];									if( !$dossiers ) {$t->log("pas de dossiers");return;}
+		foreach( $dossiers as $dossier ) {								$t->log( "cherche $nom dans $dossier" );
 			$tmp = incluable("$dossier/$nom.php");
 			if( $tmp ) return $tmp;
 		}
 		// Si non trouvé, cherche 
 		return incluable("$nom.php");
 	}
+	
+	function chargeMotifs($dossier){									$t = $this; $conf = $t->conf;
+		$dossiers = $conf["dossiers"];									if( !$dossiers ) {$t->log("pas de dossiers de motifs");return;}
+		$motifs = array();
+		foreach( $dossiers as $dossier ) {								$t->log( "charge les motifs de dans $dossier" );
+			$rtr = $t->chargeDossierMotifs($dossier);
+			$motifs = array_merge( $motifs, $rtr);
+		}
+		return $motifs;
+	}
+	
+	function chargeDossierMotifs($dossier){								$t = $this; $conf = $t->conf;
+		$rtr = array();
+		$monDossier = opendir($dossier)									or $t->err( "cherche $nom dans $dossier" );
+		while($entrée = @readdir($monDossier)) {
+			if( $entrée == '.' || $entrée == '..' );
+			else if( is_dir($dossier.'/'.$entrée) );
+				// Pas de traitement récursif pour l'instant
+			else {
+				$tmp = explode(".", $entrée);
+				if( $tmp[count($tmp)-1] == "php" && $tmp[0] != "motif" )
+					$rtr[] = $tmp[0];
+			}
+		}
+		closedir($monDossier);
+		return $rtr;
+	}
+
 
 	function charge( $modèle, $attributs=array() ) {					$t = $this; $conf = $t->conf;
 		//$_SERVER['INCLUDE_SCRIPT_NAME'] = "http://".$_SERVER['HTTP_HOST']."/".$conf["racine"]."/modèles/".$modèle.".php";
@@ -96,6 +125,7 @@ class Motif {
 			// chargement synchrone
 			// On récupère le contenu du fichier si on a pas de code donné
 			$fichier = $t->cherche($modèle);
+			//$fichier = incluable("$modèle.php");
 			if( !$fichier ) return;
 			// Cette opération ne peut se faire dans une fonction
 			ob_start();
@@ -129,12 +159,12 @@ class Motif {
 
 
 	function scane( $noeud ) {											$t = $this; $conf = $t->conf;
-																		if( !$noeud ) { echo "scane : pas de motifs".sdl;return;}
+																		if( !$noeud ) { $t->log( "scane : pas de motifs" );return;}
 		// 
 		if( is_a($noeud, 'DOMDocument') ) 	$dom = $noeud;
 		else  								$dom = $noeud->ownerDocument;
 		
-		$modèles = $conf["motifs"];										if( !$modèles ) {echo "scane : pas de motifs".sdl;return;}
+		$modèles = $t->motifs;											if( !$modèles ) {$t->log( "scane : pas de motifs" );return;}
 		//print_r($modèles);
 		foreach( $modèles as $modèle) {
 			$occurences = $noeud->getElementsByTagName($modèle);
@@ -279,10 +309,18 @@ class Motif {
 			$tmp = $liste->item($i);
 			$tmp->parentNode->removeChild($tmp);						// suppression de la balise enfants
 		}//*/
-		if( $this->dbg ) {
-			$liste = $dom->getElementsByTagName($nom);
-			if( $liste->length != 0 ) echo "ERREUR : vireElements -> reste ".$liste->length." éléments ".$nom."\n";
-		}
+		$reste = $dom->getElementsByTagName($nom)->length;				if( $reste != 0 ) $t->log("vireElements -> reste ".$reste." éléments ".$nom);
 	}
+	
+	// Fonctions de debeug
+	function log( $msg ) {
+		if( $this->dbg ) echo "LOG : ".$msg.sdl;
+	}
+	
+	function err( $msg ) {
+		echo "ERR : ".$msg.sdl;
+		die();
+	}
+	
 }
 ?>

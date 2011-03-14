@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repository/!svn/ver/276280/pecl/python/trunk/tests
+END
+object_read_property.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_read_property.phpt
+END
+object_read_dimension.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_read_dimension.phpt
+END
+foreach.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/!svn/ver/253062/pecl/python/trunk/tests/foreach.phpt
+END
+object_property_exists.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_property_exists.phpt
+END
+object_dimension_exists.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_dimension_exists.phpt
+END
+object_count_elements.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_count_elements.phpt
+END
+python_call.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/253062/pecl/python/trunk/tests/python_call.phpt
+END
+object_get_properties.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_get_properties.phpt
+END
+php_call.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/!svn/ver/273816/pecl/python/trunk/tests/php_call.phpt
+END
+streams_default.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repository/!svn/ver/266968/pecl/python/trunk/tests/streams_default.phpt
+END
+object_write_property.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_write_property.phpt
+END
+object_write_dimension.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_write_dimension.phpt
+END
+python_exec.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/244551/pecl/python/trunk/tests/python_exec.phpt
+END
+python_version.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/276280/pecl/python/trunk/tests/python_version.phpt
+END
+python_eval.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/244551/pecl/python/trunk/tests/python_eval.phpt
+END
+convert_to_php.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/253062/pecl/python/trunk/tests/convert_to_php.phpt
+END
+object_property_delete.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_property_delete.phpt
+END
+php_version.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/253057/pecl/python/trunk/tests/php_version.phpt
+END
+object_dimension_delete.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repository/!svn/ver/244551/pecl/python/trunk/tests/object_dimension_delete.phpt
+END
+streams_ob.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/!svn/ver/266968/pecl/python/trunk/tests/streams_ob.phpt
+END
+php_var.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/!svn/ver/253057/pecl/python/trunk/tests/php_var.phpt
+END
+ini_optimize.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/!svn/ver/266650/pecl/python/trunk/tests/ini_optimize.phpt
+END
+TestModule.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/!svn/ver/104620/pecl/python/trunk/tests/TestModule.py
+END

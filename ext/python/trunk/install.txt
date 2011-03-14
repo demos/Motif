@@ -1,0 +1,10 @@
+aptitude install python-dev re2c subversion
+mkdir pip
+cd pip
+svn checkout http://svn.php.net/repository/pecl/python
+cd python/trunk
+phpize
+./configure
+make
+make test
+make install

@@ -1,0 +1,49 @@
+// $Id: config.w32 266968 2008-10-04 23:07:23Z jon $
+// vim:ft=javascript noet
+
+ARG_WITH("python", "Embedded Python support", "no");
+
+function get_python_version(PYTHON)
+{
+	var ver = execute('cmd /c ""' + PYTHON + '" -V 2>&1"');
+	if (ver.match(/Python (\d+)\.(\d+)/)) {
+		return RegExp.$1 + RegExp.$2;
+	}
+	return 0;
+}
+
+function get_python_prefix(PYTHON)
+{
+	var cmd = '-c "from distutils.sysconfig import *; print PREFIX,"'
+	var out = execute('cmd /c ""' + PYTHON + '" ' + cmd + ' 2>&1"');
+	return out.replace(new RegExp('\r\n'), '');
+}
+
+if (PHP_PYTHON != "no") {
+	PYTHON = PATH_PROG('python');
+	if (!PYTHON) {
+		WARNING('Python not enabled; python executable not found')
+	} else {
+		PYTHON_VERSION = get_python_version(PYTHON);
+		if (PYTHON_VERSION < 24) {
+			WARNING('Python' + PYTHON_VERSION +
+					' is not officially supported by the python extension');
+		}
+
+		PYTHON_PREFIX = get_python_prefix(PYTHON);
+		PYTHON_INCPATH = PYTHON_PREFIX + '\\include';
+		PYTHON_LIBPATH = PYTHON_PREFIX + '\\libs';
+
+		var libname = 'python' + PYTHON_VERSION;
+		libname += (PHP_DEBUG == 'yes') ? '_d.lib' : '.lib';
+
+		if (!CHECK_HEADER_ADD_INCLUDE("Python.h", "CFLAGS_PYTHON", PYTHON_INCPATH)
+			|| !CHECK_LIB(libname, "python", PYTHON_LIBPATH)) {
+			WARNING("Python not enabled; libraries and headers not found");
+		} else {
+			EXTENSION("python", "python.c python_convert.c python_handlers.c python_object.c python_php.c python_streams.c", PHP_PYTHON_SHARED, "/D PYTHON_EXPORTS");
+			AC_DEFINE("HAVE_PYTHON", 1);
+		}
+	}
+}
+

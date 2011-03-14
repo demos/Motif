@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 37
+*.php
+*.diff
+*.exp
+*.log
+*.out
+*.pyc
+
+END

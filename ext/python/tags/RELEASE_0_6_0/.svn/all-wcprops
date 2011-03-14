@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/Makefile.in
+END
+python.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/python.c
+END
+config.m4
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/config.m4
+END
+python.dsp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/python.dsp
+END
+package.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/package.xml
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/CREDITS
+END
+EXPERIMENTAL
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/EXPERIMENTAL
+END
+php_python.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repository/!svn/ver/102679/pecl/python/tags/RELEASE_0_6_0/php_python.h
+END

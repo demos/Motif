@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/repository/!svn/ver/266971/pecl/python/trunk/docs
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repository/!svn/ver/266971/pecl/python/trunk/docs/TODO
+END
+guide.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repository/!svn/ver/266967/pecl/python/trunk/docs/guide.txt
+END
+internals.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repository/!svn/ver/266517/pecl/python/trunk/docs/internals.txt
+END

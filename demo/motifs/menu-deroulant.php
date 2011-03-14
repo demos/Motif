@@ -1,16 +1,16 @@
 <style>
 
-#titre-<?=$id;?> {
+#titre-<?=$id?> {
 	width: 150px;
 }
 
-#corps-<?=$id;?> {
-	width: 150px;
+#corps-<?=$id?> {
+	width: 300px;
 	padding: 0;
 	position : absolute;
 }
 
-#corps-<?=$id;?> li {
+#corps-<?=$id?> li {
 	list-style: none;
 	padding: 0;
 }
