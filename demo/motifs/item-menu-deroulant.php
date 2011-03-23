@@ -1,7 +1,7 @@
 <style>
 
 .item-menu-deroulant-bulle {
-	margin-left: 70px;
+	margin-left: 20px;
 }
 
 .item-menu-deroulant-tiret {

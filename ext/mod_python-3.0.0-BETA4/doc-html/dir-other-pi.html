@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4.6 PythonInterpreter</title>
+<META NAME="description" CONTENT="5.4.6 PythonInterpreter">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-other-phm.html">
+<LINK REL="previous" href="dir-other-ipdv.html">
+<LINK REL="up" href="dir-other.html">
+<LINK REL="next" href="dir-other-phm.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-other-ipdv.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-phm.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-phm.html">5.4.7 PythonHandlerModule</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007460000000000000000">&nbsp;</A>
+<a name="l2h-198">&nbsp;</a>
+<BR>
+5.4.6 PythonInterpreter
+</H2>
+
+<P>
+<b><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Syntax"
+ title="Syntax:"
+ >Syntax:</a></em></b>
+PythonInterpreter name 
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Context"
+ title="Context:"
+ >Context:</a></em>
+server config, virtual host, directory, htaccess
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Override"
+ title="Override:"
+ >Override:</a></em>
+not None
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Module"
+ title="Module:"
+ >Module:</a></em>
+mod_python.c
+
+<P>
+Forces mod_python to use interpreter named <i>name</i>, overriding the
+default behaviour or behaviour dictated by
+<em class="citetitle"><a
+ href="dir-other-ipd.html"
+ title="<code>PythonIterpPerDirectory</code>"
+ ><code>PythonIterpPerDirectory</code></a></em> or
+<em class="citetitle"><a
+ href="dir-other-ipdv.html"
+ title="<code>PythonInterpPerDirective</code>"
+ ><code>PythonInterpPerDirective</code></a></em> directive.
+
+<P>
+This directive can be used to force execution that would normally
+occur in different subinterpreters to run in the same one. When
+pecified in the DocumentRoot, it forces the whole server to run in one
+subinterpreter.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+	<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="pyapi-interps.html"
+        >Section <A href="pyapi-interps.html#pyapi-interps">4.1</A> Multiple Interpreters</a></em>
+    <dd>for more information
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-other-ipdv.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-phm.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-phm.html">5.4.7 PythonHandlerModule</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

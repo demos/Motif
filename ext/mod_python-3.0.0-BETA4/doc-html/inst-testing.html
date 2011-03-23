@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4 Testing</title>
+<META NAME="description" CONTENT="2.4 Testing">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="inst-trouble.html">
+<LINK REL="previous" href="inst-installing.html">
+<LINK REL="up" href="installation.html">
+<LINK REL="next" href="inst-trouble.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-apacheconfig.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="installation.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-trouble.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-apacheconfig.html">2.3.2 Configuring Apache</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="installation.html">2. Installation</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-trouble.html">2.5 Troubleshooting</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004400000000000000000">&nbsp;</A>
+<BR>
+2.4 Testing
+</H1>
+
+<P>
+
+<OL>
+<LI>Make some directory that would be visible on your web site, for
+example, htdocs/test.
+
+<P>
+</LI>
+<LI>Add the following Apache directives, which can appear in either the
+main server configuration file, or <span class="file">.htaccess</span>.  If you are
+going to be using the <span class="file">.htaccess</span> file, you will not need the
+<code>&lt;Directory&gt;</code> tag below (the directory then becomes the one in
+which the <span class="file">.htaccess</span> file is located), and you will need to
+make sure the <code>AllowOverride</code> directive applicable to this
+directory has at least <code>FileInfo</code> specified. (The default is
+<code>None</code>, which will not work.)
+
+<P>
+<dl><dd><pre class="verbatim">
+&lt;Directory /some/directory/htdocs/test&gt; 
+  AddHandler python-program .py
+  PythonHandler mptest 
+  PythonDebug On 
+&lt;/Directory&gt;
+</pre></dl>
+
+<P>
+(Substitute <span class="file">/some/directory</span> above for something applicable to
+your system, usually your Apache ServerRoot)
+
+<P>
+</LI>
+<LI>At this time, if you made changes to the main configuration file, you
+will need to restart Apache in order for the changes to take effect.
+
+<P>
+</LI>
+<LI>Edit <span class="file">mptest.py</span> file in the <span class="file">htdocs/test</span> directory so
+that is has the following lines (be careful when cutting and pasting
+from your browser, you may end up with incorrect indentation and a
+syntax error):
+
+<P>
+<dl><dd><pre class="verbatim">
+from mod_python import apache
+
+def handler(req):
+    req.write("Hello World!")
+    return apache.OK
+</pre></dl>
+
+<P>
+</LI>
+<LI>Point your browser to the URL referring to the <span class="file">mptest.py</span>; you
+should see <code>"Hello World!"</code>. If you didn't - refer to the
+troubleshooting section next.
+
+<P>
+</LI>
+<LI>If everything worked well, move on to Chapter <A href="tutorial.html#tutorial">3</A>, 
+<em class="citetitle"><a
+ href="tutorial.html"
+ title="Tutorial"
+ >Tutorial</a></em>. 
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-apacheconfig.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="installation.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-trouble.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-apacheconfig.html">2.3.2 Configuring Apache</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="installation.html">2. Installation</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-trouble.html">2.5 Troubleshooting</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

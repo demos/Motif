@@ -21,6 +21,7 @@
 <html>
 	<head>
 		<title>Exemple Simple Motif</title>
+		<js src="ext/firebug-lite/build/firebug-lite.js"/>
 		<!-- syntaxhighlighter -->
 		<css src="demo/ext/syntaxhighlighter/styles/shCoreDefault.css"/>
 		<js src="demo/ext/syntaxhighlighter/scripts/shCore.js"/>
@@ -29,15 +30,27 @@
 		<js src="demo/ext/syntaxhighlighter/scripts/shBrushPhp.js"/>
 		<js> SyntaxHighlighter.all(); </js>
 		<!-- JQuery -->
-		<js src="demo/ext/jquery/jquery-1.5.1.min.js"/>
-		<js src="demo/ext/jquery/jquery.tools.min.js"/>
+		<js src="demo/ext/jquery/jquery-1.5.1.js"/>
+		<js src="demo/ext/jquery/jquery.debug.js"/>
+		<js>
+		$(document).ready(function(){
+			$.debug(true);
+			$.log("plain debug message");
+			$('#test1').log();
+			$('#test2').log("with message");
+		});
+		
+		</js>
+		<!--<js src="demo/ext/beautyofcode/jquery.beautyOfCode.js"/>-->
+		<!--<js src="demo/ext/jquery/jquery.tools.min.js"/>-->
+		<!-- Barre de défilement -->
 		<js src="demo/ext/jquery/ui.core-1.7.2.js"/>
 		<js src="demo/ext/jquery/ui.draggable-1.7.2.js"/>
-		<js src="demo/ext/jquery/jquery.mousewheel.min.js"/>
-		<!--<js src="demo/ext/jquery/plugin.scrollbar-min.js"/>
-		<js src="demo/ext/jquery/plugin.scrollbar.js"/>-->
+		<js src="demo/ext/jquery/jquery.mousewheel.js"/>
+		<js src="demo/ext/jquery/plugin.scrollbar.js"/>
 		<!--<js src="demo/ext/jquery-1.2.6.min.js"/>-->
 		<js src="demo/ext/rssreader/rssReader-src.js"/>
+		<js src="demo/ext/jquery/get$.js"/>
 		<style>
 			html, body {
 				width: 100%;
@@ -62,7 +75,7 @@
 			
 			#contenu {
 				position : absolute;
-				border-bottom: 1px solid #1D1D1B;
+				border-bottom: 1px solid #E6E6E6;
 				height: 76%;
 				width: 90%;
 				left: 5%;
@@ -115,12 +128,24 @@
 	</head>
 	<body>
 		<logo href="/motif" src="demo/images/logo.png" txt="Motif" id="logo"/>
+		<js><![CDATA[
+		$(document).ready(function(){
+			var params = {
+				bouton:'<table style="border-collapse: collapse; padding:0;margin:0;"><tr><td style="line-height:7px;height:7px;padding:0"><img style="width:100%;height:100%;" src="demo/images/haut-btn-barre.png"/></td></tr><tr><td style="height:100%; padding:0;"><img style="width:100%;height:100%;" src="demo/images/milieu-btn-barre.png"/></td></tr><tr><td style="line-height:6px;height:7px;padding:0"><img style="width:100%;height:100%;" src="demo/images/bas-btn-barre.png"/></td></tr></table>',
+				style_barre:{
+					'width':'10px'
+				},
+				style_bouton:{
+					'width':'100%'
+				},
+				debug:false
+			};
+			$("#contenu").scrollbar( params );
+			//$("#contenu").scrollbar();
+		});
+		]]>
+		</js>
 		<contenu id="contenu">
-<js>
-$(document).ready(function(){
-	//$("#contenu").scrollbar();
-});
-</js>
 
 			<fichier src="demo/contenu/projet.php" type="html" ctrl="(ctn=projet)|(^\/motif\/$)"/>
 			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl="ctn=exp"/>

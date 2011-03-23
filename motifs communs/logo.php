@@ -24,13 +24,22 @@
  * Attributs : href, id, css, txt, src
  * 
  * Ajouter vauleurs par défaut
+ * 
+ * si href n'est pas défini, aucun lien n'est mis en place
+ * 
  */
 if( !isset($css) ) $css="";
 
-// les liens distants sont en _blank
-$cible = ( $href && substr($href, 0, 4) == "http" )? "target=\"_blank\"" : "";
-?>
-
-<a href="<?=$href?>" <?=$cible?> >
+if( isset($href) ) {
+	// les liens distants sont en _blank
+	$cible = ( $href && substr($href, 0, 4) == "http" )? "target=\"_blank\"" : "";
+	?>
+	<a href="<?=$href?>" <?=$cible?> >
+		<img id="<?=$id?>" src="<?=$src?>" class="<?=$css?>" alt="<?=$txt?>" style="border:0;"/>
+	</a>
+	<?
+} else {
+	?>
 	<img id="<?=$id?>" src="<?=$src?>" class="<?=$css?>" alt="<?=$txt?>" style="border:0;"/>
-</a>
+	<?
+}

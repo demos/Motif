@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1.5 PythonInitHandler</title>
+<META NAME="description" CONTENT="5.1.5 PythonInitHandler">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-handlers-ach.html">
+<LINK REL="previous" href="dir-handlers-hph.html">
+<LINK REL="up" href="dir-handlers.html">
+<LINK REL="next" href="dir-handlers-ach.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers-hph.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-ach.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers-hph.html">5.1.4 PythonHeaderParserHandler</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-ach.html">5.1.6 PythonAccessHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007150000000000000000">&nbsp;</A>
+<a name="l2h-181">&nbsp;</a>
+<BR>
+5.1.5 PythonInitHandler
+</H2>
+
+<P>
+<b><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Syntax"
+ title="Syntax:"
+ >Syntax:</a></em></b>
+<i>Python*Handler Syntax</i>
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Context"
+ title="Context:"
+ >Context:</a></em>
+server config, virtual host, directory, htaccess
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Override"
+ title="Override:"
+ >Override:</a></em>
+not None
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Module"
+ title="Module:"
+ >Module:</a></em>
+mod_python.c
+
+<P>
+This handler is the first handler called in the request processing
+phases that is allowed both inside and outside <span class="file">.htaccess</span> and
+directory.
+
+<P>
+This handler is actually an alias to two different handlers. When
+specified in the main config file outside any directory tags, it is an
+alias to <code>PostReadRequestHandler</code>. When specified inside directory
+(where <code>PostReadRequestHandler</code> is not allowed), it aliases to
+<code>PythonHeaderParserHandler</code>.
+
+<P>
+<i>(This idea was borrowed from mod_perl)</i>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers-hph.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-ach.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers-hph.html">5.1.4 PythonHeaderParserHandler</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-ach.html">5.1.6 PythonAccessHandler</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

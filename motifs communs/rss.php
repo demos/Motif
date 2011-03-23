@@ -31,7 +31,35 @@
 // les liens distants sont en _blank
 ?>
 
-<div id="<?=$id?>">
+<style>
+#<?=$id?> a {
+	color:#BE7A40;
+	font-size:12px;
+}
+#<?=$id?> .date {
+	width: 100%;
+	margin:0;
+	color:#999999;
+	font-size:x-small;
+	letter-spacing:0.2em;
+}
+#<?=$id?> .description{
+	width: 100%;
+ 	margin:0;
+ 	padding:0;
+}
+#<?=$id?> .description p{
+	font-size:10px;
+}
+#loading{
+	margin-top: 30%;
+	margin-left: 40%;
+	float:left;
+}
+</style>
+
+
+<div id="<?=$id?>">&nbsp;
 </div>
 <js><!--
 
@@ -78,30 +106,6 @@ $(function(){
 			succes : affiche
 	});
 });
-
+//*/
 --></js>
 
-<style>
-#<?=$id?> a {
-	color:#BE7A40;
-	font-size:12px;
-}
-#<?=$id?> .date {
-	margin:0;
-	color:#999999;
-	font-size:x-small;
-	letter-spacing:0.2em;
-}
-#<?=$id?> .description{
- 	margin:0;
- 	padding:0;
-}
-#<?=$id?> .description p{
-	font-size:10px;
-}
-#loading{
-	margin-top: 30%;
-	margin-left: 40%;
-	float:left;
-}
-</style>

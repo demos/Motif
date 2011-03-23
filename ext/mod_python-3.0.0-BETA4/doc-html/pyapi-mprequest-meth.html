@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.3.1 Request Methods</title>
+<META NAME="description" CONTENT="4.5.3.1 Request Methods">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-mprequest-mem.html">
+<LINK REL="previous" href="pyapi-mprequest.html">
+<LINK REL="up" href="pyapi-mprequest.html">
+<LINK REL="next" href="pyapi-mprequest-mem.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mprequest.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mprequest.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mprequest-mem.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mprequest-mem.html">4.5.3.2 Request Members</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006531000000000000000">&nbsp;</A>
+<BR>
+4.5.3.1 Request Methods
+</H3>
+
+<P>
+<dl><dt><b><a name="l2h-28"><tt class="method">add_common_vars</tt></a></b>()
+<dd>
+Calls the Apache <tt class="cfunction">ap_add_common_vars()</tt> function. After a
+call to this method, <tt class="member">req.subprocess_env</tt> will contain a
+lot of CGI information.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-29"><tt class="method">add_handler</tt></a></b>(<var>htype, handler</var><big>[</big><var>, dir</var><big>]</big>)
+<dd>
+
+<P>
+Allows dynamic handler registration. <var>htype</var> is a string
+containing the name of any of the apache request (but not filter or
+connection) handler directives,
+e.g. "<tt class="samp">PythonHandler</tt>". <var>handler</var> is a string containing the
+name of the module and the handler function.  Optional <var>dir</var> is a
+string containing the name of the directory to be added to the
+pythonpath. If no directory is specified, then, if there is already a
+handler of the same type specified, its directory is inherited,
+otherwise the directory of the presently executing handler is used.
+
+<P>
+A handler added this way only persists throughout the life of the
+request. It is possible to register more handlers while inside the
+handler of the same type. One has to be careful as to not to create an
+infinite loop this way.
+
+<P>
+Dynamic handler registration is a useful technique that allows the
+code to dynamically decide what will happen next. A typical example
+might be a <code>PythonAuthenHandler</code> that will assign different
+<code>PythonHandlers</code> based on the authorization level, something like:
+
+<P>
+<dl><dd><pre class="verbatim">
+if manager:
+    req.add_handler("PythonHandler", "menu::admin")
+else:
+    req.add_handler("PythonHandler", "menu::basic")
+</pre></dl>                              
+
+<P>
+Note: There is no checking being done on the validity of the handler
+name. If you pass this function an invalid handler it will simply be
+ignored.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-30"><tt class="method">allow_methods</tt></a></b>(<var>methods</var><big>[</big><var>, reset</var><big>]</big>)
+<dd>
+Adds methods to the <tt class="member">req.allowed_methods</tt> list. This list
+will be passed in <code>Allowed:</code> header if
+<tt class="constant">HTTP_METHOD_NOT_ALLOWED</tt> or <tt class="constant">HTTP_NOT_IMPLEMENTED</tt>
+is returned to the client. Note that Apache doesn't do anything to
+restrict the methods, this list is only used to construct the
+header. The actual method-restricting logic has to be provided in the
+handler code.
+
+<P>
+<var>methods</var> is a sequence of strings. If <var>reset</var> is 1, then
+the list of methods is first cleared.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-31"><tt class="method">document_root</tt></a></b>()
+<dd>
+Returns DocumentRoot setting.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-32"><tt class="method">get_basic_auth_pw</tt></a></b>()
+<dd>
+Returns a string containing the password when Basic authentication is
+used.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-33"><tt class="method">get_config</tt></a></b>()
+<dd>
+Returns a reference to the table object containing the mod_python
+configuration in effect for this request except for
+<code>Python*Handler</code> and <code>PythonOption</code> (The latter can be
+obtained via <tt class="method">req.get_options()</tt>. The table has directives as
+keys, and their values, if any, as values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-34"><tt class="method">get_remote_host</tt></a></b>(<big>[</big><var>type, str_is_ip</var><big>]</big>)
+<dd>
+
+<P>
+This method is used to determine remote client's DNS name or IP
+number. The first call to this function may entail a DNS look up, but
+subsequent calls will use the cached result from the first call.
+
+<P>
+The optional <var>type</var> argument can specify the following: 
+
+<P>
+
+<UL>
+<LI><code>apache.REMOTE_HOST</code> Look up the DNS name. Return None if Apache
+directive <code>HostNameLookups</code> is <code>off</code> or the hostname cannot
+be determined.
+
+<P>
+</LI>
+<LI><code>apache.REMOTE_NAME</code> <i>(Default)</i> Return the DNS name if
+possible, or the IP (as a string in dotted decimal notation)
+otherwise.
+
+<P>
+</LI>
+<LI><code>apache.REMOTE_NOLOOKUP</code> Don't perform a DNS lookup, return an
+IP. Note: if a lookup was performed prior to this call, then the
+cached host name is returned.
+
+<P>
+</LI>
+<LI><code>apache.REMOTE_DOUBLE_REV</code> Force a double-reverse lookup. On 
+failure, return None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+If <var>str_is_ip</var> is <code>None</code> or unspecified, then the return
+value is a string representing the DNS name or IP address.
+
+<P>
+If the optional <var>str_is_ip</var> argument is not <code>None</code>, then the
+return value is an <code>(address, str_is_ip)</code> tuple, where <var>str_is_ip</var>
+is non-zero if <code>address</code> is an IP address string.
+
+<P>
+On failure, <code>None</code> is returned.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-35"><tt class="method">get_options</tt></a></b>()
+<dd>
+Returns a reference to the table object containing the options set by
+the <code>PythonOption</code> directives.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-36"><tt class="method">internal_redirect</tt></a></b>(<var>new_uri</var>)
+<dd>
+Internally redirects the request to the <var>new_uri</var>. <var>new_uri</var>
+must be a string.
+
+<P>
+The httpd server handles internal redirection by creating a new
+request object and processing all request phases. Within an internal
+redirect, <code>req.prev</code> will contain a reference to a request object
+from which it was redirected.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-37"><tt class="method">read</tt></a></b>(<big>[</big><var>len</var><big>]</big>)
+<dd>
+
+<P>
+Reads at most <var>len</var> bytes directly from the client, returning a
+string with the data read. If the <var>len</var> argument is negative or
+ommitted, reads all data given by the client.
+
+<P>
+This function is affected by the <code>Timeout</code> Apache configuration
+directive. The read will be aborted and an <tt class="exception">IOError</tt> raised
+if the <code>Timeout</code> is reached while reading client data.
+
+<P>
+This function relies on the client providing the <code>Content-length</code>
+header. Absense of the <code>Content-length</code> header will be treated as
+if <code>Content-length: 0</code> was supplied.
+
+<P>
+Incorrect <code>Content-length</code> may cause the function to try to read
+more data than available, which will make the function block until a
+<code>Timeout</code> is reached.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-38"><tt class="method">readline</tt></a></b>(<big>[</big><var>len</var><big>]</big>)
+<dd>
+Like <tt class="function">read()</tt> but reads until end of line. 
+
+<P>
+Note that in accordance with the HTTP specification, most clients will
+be terminating lines with "&#92;r&#92;n" rather
+than simply "&#92;n".
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-39"><tt class="method">readlines</tt></a></b>(<big>[</big><var>sizehint</var><big>]</big>)
+<dd>
+Reads all or up to <var>sizehint</var> bytes of lines using
+<tt class="method">readline</tt> and returns a list of the lines read.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-40"><tt class="method">register_cleanup</tt></a></b>(<var>callable</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+
+<P>
+Registers a cleanup. Argument <var>callable</var> can be any callable
+object, the optional argument <var>data</var> can be any object (default is
+<code>None</code>). At the very end of the request, just before the actual
+request record is destroyed by Apache, <var>callable</var> will be called
+with one argument, <var>data</var>.
+
+<P>
+It is OK to pass the request object as data, but keep in mind that
+when the cleanup is executed, the request processing is already
+complete, so doing things like writing to the client is completely
+pointless. 
+
+<P>
+If errors are encountered during cleanup processing, they should be in
+error log, but otherwise will not affect request processing in any
+way, which makes cleanup bugs sometimes hard to spot.
+
+<P>
+If the server is shut down before the cleanup had a chance to run,
+it's possible that it will not be executed.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-41"><tt class="method">write</tt></a></b>(<var>string</var>)
+<dd>
+Writes <var>string</var> directly to the client, then flushes the buffer. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-42"><tt class="method">set_content_length</tt></a></b>(<var>len</var>)
+<dd>
+Sets the value of <tt class="member">req.clength</tt> and the "Conent-Length" header
+to len. Note that after the headers have been sent out (which happens
+just before the first byte of the body is written, i.e. first call to
+<tt class="member">req.write()</tt>), calling the method is meaningless.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mprequest.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mprequest.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mprequest-mem.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mprequest-mem.html">4.5.3.2 Request Members</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

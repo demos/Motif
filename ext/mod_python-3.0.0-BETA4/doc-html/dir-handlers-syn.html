@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1.1 Python*Handler Directive Syntax</title>
+<META NAME="description" CONTENT="5.1.1 Python*Handler Directive Syntax">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-handlers-prrh.html">
+<LINK REL="previous" href="dir-handlers.html">
+<LINK REL="up" href="dir-handlers.html">
+<LINK REL="next" href="dir-handlers-prrh.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-prrh.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-prrh.html">5.1.2 PythonPostReadRequestHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007110000000000000000">&nbsp;</A>
+<a name="l2h-176">&nbsp;</a>
+<BR>
+5.1.1 Python*Handler Directive Syntax
+</H2>
+
+<P>
+All request handler directives have the following syntax: 
+
+<P>
+<code>Python*Handler <i>handler [handler ...] [ | .ext [.ext ...] ] </i> </code>
+
+<P>
+Where <var>handler</var> is a callable object that accepts a single
+argument - request object, and <var>.ext</var> is a file extension.
+
+<P>
+Multiple handlers can be specified on a single line, in which case
+they will be called sequentially, from left to right. Same handler
+directives can be specified multiple times as well, with the same
+result - all handlers listed will be executed sequentially, from first
+to last. If any handler in the sequence returns a value other than
+<code>apache.OK</code>, then execution of all subsequent handlers is aborted.
+
+<P>
+The list of handlers can optionally be followed by a <code>|</code> followed
+by one or more file extensions. This would restrict the execution of
+the handler to those file extensions only. This feature only works for
+handlers executed after the trans phase.
+
+<P>
+A <i>handler</i> has the following syntax: 
+
+<P>
+<code>module[::object]</code>
+
+<P>
+Where <var>module</var> can be a full module name (package dot notation is
+accepted), and the optional <var>object</var> is the name of an object
+inside the module.
+
+<P>
+Object can also contain dots, in which case it will be resolved from
+left to right. During resolution, if mod_python encounters an object
+of type <code>&lt;class&gt;</code>, it will try instantiating it passing it a single
+argument, a request object.
+
+<P>
+If no object is specified, then it will default to the directive of
+the handler, all lower case, with the word "<tt class="samp">python</tt>"removed. E.g. the default object for PythonAuthenHandler would be
+authenhandler.
+
+<P>
+Example: 
+
+<P>
+<dl><dd><pre class="verbatim">
+PythonAuthzHandler mypackage.mymodule::checkallowed
+</pre></dl>
+
+<P>
+For more information on handlers, see Overview of a Handler.
+
+<P>
+Side note: The "::" was chosen for performance reasons. In order for
+Python to use objects inside modules, the modules first need to be
+imported. Having the separator as simply a ".", would considerably
+complicate process of sequentially evaluating every word to determine
+whether it is a package, module, class etc. Using the (admittedly
+un-Python-like) "::" takes the time consuming work of figuring out
+where the module part ends and the object inside of it begins away
+from mod_python resulting in a modest performance gain.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-prrh.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-prrh.html">5.1.2 PythonPostReadRequestHandler</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

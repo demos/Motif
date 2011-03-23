@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.4.2 Connection Members</title>
+<META NAME="description" CONTENT="4.5.4.2 Connection Members">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pyapi-mpconn-meth.html">
+<LINK REL="up" href="pyapi-mpconn.html">
+<LINK REL="next" href="pyapi-mpfilt.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpconn-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpfilt.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpconn-meth.html">4.5.4.1 Connection Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpfilt.html">4.5.5 Filter Object (mp_filter)&nbsp;</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006542000000000000000">&nbsp;</A>
+<BR>
+4.5.4.2 Connection Members
+</H3>
+
+<P>
+<dl><dt><b><a name="l2h-109"><tt class="member">base_server</tt></a></b>
+<dd>
+A <code>server</code> object for the physical vhost that this connection came in
+through.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-110"><tt class="member">child_num</tt></a></b>
+<dd>
+Integer. The number of the child handling the request.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-111"><tt class="member">local_addr</tt></a></b>
+<dd>
+The (address, port) tuple for the server.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-112"><tt class="member">remote_addr</tt></a></b>
+<dd>
+The (address, port) tuple for the client.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-113"><tt class="member">remote_ip</tt></a></b>
+<dd>
+String with the IP of the client. Same as CGI <a class="envvar" name="l2h-124">REMOTE_ADDR</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-114"><tt class="member">remote_host</tt></a></b>
+<dd>
+String. The DNS name of the remote client. None if DNS has not been
+checked, "" (empty string) if no name found. Same as CGI <a class="envvar" name="l2h-125">REMOTE_HOST</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-115"><tt class="member">remote_logname</tt></a></b>
+<dd>
+Remote name if using RFC1413 (ident). Same as CGI <a class="envvar" name="l2h-126">REMOTE_IDENT</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-116"><tt class="member">aborted</tt></a></b>
+<dd>
+Boolean. True is the connection is aborted.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-117"><tt class="member">keepalive</tt></a></b>
+<dd>
+Integer. 1 means the connection will be kept for the next request, 0 means
+"undecided", -1 means fatal error.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-118"><tt class="member">double_reverse</tt></a></b>
+<dd>
+Ingeter. 1 means double reverse DNS lookup has been performed, 0 means
+not yet, -1 means yes and it failed.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-119"><tt class="member">keepalives</tt></a></b>
+<dd>
+The number of times this connection has been used. (?)
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-120"><tt class="member">local_ip</tt></a></b>
+<dd>
+String with the IP of the server.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-121"><tt class="member">local_host</tt></a></b>
+<dd>
+DNS name of the server.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-122"><tt class="member">id</tt></a></b>
+<dd>
+Long. A unique connection id.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-123"><tt class="member">notes</tt></a></b>
+<dd>
+A <code>table</code> object containing miscellaneous general purpose info that lives for
+as long as the connection lives. 
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpconn-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpfilt.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpconn-meth.html">4.5.4.1 Connection Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpfilt.html">4.5.5 Filter Object (mp_filter)&nbsp;</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

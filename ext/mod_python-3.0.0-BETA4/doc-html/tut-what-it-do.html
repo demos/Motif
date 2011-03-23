@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3 So what Exactly does Mod-python do?</title>
+<META NAME="description" CONTENT="3.3 So what Exactly does Mod-python do?">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="tut-more-complicated.html">
+<LINK REL="previous" href="tut-overview.html">
+<LINK REL="up" href="tutorial.html">
+<LINK REL="next" href="tut-more-complicated.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-overview.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tut-more-complicated.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-overview.html">3.2 Quick Overview of</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tut-more-complicated.html">3.4 Now something More</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005300000000000000000">&nbsp;</A>
+<BR>
+3.3 So what Exactly does Mod-python do?
+</H1>
+
+<P>
+Let's pretend we have the following configuration: 
+<dl><dd><pre class="verbatim">
+&lt;Directory /mywebdir&gt;
+    AddHandler python-program .py
+    PythonHandler myscript
+    PythonDebug On
+&lt;/Directory&gt;
+</pre></dl>
+
+<P>
+<b>NB:</b> <span class="file">/mywebdir</span> is an absolute physical path. 
+
+<P>
+And let's say that we have a python program (Windows users: substitute
+forward slashes for backslashes) <span class="file">/mywedir/myscript.py</span> that looks like
+this:
+
+<P>
+<dl><dd><pre class="verbatim">
+    from mod_python import apache
+
+    def handler(req):
+
+        req.content_type = "text/plain"
+        req.write("Hello World!")
+
+        return apache.OK
+</pre></dl>    
+
+<P>
+Here is what's going to happen: The <code>AddHandler</code> directive tells
+Apache that any request for any file ending with <span class="file">.py</span> in the
+<span class="file">/mywebdir</span> directory or a subdirectory thereof needs to be
+processed by mod_python. The "<tt class="samp">PythonHandler myscript</tt>" directive
+tells mod_python to process the generic handler using the
+<code>myscript</code> script. The "<tt class="samp">PythonDebug On</tt>" directive instructs
+mod_python in case of an Python error to send error output to the
+client (in addition to the logs), very useful during development.
+
+<P>
+When a request comes in, Apache starts stepping through its
+request processing phases calling handlers in mod_python. The
+mod_python handlers check whether a directive for that handler was
+specified in the configuration. (Remember, it acts as a dispatcher.)
+In our example, no action will be taken by mod_python for
+all handlers except for the generic handler. When we get to the
+generic handler, mod_python will notice "<tt class="samp">PythonHandler
+myscript</tt>" directive and do the following:
+
+<P>
+
+<OL>
+<LI>If not already done, prepend the directory in which the
+<code>PythonHandler</code> directive was found to <code>sys.path</code>.
+
+<P>
+</LI>
+<LI>Attempt to import a module by name <code>myscript</code>. (Note that if
+<code>myscript</code> was in a subdirectory of the directory where
+<code>PythonHandler</code> was specified, then the import would not work
+because said subdirectory would not be in the <code>sys.path</code>. One way
+around this is to use package notation, e.g. "<tt class="samp">PythonHandler
+subdir.myscript</tt>".)
+
+<P>
+</LI>
+<LI>Look for a function called <code>handler</code> in <code>myscript</code>.
+
+<P>
+</LI>
+<LI>Call the function, passing it a request object. (More on what a
+request object is later)
+
+<P>
+</LI>
+<LI>At this point we're inside the script: 
+
+<P>
+
+<UL>
+<LI><dl><dd><pre class="verbatim">
+from mod_python import apache
+</pre></dl>
+
+<P>
+This imports the apache module which provides us the interface to
+Apache. With a few rare exceptions, every mod_python program will have
+this line.
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+def handler(req):
+</pre></dl>
+
+<P>
+<a name="l2h-11">&nbsp;</a>This is our <i class="dfn">handler</i> function declaration. It is
+called <code>"handler"</code> because mod_python takes the name of the
+directive, converts it to lower case and removes the word
+<code>"python"</code>. Thus <code>"PythonHandler"</code> becomes
+<code>"handler"</code>. You could name it something else, and specify it
+explicitly in the directive using "<tt class="samp">::</tt>". For example, if the
+handler function was called "<tt class="samp">spam</tt>", then the directive would be
+"<tt class="samp">PythonHandler myscript::spam</tt>".
+
+<P>
+Note that a handler must take one argument - the request object. The
+request object is an object that provides all of the information about
+this particular request - such as the IP of client, the headers, the
+URI, etc. The communication back to the client is also done via the
+request object, i.e. there is no "response" object.
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    req.content_type = "text/plain"
+</pre></dl>
+
+<P>
+This sets the content type to <code>"text/plain"</code>. The default is usually
+<code>"text/html"</code>, but since our handler doesn't produce any html,
+<code>"text/plain"</code> is more appropriate.
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    req.write("Hello World!")
+</pre></dl>
+
+<P>
+This writes the <code>"Hello World!"</code> string to the client. (Did I really
+have to explain this one?)
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    return apache.OK
+</pre></dl>
+
+<P>
+This tells Apache that everything went OK and that the request has
+been processed. If things did not go OK, that line could be return
+<tt class="constant">apache.HTTP_INTERNAL_SERVER_ERROR</tt> or return
+<tt class="constant">apache.HTTP_FORBIDDEN</tt>. When things do not go OK, Apache
+will log the error and generate an error message for the client.
+</LI>
+</UL>
+</LI>
+</OL>
+
+<P>
+<b>Some food for thought:</b> If you were paying attention, you
+noticed that the text above didn't specify that in order for the
+handler code to be executed, the URL needs to refer to
+<span class="file">myscript.py</span>. The only requirement was that it refers to a
+<span class="file">.py</span> file. In fact the name of the file doesn't matter, and
+the file referred to in the URL doesn't have to exist. So, given the
+above configuration, "<tt class="samp">http://myserver/mywebdir/myscript.py</tt>" and
+"<tt class="samp">http://myserver/mywebdir/montypython.py</tt>" would give the exact
+same result. The important thing to understand here is that a handler
+augments the server behaviour when processing a specific type of file,
+not an individual file. 
+
+<P>
+<i>At this point, if you didn't understand the above paragraph, go
+back and read it again, until you do.</i>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-overview.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tut-more-complicated.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-overview.html">3.2 Quick Overview of</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tut-more-complicated.html">3.4 Now something More</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

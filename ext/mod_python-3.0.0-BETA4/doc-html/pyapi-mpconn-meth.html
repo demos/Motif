@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.4.1 Connection Methods</title>
+<META NAME="description" CONTENT="4.5.4.1 Connection Methods">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-mpconn-mem.html">
+<LINK REL="previous" href="pyapi-mpconn.html">
+<LINK REL="up" href="pyapi-mpconn.html">
+<LINK REL="next" href="pyapi-mpconn-mem.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpconn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpconn-mem.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpconn-mem.html">4.5.4.2 Connection Members</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006541000000000000000">&nbsp;</A>
+<BR>
+4.5.4.1 Connection Methods
+</H3>
+
+<P>
+<dl><dt><b><a name="l2h-106"><tt class="method">read</tt></a></b>(<var>length</var>)
+<dd>
+Reads <var>length</var> bytes from the connection. The read blocks
+indefinitely until length bytes has been read. If length is -1, keep
+reading until the socket is closed from the other end (This is known
+as <code>EXHAUSTIVE</code> mode in the http server code).
+
+<P>
+This method should only be used inside <i>Connection Handlers</i>.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-107"><tt class="method">readline</tt></a></b>(<big>[</big><var>length</var><big>]</big>)
+<dd>
+
+<P>
+Reads a line from the connection or up to <var>length</var> bytes.
+
+<P>
+This method should only be used inside <i>Connection Handlers</i>.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-108"><tt class="method">write</tt></a></b>(<var>string</var>)
+<dd>
+
+<P>
+Writes <var>string</var> to the client.
+
+<P>
+This method should only be used inside <i>Connection Handlers</i>.
+
+<P>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpconn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpconn-mem.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpconn-mem.html">4.5.4.2 Connection Members</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

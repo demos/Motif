@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.6.3 Other functions</title>
+<META NAME="description" CONTENT="4.6.3 Other functions">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pyapi-util-fstor-fld.html">
+<LINK REL="up" href="pyapi-util.html">
+<LINK REL="next" href="directives.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-fstor-fld.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="directives.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-fstor-fld.html">4.6.2 Field class</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="directives.html">5. Apache Configuration Directives</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006630000000000000000">&nbsp;</A>
+<BR>
+4.6.3 Other functions
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-174"><tt class="function">parse_qs</tt></a></b>(<var>qs</var><big>[</big><var>, keep_blank_values, strict_parsing</var><big>]</big>)
+<dd>
+
+<P>
+This functnion is functionally equivalent to the standard library
+<tt class="module">cgi</tt> <tt class="function">parse_qs</tt>, except that it is written in C and is
+much faster. 
+
+<P>
+Parse a query string given as a string argument (data of type
+<span class="mimetype">application/x-www-form-urlencoded</span>).  Data are
+returned as a dictionary.  The dictionary keys are the unique query
+variable names and the values are lists of values for each name.
+
+<P>
+The optional argument <var>keep_blank_values</var> is a flag indicating
+whether blank values in URL encoded queries should be treated as blank
+strings.  A true value indicates that blanks should be retained as
+blank strings.  The default false value indicates that blank values
+are to be ignored and treated as if they were not included.
+
+<P>
+<b>Note:</b> The <var>strict_parsing</var> argument is not yet implemented.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-175"><tt class="function">parse_qsl</tt></a></b>(<var>qs</var><big>[</big><var>, keep_blank_values, strict_parsing</var><big>]</big>)
+<dd>
+
+<P>
+This functnion is functionally equivalent to the standard library
+<tt class="module">cgi</tt> <tt class="function">parse_qsl</tt>, except that it is written in C and is
+much faster. 
+
+<P>
+Parse a query string given as a string argument (data of type
+<span class="mimetype">application/x-www-form-urlencoded</span>).  Data are
+returned as a list of name, value pairs.
+
+<P>
+The optional argument <var>keep_blank_values</var> is a flag indicating
+whether blank values in URL encoded queries should be treated as blank
+strings.  A true value indicates that blanks should be retained as
+blank strings.  The default false value indicates that blank values
+are to be ignored and treated as if they were not included.
+
+<P>
+<b>Note:</b> The <var>strict_parsing</var> argument is not yet implemented.
+
+<P>
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-fstor-fld.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="directives.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-fstor-fld.html">4.6.2 Field class</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="directives.html">5. Apache Configuration Directives</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.1 Running ./configure</title>
+<META NAME="description" CONTENT="2.2.1 Running ./configure">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="inst-make.html">
+<LINK REL="previous" href="inst-compiling.html">
+<LINK REL="up" href="inst-compiling.html">
+<LINK REL="next" href="inst-make.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-compiling.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="inst-compiling.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-make.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-compiling.html">2.2 Compiling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="inst-compiling.html">2.2 Compiling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-make.html">2.2.2 Running make</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004210000000000000000">&nbsp;</A>
+<a name="l2h-3">&nbsp;</a>
+<BR>
+2.2.1 Running ./configure
+</H2>
+
+<P>
+The <b class="program">./configure</b> script will analyze your environment and create custom
+Makefiles particular to your system. Aside from all the standard
+autoconf stuff, <b class="program">./configure</b> does the following:
+
+<P>
+
+<UL>
+<LI><a name="l2h-4">&nbsp;</a>Finds out whether a program called <b class="program">apxs</b> is available. This
+program is part of the standard Apache distribution, and is necessary
+for DSO compilation. If apxs cannot be found in your <a class="envvar" name="l2h-5">PATH</a> or in
+<span class="file">/usr/local/apache/bin</span>, DSO compilation will not be available.
+
+<P>
+You can manually specify the location of apxs by using the
+<b class="programopt">--with-apxs</b> option, e.g.:
+
+<P>
+<dl><dd><pre class="verbatim">
+$ ./configure --with-apxs=/usr/local/apache/bin/apxs
+</pre></dl>
+
+<P>
+It is strongly recommended that you do specify this option.
+
+<P>
+</LI>
+<LI><a name="l2h-6">&nbsp;</a>Checks your Python version and attempts to figure out where
+<b class="program">libpython</b> is by looking at various parameters compiled into
+your Python binary. By default, it will use the <b class="program">python</b>
+program found in your <a class="envvar" name="l2h-7">PATH</a>.
+
+<P>
+<a name="l2h-8">&nbsp;</a>If the fist Python
+binary in the path is not suitable or not the one desired for
+mod_python, you can specify an alternative location with the
+<b class="programopt">--with-python</b> options, e.g:
+
+<P>
+<dl><dd><pre class="verbatim">
+$ ./configure --with-python=/usr/local/bin/python2.2
+</pre></dl>                      
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-compiling.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="inst-compiling.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-make.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-compiling.html">2.2 Compiling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="inst-compiling.html">2.2 Compiling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-make.html">2.2.2 Running make</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

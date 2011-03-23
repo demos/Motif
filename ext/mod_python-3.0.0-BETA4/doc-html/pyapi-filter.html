@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.3 Overview of a Filter Handler</title>
+<META NAME="description" CONTENT="4.3 Overview of a Filter Handler">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-conn.html">
+<LINK REL="previous" href="pyapi-handler.html">
+<LINK REL="up" href="pythonapi.html">
+<LINK REL="next" href="pyapi-conn.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-handler.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-conn.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-handler.html">4.2 Overview of a</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-conn.html">4.4 Overview of a</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006300000000000000000">&nbsp;</A>
+<BR>
+4.3 Overview of a Filter Handler
+</H1>
+<a name="l2h-14">&nbsp;</a>
+<P>
+A <i class="dfn">filter handler</i> is a function that can alter the input or the
+output of the server. There are two kinds of filters - <i class="dfn">input</i> and
+<i class="dfn">output</i> that apply to input from the client and output to the
+client respectively.
+
+<P>
+At this time mod_python supports only request-level filters, meaning
+that only the body of HTTP request or response can be filtered. Apache
+provides support for connection-level filters, which will be supported
+in the future.
+
+<P>
+A filter handler receives a <i>filter</i> object as its argument. The
+request object is available as well via <code>filter.req</code>, but all
+writing and reading should be done via the filter's object read and
+write methods.
+
+<P>
+Filters need to be closed when a read operation returns None 
+(indicating End-Of-Stream).
+
+<P>
+The return value of a filter is ignored. Filters cannot decline
+processing like handlers, but the same effect can be achieved
+by using the <tt class="method">filter.pass_on()</tt> method.
+
+<P>
+Filters must first be registered using <code>PythonInputFilter</code> or
+<code>PythonOutputFilter</code>, then added using the Apache
+<code>Add/SetInputFilter</code> or <code>Add/SetOutputFilter</code> directives. 
+
+<P>
+Here is an example of how to specify an output filter, it tells the
+server that all .py files should processed by CAPITALIZE filter:
+
+<P>
+<dl><dd><pre class="verbatim">
+  PythonOutputFilter capitalize CAPITALIZE
+  AddOutputFilter CAPITALIZE .py
+</pre></dl>
+
+<P>
+And here is what the code for the <span class="file">capitalize.py</span> might look
+like:
+
+<P>
+<dl><dd><pre class="verbatim">
+from mod_python import apache
+
+def outputfilter(filter):
+
+    s = filter.read()
+    while s:
+        filter.write(s.upper())
+        s = filter.read()
+
+    if s is None:
+        filter.close()
+</pre></dl>
+
+<P>
+When writing filters, keep in mind that a filter will be called any
+time anything upstream requests an IO operation, and the filter has no
+control over the amount of data passed through it and no notion of
+where in the request processing it is called. For example, within a
+single request, a filter may be called once or five times, and there
+is no way for the filter to know beforehand that the request is over
+and which of calls is last or first for this request, thought
+encounter of an EOS (None returned from a read operation) is a fairly
+strong indiciation of an end of a request.
+
+<P>
+Also note that filters may end up being called recursively in
+subrequests. To avoid the data being altered more than once, always
+make sure you are not in a subrequest by examining the <code>req.main</code>
+value.
+
+<P>
+For more information on filters, see
+<em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/developer/filters.html"
+ title="http://httpd.apache.org/docs-2.0/developer/filters.html"
+ >http://httpd.apache.org/docs-2.0/developer/filters.html</a></em>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-handler.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-conn.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-handler.html">4.2 Overview of a</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-conn.html">4.4 Overview of a</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

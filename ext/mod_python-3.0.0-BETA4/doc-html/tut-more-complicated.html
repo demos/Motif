@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.4 Now something More Complicated - Authentication</title>
+<META NAME="description" CONTENT="3.4 Now something More Complicated - Authentication">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="tut-what-it-do.html">
+<LINK REL="up" href="tutorial.html">
+<LINK REL="next" href="pythonapi.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-what-it-do.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-what-it-do.html">3.3 So what Exactly</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005400000000000000000">&nbsp;</A>
+<BR>
+3.4 Now something More Complicated - Authentication
+</H1>
+
+<P>
+Now that you know how to write a primitive handler, let's try
+something more complicated.
+
+<P>
+Let's say we want to password-protect this directory. We want the
+login to be "spam", and the password to be "eggs".
+
+<P>
+First, we need to tell Apache to call our <i>authentication</i> handler when
+authentication is needed. We do this by adding the
+<code>PythonAuthenHandler</code>. So now our config looks like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+&lt;Directory /mywebdir&gt;
+    AddHandler python-program .py
+    PythonHandler myscript
+    PythonAuthenHandler myscript
+    PythonDebug On
+&lt;/Directory&gt;
+</pre></dl>
+
+<P>
+Notice that the same script is specified for two different
+handlers. This is fine, because if you remember, mod_python will look
+for different functions within that script for the different handlers.
+
+<P>
+Next, we need to tell Apache that we are using Basic HTTP
+authentication, and only valid users are allowed (this is fairly basic
+Apache stuff, so we're not going to go into details here). Our config
+looks like this now:
+
+<P>
+<dl><dd><pre class="verbatim">
+&lt;Directory /mywebdir&gt;
+    AddHandler python-program .py
+    PythonHandler myscript
+    PythonAuthenHandler myscript
+    PythonDebug On
+    AuthType Basic
+    AuthName "Restricted Area"
+    require valid-user
+&lt;/Directory&gt;
+</pre></dl>          
+
+<P>
+Now we need to write an authentication handler function in
+<span class="file">myscript.py</span>. A basic authentication handler would look like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+from mod_python import apache
+
+def authenhandler(req):
+
+    user = req.user
+    pw = req.get_basic_auth_pw()
+
+    if user == "spam" and pw == "eggs":
+        return apache.OK
+    else:
+        return apache.HTTP_UNAUTHORIZED
+</pre></dl>  
+
+<P>
+Let's look at this line by line: 
+
+<P>
+
+<UL>
+<LI><dl><dd><pre class="verbatim">
+def authenhandler(req):
+</pre></dl>
+
+<P>
+This is the handler function declaration. This one is called
+<code>authenhandler</code> because, as we already described above, mod_python takes
+the name of the directive (<code>PythonAuthenHandler</code>), drops the word
+"Python" and converts it lower case.
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    user = req.user
+</pre></dl>
+
+<P>
+This is how you obtain the username that the user entered. 
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    pw = req.get_basic_auth_pw()
+</pre></dl>
+
+<P>
+This is how we obtain the password. The basic HTTP authentication
+transmits the password in base64 encoded form to make it a little bit
+less obvious. This function decodes the password and returns it as a
+string.
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    if user == "spam" and pw == "eggs":
+        return apache.OK
+</pre></dl>
+
+<P>
+We compare the values provided by the user, and if they are what we
+were expecting, we tell Apache to go ahead and proceed by returning
+<tt class="constant">apache.OK</tt>. Apache will then consider this phase of the
+request complete, and proceed to the next phase. (Which in this case
+would be <tt class="function">handler()</tt> if it's a <code>.py</code> file).
+
+<P>
+</LI>
+<LI><dl><dd><pre class="verbatim">
+    else:
+        return apache.HTTP_UNAUTHORIZED
+</pre></dl>
+
+<P>
+Else, we tell Apache to return <tt class="constant">HTTP_UNAUTHORIZED</tt> to the
+client, which usually causes the browser to pop a dialog box asking
+for username and password.
+
+<P>
+</LI>
+</UL>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-what-it-do.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-what-it-do.html">3.3 So what Exactly</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

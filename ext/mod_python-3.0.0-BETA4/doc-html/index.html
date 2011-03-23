@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Mod_python Manual</title>
+<META NAME="description" CONTENT="Mod_python Manual">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="front.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="front.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class="titlepage">
+<center>
+<h1>Mod_python Manual</h1>
+<p><b><font size="+2">Gregory Trubetskoy</font></b></p>
+<p>
+	E-mail: <span class="email">grisha@modpython.org</span>
+</p>
+<p><strong>Release 3.0-BETA4</strong><br>
+<strong>October 30, 2002</strong></p>
+<p>
+</center>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="front.html">Front Matter</a>
+<LI><A href="contents.html">Contents</a>
+<LI><A href="introduction.html">1. Introduction</a>
+<UL>
+<LI><A href="intr-performance.html">1.1 Performance</a>
+<LI><A href="intr-flexibility.html">1.2 Flexibility</a>
+<LI><A href="intr-history.html">1.3 History</a>
+</ul>
+<LI><A href="installation.html">2. Installation</a>
+<UL>
+<LI><A href="inst-prerequisites.html">2.1 Prerequisites</a>
+<LI><A href="inst-compiling.html">2.2 Compiling</a>
+<UL>
+<LI><A href="inst-configure.html">2.2.1 Running ./configure</a>
+<LI><A href="inst-make.html">2.2.2 Running make</a>
+</ul>
+<LI><A href="inst-installing.html">2.3 Installing</a>
+<UL>
+<LI><A href="inst-makeinstall.html">2.3.1 Running make install</a>
+<LI><A href="inst-apacheconfig.html">2.3.2 Configuring Apache</a>
+</ul>
+<LI><A href="inst-testing.html">2.4 Testing</a>
+<LI><A href="inst-trouble.html">2.5 Troubleshooting</a>
+</ul>
+<LI><A href="tutorial.html">3. Tutorial</a>
+<UL>
+<LI><A href="tut-pub.html">3.1 A Quick Start with the Publisher Handler</a>
+<LI><A href="tut-overview.html">3.2 Quick Overview of how Apache Handles Requests</a>
+<LI><A href="tut-what-it-do.html">3.3 So what Exactly does Mod-python do?</a>
+<LI><A href="tut-more-complicated.html">3.4 Now something More Complicated - Authentication</a>
+</ul>
+<LI><A href="pythonapi.html">4. Python API</a>
+<UL>
+<LI><A href="pyapi-interps.html">4.1 Multiple Interpreters</a>
+<LI><A href="pyapi-handler.html">4.2 Overview of a Request Handler</a>
+<LI><A href="pyapi-filter.html">4.3 Overview of a Filter Handler</a>
+<LI><A href="pyapi-conn.html">4.4 Overview of a Connection Handler</a>
+<LI><A href="module-apache.html">4.5 <tt class="module">apache</tt> - Access to Apache Internals.</a>
+<UL>
+<LI><A href="pyapi-apmeth.html">4.5.1 Functions</a>
+<LI><A href="pyapi-mptable.html">4.5.2 Table Object (mp_table)<a name="l2h-23">&nbsp;</a></a>
+<LI><A href="pyapi-mprequest.html">4.5.3 Request Object<a name="l2h-27">&nbsp;</a></a>
+<LI><A href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)<a name="l2h-105">&nbsp;</a></a>
+<LI><A href="pyapi-mpfilt.html">4.5.5 Filter Object (mp_filter)<a name="l2h-127">&nbsp;</a></a>
+<LI><A href="pyapi-mpserver.html">4.5.6 Server Object (mp_server)<a name="l2h-140">&nbsp;</a></a>
+</ul>
+<LI><A href="pyapi-util.html">4.6 <tt class="module">util</tt> - Miscellaneous Utilities</a>
+<UL>
+<LI><A href="pyapi-util-fstor.html">4.6.1 FieldStorage class</a>
+<LI><A href="pyapi-util-fstor-fld.html">4.6.2 Field class</a>
+<LI><A href="pyapi-util-funcs.html">4.6.3 Other functions</a>
+</ul>
+</ul>
+<LI><A href="directives.html">5. Apache Configuration Directives</a>
+<UL>
+<LI><A href="dir-handlers.html">5.1 Request Handlers</a>
+<UL>
+<LI><A href="dir-handlers-syn.html">5.1.1 Python*Handler Directive Syntax</a>
+<LI><A href="dir-handlers-prrh.html">5.1.2 PythonPostReadRequestHandler</a>
+<LI><A href="dir-handlers-th.html">5.1.3 PythonTransHandler</a>
+<LI><A href="dir-handlers-hph.html">5.1.4 PythonHeaderParserHandler</a>
+<LI><A href="dir-handlers-pih.html">5.1.5 PythonInitHandler</a>
+<LI><A href="dir-handlers-ach.html">5.1.6 PythonAccessHandler</a>
+<LI><A href="node54.html">5.1.7 PythonAuthenHandler</a>
+<LI><A href="dir-handlers-auh.html">5.1.8 PythonAuthzHandler</a>
+<LI><A href="dir-handlers-tph.html">5.1.9 PythonTypeHandler</a>
+<LI><A href="dir-handlers-fuh.html">5.1.10 PythonFixupHandler</a>
+<LI><A href="dir-handlers-ph.html">5.1.11 PythonHandler</a>
+<LI><A href="dir-handlers-plh.html">5.1.12 PythonLogHandler</a>
+<LI><A href="dir-handlers-pch.html">5.1.13 PythonCleanupHandler</a>
+</ul>
+<LI><A href="dir-filter.html">5.2 Filters</a>
+<UL>
+<LI><A href="dir-filter-if.html">5.2.1 PythonInputFilter</a>
+<LI><A href="dir-filter-of.html">5.2.2 PythonOutputFilter</a>
+</ul>
+<LI><A href="dir-conn.html">5.3 Connection Handler</a>
+<UL>
+<LI><A href="dir-conn-ch.html">5.3.1 PythonConnectionHandler</a>
+</ul>
+<LI><A href="dir-other.html">5.4 Other Directives</a>
+<UL>
+<LI><A href="dir-other-epd.html">5.4.1 PythonEnablePdb</a>
+<LI><A href="dir-other-pd.html">5.4.2 PythonDebug</a>
+<LI><A href="node69.html">5.4.3 PythonImport</a>
+<LI><A href="dir-other-ipd.html">5.4.4 PythonInterpPerDirectory</a>
+<LI><A href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</a>
+<LI><A href="dir-other-pi.html">5.4.6 PythonInterpreter</a>
+<LI><A href="dir-other-phm.html">5.4.7 PythonHandlerModule</a>
+<LI><A href="dir-other-par.html">5.4.8 PythonAutoReload</a>
+<LI><A href="dir-other-pomz.html">5.4.9 PythonOptimize</a>
+<LI><A href="dir-other-po.html">5.4.10 PythonOption</a>
+<LI><A href="dir-other-pp.html">5.4.11 PythonPath</a>
+</ul>
+</ul>
+<LI><A href="handlers.html">6. Standard Handlers</a>
+<UL>
+<LI><A href="hand-pub.html">6.1 Publisher Handler</a>
+<UL>
+<LI><A href="hand-pub-intro.html">6.1.1 Introduction</a>
+<LI><A href="hand-pub-alg.html">6.1.2 The Publishing Algorithm</a>
+<LI><A href="node85.html">6.1.3 Form Data</a>
+</ul>
+<LI><A href="hand-cgi.html">6.2 CGI Handler</a>
+</ul>
+<LI><A href="app-changes.html">A. Changes from Previous Major Version (2.x)</a>
+<LI><A href="genindex.html">Index</a>
+<LI><A href="about.html">About this document ...</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="front.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -35,6 +35,9 @@ function listeDossier($dossier){
 	}
 </style>
 
+<br/>
+<logo src="demo/images/logo-gris.png" txt="Motif"/>
+
 
 <ctrl defaut="ctn=exp$" ereg="ctn=exp&p=pre">
 	<h1>Démonstration</h1>
@@ -65,20 +68,20 @@ function listeDossier($dossier){
 	La page License n'est pas listée car il s'agit du texte fourni par GNU tel quel.<br/>
 	
 	<a name="demo.php"></a><br/>
-	<h2>demo.php</h2>
-	<code id="demophp" lang="php; html-script: true;">
+	<titre label="demo.php"/>
+	<code id="demophp" lang="php; html-script: true;" params="caché;">
 		<fichier src="demo/demo.php" type="txt"/>
 	</code>
 	
 	<a name="projet.php"></a><br/>
-	<h2>projet.php</h2>
-	<code id="projetphp" lang="php; html-script: true;">
+	<titre label="projet.php"/>
+	<code id="projetphp" lang="php; html-script: true;" params="caché;">
 		<fichier src="demo/contenu/projet.php" type="txt"/>
 	</code>
 	
 	<a name="exp.php"></a><br/>
-	<h2>exp.php</h2>
-	<code id="expphp" lang="php; html-script: true;">
+	<titre label="exp.php"/>
+	<code id="expphp" lang="php; html-script: true;" params="caché;">
 		<fichier src="demo/contenu/exp.php" type="txt"/>
 	</code>
 	
@@ -96,7 +99,7 @@ function listeDossier($dossier){
 		$tmp = str_replace( ".", "", $fichier); ?>
 		<a name="<?=$fichier?>"></a><br/>
 		<titre label="<?=$fichier?>"/>
-		<code id="<?=$tmp?>" lang="php; html-script: true;">
+		<code id="<?=$tmp?>" lang="php; html-script: true;" params="caché;">
 			<fichier src="demo/motifs/<?=$fichier?>" type="txt"/>
 		</code>
 	<?}?>

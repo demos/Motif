@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1.2 PythonPostReadRequestHandler</title>
+<META NAME="description" CONTENT="5.1.2 PythonPostReadRequestHandler">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-handlers-th.html">
+<LINK REL="previous" href="dir-handlers-syn.html">
+<LINK REL="up" href="dir-handlers.html">
+<LINK REL="next" href="dir-handlers-th.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers-syn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-th.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers-syn.html">5.1.1 Python*Handler Directive Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-th.html">5.1.3 PythonTransHandler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007120000000000000000">&nbsp;</A>
+<a name="l2h-177">&nbsp;</a>
+<BR>
+5.1.2 PythonPostReadRequestHandler
+</H2>
+
+<P>
+<b><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Syntax"
+ title="Syntax:"
+ >Syntax:</a></em></b>
+<i>Python*Handler Syntax</i>
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Context"
+ title="Context:"
+ >Context:</a></em>
+server config, virtual host
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Override"
+ title="Override:"
+ >Override:</a></em>
+not None
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Module"
+ title="Module:"
+ >Module:</a></em>
+mod_python.c
+
+<P>
+This handler is called after the request has been read but before any
+other phases have been processed. This is useful to make decisions
+based upon the input header fields.
+
+<P>
+NOTE: When this phase of the request is processed, the URI has not yet
+been translated into a path name, therefore this directive could never
+be executed by Apache if it could specified within <code>&lt;Directory&gt;</code>,
+<code>&lt;Location&gt;</code>, <code>&lt;File&gt;</code> directives or in an <span class="file">.htaccess</span>
+file. The only place this directive is allowed is the main
+configuration file, and the code for it will execute in the main
+interpreter. And because this phase happens before any identification
+of the type of content being requested is done (i.e. is this a python
+program or a gif?), the python routine specified with this handler
+will be called for <i>ALL</i> requests on this server (not just python
+programs), which is an important consideration if performance is a
+priority.
+
+<P>
+<a name="l2h-178">&nbsp;</a>The handlers below are documented in order in
+which phases are processed by Apache.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-handlers-syn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers-th.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-handlers-syn.html">5.1.1 Python*Handler Directive Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers-th.html">5.1.3 PythonTransHandler</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

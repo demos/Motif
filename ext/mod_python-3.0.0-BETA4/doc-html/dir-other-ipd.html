@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4.4 PythonInterpPerDirectory</title>
+<META NAME="description" CONTENT="5.4.4 PythonInterpPerDirectory">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-other-ipdv.html">
+<LINK REL="previous" HREF="node69.html">
+<LINK REL="up" href="dir-other.html">
+<LINK REL="next" href="dir-other-ipdv.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node69.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-ipdv.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node69.html">5.4.3 PythonImport</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007440000000000000000">&nbsp;</A>
+<a name="l2h-196">&nbsp;</a>
+<BR>
+5.4.4 PythonInterpPerDirectory
+</H2>
+
+<P>
+<b><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Syntax"
+ title="Syntax:"
+ >Syntax:</a></em></b>
+PythonInterpPerDirectory {On, Off} 
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Default"
+ title="Default:"
+ >Default:</a></em>
+PythonInterpPerDirectory Off
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Context"
+ title="Context:"
+ >Context:</a></em>
+server config, virtual host, directory, htaccess
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Override"
+ title="Override:"
+ >Override:</a></em>
+not None
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Module"
+ title="Module:"
+ >Module:</a></em>
+mod_python.c
+
+<P>
+Instructs mod_python to name subinterpreters using the directory of
+the file in the request (<code>req.filename</code>) rather than the the
+server name. This means that scripts in different directories will
+execute in different subinterpreters as opposed to the default policy
+where scripts in the same virtual server execute in the same
+subinterpreter, even if they are in different directories.
+
+<P>
+For example, assume there is a
+<span class="file">/directory/subdirectory</span>. <span class="file">/directory</span> has an .htaccess
+file with a PythonHandler directive.  <span class="file">/directory/subdirectory</span>
+doesn't have an .htacess. By default, scripts in /directory and
+<span class="file">/directory/subdirectory</span> would execute in the same interpreter assuming
+both directories are accessed via the same virtual server. With
+PythonInterpPerDirectory, there would be two different interpreters,
+one for each directory.
+
+<P>
+<b>Note:</b> In early phases of the request prior to the URI translation
+(PostReadRequestHandler and TransHandler) the path is not yet known
+because the URI has not been translated. During those phases and with
+PythonInterpPerDirectory on, all python code gets executed in the
+main interpreter. This may not be exactly what you want, but
+unfortunately there is no way around this.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+	<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="pyapi-interps.html"
+        >Section <A href="pyapi-interps.html#pyapi-interps">4.1</A> Multiple Interpreters</a></em>
+    <dd>for more information
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node69.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-ipdv.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node69.html">5.4.3 PythonImport</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

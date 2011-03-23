@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.1 Multiple Interpreters</title>
+<META NAME="description" CONTENT="4.1 Multiple Interpreters">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-handler.html">
+<LINK REL="previous" href="pythonapi.html">
+<LINK REL="up" href="pythonapi.html">
+<LINK REL="next" href="pyapi-handler.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pythonapi.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-handler.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-handler.html">4.2 Overview of a</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006100000000000000000">&nbsp;</A>
+<BR>
+4.1 Multiple Interpreters
+</H1>
+
+<P>
+When working with mod_python, it is important to be aware of a feature
+of Python that is normally not used when using the language for
+writing scripts to be run from command line. This feature is not
+available from within Python itself and can only be accessed through
+the <em class="citetitle"><a
+ href="http://www.python.org/doc/current/api/api.html"
+ title="C
+language API"
+ >C
+language API</a></em>.
+
+<P>
+Python C API provides the ability to create <i class="dfn">subinterpreters</i>. A
+more detailed description of a subinterpreter is given in the
+documentation for the
+<em class="citetitle"><a
+ href="http://www.python.org/doc/current/api/initialization.html"
+ title="<tt class="cfunction">Py_NewInterpreter()</tt>"
+ ><tt class="cfunction">Py_NewInterpreter()</tt></a></em>
+function. For this discussion, it will suffice to say that each
+subinterpreter has its own separate namespace, not accessible from
+other subinterpreters. Subinterpreters are very useful to make sure
+that separate programs running under the same Apache server do not
+interfere with one another.
+
+<P>
+At server start-up or mod_python initialization time, mod_python
+initializes an interpreter called <i class="dfn">main</i> interpreter.  The main
+interpreter contains a dictionary of subinterpreters. Initially, this
+dictionary is empty. With every request, as needed, subinterpreters
+are created, and references to them are stored in this dictionary. The
+dictionary is keyed on a string, also known as <i>interpreter
+name</i>. This name can be any string.  The main interpreter is named
+"<tt class="samp">main_interpreter</tt>".  The way all other interpreters are named can
+be controlled by <code>PythonInterp*</code> directives. Default behaviour is
+to name interpreters using the Apache virtual server name
+(<code>ServerName</code> directive). This means that all scripts in the same
+vrtual server execute in the same subinterpreter, but scripts in
+different virtual servers execute in different subinterpreters with
+completely separate namespaces.
+<em class="citetitle"><a
+ href="dir-other-ipd.html"
+ title="<code>PythonInterpPerDirectory</code>"
+ ><code>PythonInterpPerDirectory</code></a></em> and
+<em class="citetitle"><a
+ href="dir-other-ipdv.html"
+ title="<code>PythonInterpPerDirective</code>"
+ ><code>PythonInterpPerDirective</code></a></em>
+directives alter the naming convention to use the absolute path of the
+directory being accessed, or the directory in which the
+<code>Python*Handler</code> was encountered, respectively.
+<em class="citetitle"><a
+ href="dir-other-pi.html"
+ title="<code>PythonInterpreter</code>"
+ ><code>PythonInterpreter</code></a></em> can be used to
+force the interpreter name to a specific string overriding any naming
+conventions.
+
+<P>
+Once created, a subinterpreter will be reused for subsequent requests.
+It is never destroyed and exists until the Apache process dies.
+
+<P>
+You can find out the name of the interpreter under which you're
+running by peeking at <tt class="member">req.interpreter</tt>.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.python.org/doc/current/api/api.html"
+        >Python C Language API</a></em>
+    <dd>Python C Language API
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pythonapi.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-handler.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-handler.html">4.2 Overview of a</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

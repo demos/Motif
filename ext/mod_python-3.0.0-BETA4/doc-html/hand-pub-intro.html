@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.1 Introduction</title>
+<META NAME="description" CONTENT="6.1.1 Introduction">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="hand-pub-alg.html">
+<LINK REL="previous" href="hand-pub.html">
+<LINK REL="up" href="hand-pub.html">
+<LINK REL="next" href="hand-pub-alg.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="hand-pub.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="hand-pub.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="hand-pub-alg.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="hand-pub.html">6.1 Publisher Handler</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="hand-pub.html">6.1 Publisher Handler</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="hand-pub-alg.html">6.1.2 The Publishing Algorithm</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008110000000000000000">&nbsp;</A>
+<BR>
+6.1.1 Introduction
+</H2>
+
+<P>
+To use the handler, you need the following lines in your configuration
+<dl><dd><pre class="verbatim">
+&lt;Directory /some/path}
+    SetHandler python-program 
+    PythonHandler mod_python.publisher
+&lt;/Directory&gt;
+</pre></dl>
+
+<P>
+This handler allows access to functions and variables within a module
+via URL's. For example, if you have the following module, called 
+<span class="file">hello.py</span>:
+
+<P>
+<dl><dd><pre class="verbatim">
+""" Publisher example """
+
+def say(req, what="NOTHING"):
+    return "I am saying %s" % what
+</pre></dl>
+
+<P>
+A URL <code>http://www.mysite.com/hello.py/say</code> would return 
+"<tt class="samp">I am saying NOTHING</tt>". A URL 
+<code>http://www.mysite.com/hello.py/say?what=hello</code> would
+return "<tt class="samp">I am saying hello</tt>".
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="hand-pub.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="hand-pub.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="hand-pub-alg.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="hand-pub.html">6.1 Publisher Handler</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="hand-pub.html">6.1 Publisher Handler</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="hand-pub-alg.html">6.1.2 The Publishing Algorithm</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

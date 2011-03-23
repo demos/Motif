@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5 apache - Access to Apache Internals.</title>
+<META NAME="description" CONTENT="4.5 apache - Access to Apache Internals.">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-util.html">
+<LINK REL="previous" href="pyapi-conn.html">
+<LINK REL="up" href="pythonapi.html">
+<LINK REL="next" href="pyapi-apmeth.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-conn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-apmeth.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-conn.html">4.4 Overview of a</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-apmeth.html">4.5.1 Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006500000000000000000">
+4.5 <tt class="module">apache</tt> - Access to Apache Internals.</A>
+</H1>
+
+
+<P>
+The Python interface to Apache internals is contained in a module
+appropriately named <tt class="module">apache</tt>, located inside the
+<tt class="module">mod_python</tt> package. This module provides some important
+objects that map to Apache internal structures, as well as some useful
+functions, all documented below. (The request object also provides an
+interface to Apache internals, it is covered in its own section of
+this manual.)
+
+<P>
+<a name="l2h-17">&nbsp;</a>The <tt class="module">apache</tt> module can only be
+imported by a script running under mod_python. This is because it
+depends on a built-in module <tt class="module">_apache</tt> provided by
+mod_python.
+
+<P>
+It is best imported like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+from mod_python import apache
+</pre></dl>
+
+<P>
+<tt class="module">mod_python.apache</tt> module defines the following functions and
+objects. For a more in-depth look at Apache internals, see the
+<em class="citetitle"><a
+ href="http://httpd.apache.org/dev/"
+ title="Apache Developer page"
+ >Apache Developer page</a></em>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="pyapi-apmeth.html">4.5.1 Functions</a>
+<LI><A href="pyapi-mptable.html">4.5.2 Table Object (mp_table)<a name="l2h-23">&nbsp;</a></a>
+<LI><A href="pyapi-mprequest.html">4.5.3 Request Object<a name="l2h-27">&nbsp;</a></a>
+<UL>
+<LI><A href="pyapi-mprequest-meth.html">4.5.3.1 Request Methods</a>
+<LI><A href="pyapi-mprequest-mem.html">4.5.3.2 Request Members</a>
+</ul>
+<LI><A href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)<a name="l2h-105">&nbsp;</a></a>
+<UL>
+<LI><A href="pyapi-mpconn-meth.html">4.5.4.1 Connection Methods</a>
+<LI><A href="pyapi-mpconn-mem.html">4.5.4.2 Connection Members</a>
+</ul>
+<LI><A href="pyapi-mpfilt.html">4.5.5 Filter Object (mp_filter)<a name="l2h-127">&nbsp;</a></a>
+<UL>
+<LI><A href="pyapi-mpfilt-meth.html">4.5.5.1 Filter Methods</a>
+<LI><A href="pyapi-mpfilt-mem.html">4.5.5.2 Filter Members</a>
+</ul>
+<LI><A href="pyapi-mpserver.html">4.5.6 Server Object (mp_server)<a name="l2h-140">&nbsp;</a></a>
+<UL>
+<LI><A href="pyapi-mpsrv-meth.html">4.5.6.1 Server Methods</a>
+<LI><A href="pyapi-mpsrv-mem.html">4.5.6.2 Server Members</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-conn.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-apmeth.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-conn.html">4.4 Overview of a</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-apmeth.html">4.5.1 Functions</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

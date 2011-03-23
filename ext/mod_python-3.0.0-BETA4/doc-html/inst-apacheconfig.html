@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.3.2 Configuring Apache</title>
+<META NAME="description" CONTENT="2.3.2 Configuring Apache">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="inst-makeinstall.html">
+<LINK REL="up" href="inst-installing.html">
+<LINK REL="next" href="inst-testing.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-makeinstall.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="inst-installing.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-testing.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-makeinstall.html">2.3.1 Running make install</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="inst-installing.html">2.3 Installing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-testing.html">2.4 Testing</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004320000000000000000">&nbsp;</A>
+<BR>
+2.3.2 Configuring Apache
+</H2>
+
+<P>
+
+<UL>
+<LI>If you compiled mod_python as a DSO, you will need to tell Apache to
+load the module by adding the following line in the Apache
+configuration file, usually called <span class="file">httpd.conf</span> or
+<span class="file">apache.conf</span>:
+
+<P>
+<dl><dd><pre class="verbatim">
+LoadModule python_module libexec/mod_python.so
+</pre></dl>
+
+<P>
+<a name="l2h-10">&nbsp;</a>The actual path to <b class="program">mod_python.so</b> may vary, but make install
+should report at the very end exactly where <b class="program">mod_python.so</b>
+was placed and how the <code>LoadModule</code> directive should appear.
+
+<P>
+If your Apache configuration uses <code>ClearModuleList</code> directive,
+you will need to add mod_python to the module list in the Apache
+configuration file:
+
+<P>
+<dl><dd><pre class="verbatim">
+AddModule mod_python.c
+</pre></dl>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inst-makeinstall.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="inst-installing.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inst-testing.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inst-makeinstall.html">2.3.1 Running make install</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="inst-installing.html">2.3 Installing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inst-testing.html">2.4 Testing</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

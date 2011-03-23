@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2 Overview of a Request Handler</title>
+<META NAME="description" CONTENT="4.2 Overview of a Request Handler">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-filter.html">
+<LINK REL="previous" href="pyapi-interps.html">
+<LINK REL="up" href="pythonapi.html">
+<LINK REL="next" href="pyapi-filter.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-interps.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-filter.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-interps.html">4.1 Multiple Interpreters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-filter.html">4.3 Overview of a</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006200000000000000000">&nbsp;</A>
+<BR>
+4.2 Overview of a Request Handler
+</H1>
+<a name="l2h-12">&nbsp;</a>
+<P>
+A <i class="dfn">handler</i> is a function that processes a particular phase of a
+request. Apache processes requests in phases - read the request,
+process headers, provide content, etc. For every phase, it will call
+handlers, provided by either the Apache core or one of its modules,
+such as mod_python which passes control to functions provided by the
+user and written in Python. A handler written in Python is not any
+different from a handler written in C, and follows these rules:
+
+<P>
+<a name="l2h-13">&nbsp;</a>A handler function will always
+be passed a reference to a request object. (Throughout this manual,
+the request object is often referred to by the <code>req</code> variable.)
+
+<P>
+Every handler can return:
+
+<P>
+
+<UL>
+<LI><tt class="constant">apache.OK</tt>, meaning this phase of the request was handled by this 
+handler and no errors occurred. 
+
+<P>
+</LI>
+<LI><tt class="constant">apache.DECLINED</tt>, meaning this handler has not handled this
+phase of the request to completion and Apache needs to look for
+another handler in subsequent modules.
+
+<P>
+</LI>
+<LI><tt class="constant">apache.<i>HTTP_ERROR</i></tt>, meaning an HTTP error occurred. 
+<var>HTTP_ERROR</var> can be any of the following:
+
+<P>
+<dl><dd><pre class="verbatim">
+HTTP_CONTINUE                     = 100
+HTTP_SWITCHING_PROTOCOLS          = 101
+HTTP_PROCESSING                   = 102
+HTTP_OK                           = 200
+HTTP_CREATED                      = 201
+HTTP_ACCEPTED                     = 202
+HTTP_NON_AUTHORITATIVE            = 203
+HTTP_NO_CONTENT                   = 204
+HTTP_RESET_CONTENT                = 205
+HTTP_PARTIAL_CONTENT              = 206
+HTTP_MULTI_STATUS                 = 207
+HTTP_MULTIPLE_CHOICES             = 300
+HTTP_MOVED_PERMANENTLY            = 301
+HTTP_MOVED_TEMPORARILY            = 302
+HTTP_SEE_OTHER                    = 303
+HTTP_NOT_MODIFIED                 = 304
+HTTP_USE_PROXY                    = 305
+HTTP_TEMPORARY_REDIRECT           = 307
+HTTP_BAD_REQUEST                  = 400
+HTTP_UNAUTHORIZED                 = 401
+HTTP_PAYMENT_REQUIRED             = 402
+HTTP_FORBIDDEN                    = 403
+HTTP_NOT_FOUND                    = 404
+HTTP_METHOD_NOT_ALLOWED           = 405
+HTTP_NOT_ACCEPTABLE               = 406
+HTTP_PROXY_AUTHENTICATION_REQUIRED= 407
+HTTP_REQUEST_TIME_OUT             = 408
+HTTP_CONFLICT                     = 409
+HTTP_GONE                         = 410
+HTTP_LENGTH_REQUIRED              = 411
+HTTP_PRECONDITION_FAILED          = 412
+HTTP_REQUEST_ENTITY_TOO_LARGE     = 413
+HTTP_REQUEST_URI_TOO_LARGE        = 414
+HTTP_UNSUPPORTED_MEDIA_TYPE       = 415
+HTTP_RANGE_NOT_SATISFIABLE        = 416
+HTTP_EXPECTATION_FAILED           = 417
+HTTP_UNPROCESSABLE_ENTITY         = 422
+HTTP_LOCKED                       = 423
+HTTP_FAILED_DEPENDENCY            = 424
+HTTP_INTERNAL_SERVER_ERROR        = 500
+HTTP_NOT_IMPLEMENTED              = 501
+HTTP_BAD_GATEWAY                  = 502
+HTTP_SERVICE_UNAVAILABLE          = 503
+HTTP_GATEWAY_TIME_OUT             = 504
+HTTP_VERSION_NOT_SUPPORTED        = 505
+HTTP_VARIANT_ALSO_VARIES          = 506
+HTTP_INSUFFICIENT_STORAGE         = 507
+HTTP_NOT_EXTENDED                 = 510
+</pre></dl>                      
+
+<P>
+</LI>
+</UL>
+
+<P>
+As an alternative to <i>returning</i> an HTTP error code, handlers can
+signal an error by <i>raising</i> the <tt class="constant">apache.SERVER_RETURN</tt>
+exception, and providing an HTTP error code as the exception value,
+e.g.
+
+<P>
+<dl><dd><pre class="verbatim">
+raise apache.SERVER_RETURN, apache.HTTP_FORBIDDEN
+</pre></dl>
+
+<P>
+Handlers can send content to the client using the <tt class="method">req.write()</tt>
+method. 
+
+<P>
+Client data, such as POST requests, can be read by using the
+<tt class="method">req.read()</tt> function.
+
+<P>
+<b>NOTE:</b> The directory of the Apache <code>Python*Handler</code> 
+directive in effect is prepended to the <code>sys.path</code>. If the
+directive was specified in a server config file outside any
+<code>&lt;Directory&gt;</code>, then the directory is unknown and not prepended.
+
+<P>
+An example of a minimalistic handler might be: 
+
+<P>
+<dl><dd><pre class="verbatim">
+from mod_python import apache
+
+def requesthandler(req):
+    req.content_type = "text/plain"
+    req.write("Hello World!")
+    return apache.OK
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-interps.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pythonapi.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-filter.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-interps.html">4.1 Multiple Interpreters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pythonapi.html">4. Python API</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-filter.html">4.3 Overview of a</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

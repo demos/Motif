@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4.3 PythonImport</title>
+<META NAME="description" CONTENT="5.4.3 PythonImport">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dir-other-ipd.html">
+<LINK REL="previous" href="dir-other-pd.html">
+<LINK REL="up" href="dir-other.html">
+<LINK REL="next" href="dir-other-ipd.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-other-pd.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-ipd.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-other-pd.html">5.4.2 PythonDebug</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-ipd.html">5.4.4 PythonInterpPerDirectory</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007430000000000000000">&nbsp;</A>
+<a name="l2h-195">&nbsp;</a>
+<BR>
+5.4.3 PythonImport
+</H2>
+
+<P>
+<b><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Syntax"
+ title="Syntax:"
+ >Syntax:</a></em></b>
+PythonImport <i>module</i> <i>interpreter_name</i>
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Context"
+ title="Context:"
+ >Context:</a></em>
+server config
+<BR><em class="citetitle"><a
+ href="http://httpd.apache.org/docs-2.0/mod/directive-dict.html#Module"
+ title="Module:"
+ >Module:</a></em>
+mod_python.c
+
+<P>
+Tells the server to import the Python module module at process startup
+under the specified interpreter name. This is useful for
+initialization tasks that could be time consuming and should not be
+done at the request processing time, e.g. initializing a database
+connection.
+
+<P>
+The import takes place at child process initialization, so the module
+will actually be imported once for every child process spawned.
+
+<P>
+Note that at the time when the import takes place, the configuration
+is not completely read yet, so all other directives, including
+PythonInterpreter have no effect on the behavior of modules imported
+by this directive. Because of this limitation, the interpreter must be
+specified explicitely, and must match the name under which subsequent
+requests relying on this operation will execute. If you are not sure
+under what interpreter name a request is running, examine the
+<tt class="member">interpreter</tt> member of the request object.
+
+<P>
+See also Multiple Interpreters. 
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dir-other-pd.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dir-other.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-other-ipd.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dir-other-pd.html">5.4.2 PythonDebug</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dir-other.html">5.4 Other Directives</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-other-ipd.html">5.4.4 PythonInterpPerDirectory</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

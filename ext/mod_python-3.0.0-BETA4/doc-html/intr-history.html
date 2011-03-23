@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.3 History</title>
+<META NAME="description" CONTENT="1.3 History">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="intr-flexibility.html">
+<LINK REL="up" href="introduction.html">
+<LINK REL="next" href="installation.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intr-flexibility.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="introduction.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="installation.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intr-flexibility.html">1.2 Flexibility</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="introduction.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="installation.html">2. Installation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003300000000000000000">&nbsp;</A>
+<BR>
+1.3 History
+</H1>
+
+<P>
+Mod_python originates from a project called
+<em class="citetitle"><a
+ href="http://www.ispol.com/home/grisha/httpdapy/"
+ title="Httpdapy"
+ >Httpdapy</a></em>
+(1997). For a long time Httpdapy was not called mod_python because
+Httpdapy was not meant to be Apache-specific. Httpdapy was designed to
+be cross-platform and in fact was initially written for the Netscape
+server (back then it was called Nsapy (1997).
+
+<P>
+This excerpt from the Httpdapy README file describes well the
+challenges and the solution provided by embedding Python within the
+HTTP server:
+
+<P>
+<dl><dd><pre class="verbatim">
+While developing my first WWW applications a few years back, I found
+that using CGI for programs that need to connect to relational
+databases (commercial or not) is too slow because every hit requires
+loading of the interpreter executable which can be megabytes in size,
+any database libraries that can themselves be pretty big, plus, the
+database connection/authentication process carries a very significant
+overhead because it involves things like DNS resolutions, encryption,
+memory allocation, etc.. Under pressure to speed up the application, I
+nearly gave up the idea of using Python for the project and started
+researching other tools that claimed to specialize in www database
+integration. I did not have any faith in MS's ASP; was quite
+frustrated by Netscape LiveWire's slow performance and bugginess; Cold
+Fusion seemed promising, but I soon learned that writing in html-like
+tags makes programs as readable as assembly. Same is true for
+PHP. Besides, I *really* wanted to write things in Python.
+
+Around the same time the Internet Programming With Python book came
+out and the chapter describing how to embed Python within Netscape
+server immediately caught my attention.  I used the example in my
+project, and developed an improved version of what I later called
+Nsapy that compiled on both Windows NT and Solaris.
+
+Although Nsapy only worked with Netscape servers, it was a very
+intelligent generic OO design that, in the spirit of Python, that lent
+itself for easy portability to other web servers.
+
+Incidently, the popularity of Netscape's servers was taking a turn
+south, and so I set out to port Nsapy to other servers starting with
+the most popular one, Apache. And so from Nsapy was born Httpdapy.
+</pre></dl>
+
+<P>
+...continuing this saga, yours truly later learned that writing Httpdapy for
+every server is a task a little bigger and less interesting than I
+originally imagined.
+
+<P>
+Instead, it seemed like providing a Python counterpart to the popular
+Perl Apache extension mod_perl that would give Python users the same
+(or better) capability would be a much more exciting thing to do.
+
+<P>
+And so it was done. The first release of mod_python happened in May of
+2000.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intr-flexibility.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="introduction.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="installation.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intr-flexibility.html">1.2 Flexibility</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="introduction.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="installation.html">2. Installation</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

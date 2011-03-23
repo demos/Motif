@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.6.2 Server Members</title>
+<META NAME="description" CONTENT="4.5.6.2 Server Members">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pyapi-mpsrv-meth.html">
+<LINK REL="up" href="pyapi-mpserver.html">
+<LINK REL="next" href="pyapi-util.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpsrv-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpserver.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpsrv-meth.html">4.5.6.1 Server Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpserver.html">4.5.6 Server Object (mp_server)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006562000000000000000">&nbsp;</A>
+<BR>
+4.5.6.2 Server Members
+</H3>
+
+<P>
+<dl><dt><b><a name="l2h-143"><tt class="member">defn_name</tt></a></b>
+<dd>
+String. The name of the configuration file where the server definition
+was found.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-144"><tt class="member">defn_line_number</tt></a></b>
+<dd>
+Integer. Line number in the config file where the server definition is
+found.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-145"><tt class="member">srm_confname</tt></a></b>
+<dd>
+Location of the srm config file.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-146"><tt class="member">server_admin</tt></a></b>
+<dd>
+Value of the <code>ServerAdmin</code> directive. 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-147"><tt class="member">server_hostname</tt></a></b>
+<dd>
+Value of the <code>ServerName</code> directive. Same as CGI <a class="envvar" name="l2h-160">SERVER_NAME</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-148"><tt class="member">port</tt></a></b>
+<dd>
+Integer. TCP/IP port number. Same as CGI <a class="envvar" name="l2h-161">SERVER_PORT</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-149"><tt class="member">error_fname</tt></a></b>
+<dd>
+The name of the error log file for this server, if any.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-150"><tt class="member">loglevel</tt></a></b>
+<dd>
+Integer. Logging level.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-151"><tt class="member">is_virtual</tt></a></b>
+<dd>
+Boolean. True if this is a virtual server.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-152"><tt class="member">timeout</tt></a></b>
+<dd>
+Integer. Value of the <code>Timeout</code> directive.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-153"><tt class="member">keep_alive_timeout</tt></a></b>
+<dd>
+Integer. Keepalive timeout.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-154"><tt class="member">keep_alive_max</tt></a></b>
+<dd>
+Maximum number of requests per keepalive.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-155"><tt class="member">send_buffer_size</tt></a></b>
+<dd>
+Integer. Size of the TCP send buffer.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-156"><tt class="member">path</tt></a></b>
+<dd>
+String. Path for <code>ServerPath</code>
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-157"><tt class="member">pathlen</tt></a></b>
+<dd>
+Integer. Path length.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-158"><tt class="member">server_uid</tt></a></b>
+<dd>
+UID under which the server is running.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-159"><tt class="member">server_gid</tt></a></b>
+<dd>
+GID under which the server is running.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mpsrv-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mpserver.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mpsrv-meth.html">4.5.6.1 Server Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mpserver.html">4.5.6 Server Object (mp_server)&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -43,20 +43,28 @@ $(function(){
 	}
 	
 	titre.mouseover( function() {
-		corps[0].style.left = (menu[0].offsetLeft - 2/3*menu[0].offsetWidth)+"px";	//bidouille
+		//corps[0].style.left = (menu[0].offsetLeft - 2/3*menu[0].offsetWidth)+"px";	//bidouille
+		corps[0].style.left = menu[0].offsetLeft+"px";
 		corps[0].style.top = (menu[0].offsetTop)+"px";
 		$(this).css("color", "#BE7A40");
 		corps.slideDown('medium'); 
 	});
 	
-	menu[0].addEventListener(
+	/*menu[0].addEventListener(
 		"mouseover",
 		function (e) {
 			e.stopPropagation();
 			e.preventDefault();
 			return false;
 		},
-		false);
+		false);//*/
+	menu.mouseover(
+		function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			return false;
+		},
+		false);//*/
 	
 	menus.parent().mouseover(function (e) {
 		//console.log(e.target);
@@ -65,7 +73,8 @@ $(function(){
 		titre.css("color", "#000");
 	});
 
-	corps[0].style.left = (menu[0].offsetLeft - 2/3*menu[0].offsetWidth)+"px";	//bidouille
+	//corps[0].style.left = (menu[0].offsetLeft - 2/3*menu[0].offsetWidth)+"px";	//bidouille
+	corps[0].style.left = menu[0].offsetLeft+"px";
 	corps[0].style.top = (menu[0].offsetTop)+"px";
 	
 });

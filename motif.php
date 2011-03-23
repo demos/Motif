@@ -34,7 +34,9 @@ set_error_handler("erreurs");
 //*/
 
 class Motif {
-	var $dbg = false;
+	var $DBG = true;
+	var $LOG = false;
+	var $trace = "TRACE : <br/>\n";
 	var $conf;
 	var $motifs;
 	
@@ -49,9 +51,9 @@ class Motif {
 	// Lance la lecture d'un motif
 	function lit( $motif, $attributs=array() ) {						$t = $this; $conf = $t->conf;
 		header( 'Content-type: text/html; charset=utf-8' );
-		$dom = $t->charge($motif, $attributs);							if( !$dom ) { $t->log("le motif $motif n'a pas été trouvé ");return;}
+		$dom = $t->charge($motif, $attributs);							if( !$dom ) { $t->dbg("le motif $motif n'a pas été trouvé ");return;}
 		$t->scane($dom);
-		$rtr = $dom->ownerDocument->saveXML( $dom );					if( !$rtr ) { $t->log("Le document xml n'a pas été transformé en chaine : $motif"); return;}
+		$rtr = $dom->ownerDocument->saveXML( $dom );					if( !$rtr ) { $t->dbg("Le document xml n'a pas été transformé en chaine : $motif"); return;}
 		$rtr = $t->retireCdata( $rtr );
 		// on vire manuellement l'encapsulation
 		$rtr = substr( $rtr, 8, strlen($rtr)-17 );//*/
@@ -71,7 +73,7 @@ class Motif {
 	}
 	
 	function chargeMotifs($dossier){									$t = $this; $conf = $t->conf;
-		$dossiers = $conf["dossiers"];									if( !$dossiers ) {$t->log("pas de dossiers de motifs");return;}
+		$dossiers = $conf["dossiers"];									if( !$dossiers ) {$t->dbg("pas de dossiers de motifs");return;}
 		$motifs = array();
 		foreach( $dossiers as $dossier ) {								$t->log( "charge les motifs de dans $dossier" );
 			$rtr = $t->chargeDossierMotifs($dossier);
@@ -105,8 +107,9 @@ class Motif {
 		if( is_a( $attributs, 'DOMNamedNodeMap') )
 			$attributs = $t->attrPhp($attributs);
 		foreach ( $attributs as $clé => $val) {
-			if( $clé == "params")
+			if( $clé == "params") {
 				$params = $t->attrListePhp($val);
+			 }
 			else
 				eval("$".$clé."=\"".$val."\";");
 		}
@@ -159,12 +162,12 @@ class Motif {
 
 
 	function scane( $noeud ) {											$t = $this; $conf = $t->conf;
-																		if( !$noeud ) { $t->log( "scane : pas de motifs" );return;}
+																		if( !$noeud ) { $t->dbg( "scane : pas de motifs" );return;}
 		// 
 		if( is_a($noeud, 'DOMDocument') ) 	$dom = $noeud;
 		else  								$dom = $noeud->ownerDocument;
 		
-		$modèles = $t->motifs;											if( !$modèles ) {$t->log( "scane : pas de motifs" );return;}
+		$modèles = $t->motifs;											if( !$modèles ) {$t->dbg( "scane : pas de motifs" );return;}
 		//print_r($modèles);
 		foreach( $modèles as $modèle) {
 			$occurences = $noeud->getElementsByTagName($modèle);
@@ -246,16 +249,21 @@ class Motif {
 		return $rtr;
 	}
 
+
 	function attrListePhp( $chaineAttr ) {
 		// Convertit un attribut type "border:0;width:100%;..." en liste php
-		$chaines = explode( ";", $chaineAttr);
+		// La dernière clé écrase la précédente
+		// ajouter typage
 		$rtr = array();
+		$chaineAttr = preg_replace ( "/\s/", "", $chaineAttr);
+		$chaines = explode( ";", $chaineAttr);
 		for ( $i = 0; $i<count($chaines); $i++) {
-			if( $chaines[$i] == "" ) continue;
+			if( $chaines[$i] == '' ) continue;
 			$chaine = explode(":",$chaines[$i]);
-			$clé = $chaine[0];
-			$val = $chaine[1];
-			$rtr[$clé] = $val;
+			if( count($chaine)==1 )										// un mot clé sans valeur donne un booléen vrai
+				$rtr[$chaine[0]] = true;
+			else if( count($chaine)==2 )
+				$rtr[$chaine[0]] = $chaine[1]; 							else $this->dbg( "Mauvaise formulation de ".$chaines[$i] );
 		}
 		return $rtr;
 	}
@@ -313,8 +321,14 @@ class Motif {
 	}
 	
 	// Fonctions de debeug
-	function log( $msg ) {
-		if( $this->dbg ) echo "LOG : ".$msg.sdl;
+	function log( $msg ) {												$t = $this; 
+		if( $t->LOG ) echo "LOG : ".$msg.sdl;
+		if( $t->LOG ) $t->trace .= "LOG : ".$msg.sdl;
+	}
+	
+	function dbg( $msg ) {												$t = $this; 
+		if( $t->DBG ) echo "DBG : ".$msg.sdl;
+		if( $t->DBG ) $t->trace .= "DBG : ".$msg.sdl;
 	}
 	
 	function err( $msg ) {

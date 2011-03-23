@@ -48,7 +48,7 @@
 						$(j.succes(
 							item.find('title').text(),
 							item.find('updated').text(),
-							item.find('link')[0].getAttribute("href"),
+							item.find('link').attr("href"),
 							item.find('content').text()
 						)).appendTo(div);
 					});

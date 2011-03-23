@@ -1,3 +1,7 @@
+	<br/>
+	<logo src="demo/images/logo-gris.png" txt="Motif"/>
+	<br/>
+	<br/>
 <ctrl ereg="ctn=projet&p=pyt$">
 		<pre><![CDATA[<? 
 		$test = "texte (variable php)";
@@ -26,8 +30,6 @@ END;
 		donc je ne sais pas exactement comment elles tournent.<br/>
 </ctrl>
 <ctrl defaut="^\/motif\/$" ereg="ctn=projet$">
-	<br/>
-	<br/>
 	<b>Motif</b> est un projet opensource d'assemblage de segments html (ou autre langage basé sur xml).<br/>
 	<br/>
 	Un premier design a été établi par Jean Claveau en PHP dont ce site illustre l'utilisation.<br/>
@@ -41,11 +43,10 @@ END;
 	#fluxrss {
 		margin:0;
 		padding:5px;
-		float:right;
+		float:left;
 		width:40%;
-		height: 300px;
+		height: 200px;
 		font-size:10px;
-		/*border:1px solid #CCCCCC;*/
 		background-color: none;
 		overflow: auto;
 		overflow-x: hidden;
@@ -58,12 +59,21 @@ END;
 		line-height: 0px;
 	} 
 	#liens {
-		float: left;
+		float: right;
 		width: 55%;
 	}
 	</style>
 
 	<titre label="Suivi du projet"/>
+	<rss id="fluxrss"/>
+	<js>
+	$(document).ready(function(){
+		$("#fluxrss").scrollbar({debug:false});
+		//$("#fluxrss").scrollbar();
+	});
+	</js>
+
+
 	<div id="liens">
 		<h3>Liens</h3>
 		<a href="https://github.com/demos/Motif" target="blank">Motif sur GitHub</a>
@@ -77,17 +87,18 @@ END;
 		
 		
 		<h3>Feuille de route</h3>
-		+ Appliquer thème préparé par Hugues sur le site de démo.<br/>
-		+ Ajouter beautifyCode à l'élément code si JQ est présent<br/>
-		+ Integration de motifs écrits en Python via PIP.<br/>
+		+ Appliquer thème préparé par Hugues sur le site de démo (presque fini).<br/>
+		+ Gérer l'héritage css<br/>
+		+ Protéger motif contre les dépassements de pile (motifs identiques imbriqués)<br/>
+		+ Faire évoluer l'API de log<br/>
 		+ Reflexion sur les paramètres de lecture de motif : DTD, dossiers sources...<br/>
 		+ Définir une architecture orientée pour l'optimisation (actuellement il s'agit d'un simple design fonctionnel rangé dans une classe).<br/>
+		+ Integration de motifs écrits en Python via PIP => bug de PIP<br/>
 		<br/>
 
 	</div>
 
 
-	<!--<rss id="fluxrss"/>-->
 
 	<br class="clear" /> 
 	<br/>
@@ -100,6 +111,8 @@ END;
 	<code id="codeclassemotif" lang="php">
 		<fichier id="code" src="motif.php" type="txt"/>
 	</code>
+	<br/>
+	<br/>
 </ctrl>
 
 
@@ -126,7 +139,7 @@ function listeDossier($dossier){
 
 ?>
 
-<ctrl ereg="ctn=projet&p=com">
+<ctrl ereg="ctn=projet&p=com" >
 	<h1>Motifs communs</h1>
 	Ces motifs sont dans "/motifs communs"<br/>
 	<a href="#logo.php">logo.php</a><br/>
@@ -139,7 +152,7 @@ function listeDossier($dossier){
 		$tmp = str_replace( ".", "", $fichier); ?>
 		<a name="<?=$fichier?>"></a><br/>
 		<titre label="<?=$fichier?>"/>
-		<code id="<?=$tmp?>" lang="php; html-script: true;">
+		<code id="<?=$tmp?>" lang="php; html-script: true;" params="caché;">
 			<fichier src="motifs communs/<?=$fichier?>" type="txt"/>
 		</code>
 	<?}?>

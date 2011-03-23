@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.2 Quick Overview of how Apache Handles Requests</title>
+<META NAME="description" CONTENT="3.2 Quick Overview of how Apache Handles Requests">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="tut-what-it-do.html">
+<LINK REL="previous" href="tut-pub.html">
+<LINK REL="up" href="tutorial.html">
+<LINK REL="next" href="tut-what-it-do.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-pub.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tut-what-it-do.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-pub.html">3.1 A Quick Start</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tut-what-it-do.html">3.3 So what Exactly</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005200000000000000000">&nbsp;</A>
+<BR>
+3.2 Quick Overview of how Apache Handles Requests
+</H1>
+
+<P>
+If you would like delve in deeper into the functionaloty of
+mod_python, you need to understand what a handler is.  
+
+<P>
+Apache processes requests in <i class="dfn">phases</i>. For example, the first
+phase may be to authenticate the user, the next phase to verify
+whether that user is allowed to see a particular file, then (next
+phase) read the file and send it to the client. A typical static file
+request involves three phases: (1) translate the requisted URI to a
+file location (2) read the file and send it to the client, then (3)
+log the request. Exactly which phases are processed and how varies
+greatly and depends on the configuration.
+
+<P>
+A <i class="dfn">handler</i> is a function that processes one phase. There may be
+more than one handler available to process a particular phase, in
+which case they are called by Apache in sequence. For each of the
+phases, there is a default Apache handler (most of which by default
+perform only very basic functions or do nothing), and then there are
+additional handlers provided by Apache modules, such as mod_python.
+
+<P>
+Mod_python provides every possible handler to Apache. Mod_python
+handlers by default do not perform any function, unless specifically
+told so by a configuration directive. These directives begin with
+"<tt class="samp">Python</tt>" and end with "<tt class="samp">Handler</tt>"(e.g. <code>PythonAuthenHandler</code>) and associate a phase with a Python
+function. So the main function of mod_python is to act as a dispatcher
+between Apache handlers and Python functions written by a developer
+like you.
+
+<P>
+The most commonly used handler is <code>PythonHandler</code>. It handles the
+phase of the request during which the actual content is
+provided. Becausee it has no name, it is sometimes referred to as as
+<i class="dfn">generic</i> handler. The default Apache action for this handler is
+to read the file and send it to the client. Most applications you will
+write will override this one handler. To see all the possible
+handlers, refer to Section <A href="directives.html#directives">5</A>,
+<em class="citetitle"><a
+ href="directives.html"
+ title="Apache Directives"
+ >Apache Directives</a></em>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tut-pub.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tutorial.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tut-what-it-do.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tut-pub.html">3.1 A Quick Start</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tutorial.html">3. Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tut-what-it-do.html">3.3 So what Exactly</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

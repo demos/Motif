@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.1 Functions</title>
+<META NAME="description" CONTENT="4.5.1 Functions">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-mptable.html">
+<LINK REL="previous" href="module-apache.html">
+<LINK REL="up" href="module-apache.html">
+<LINK REL="next" href="pyapi-mptable.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-apache.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-apache.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mptable.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-apache.html">4.5 apache - Access</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-apache.html">4.5 apache - Access</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mptable.html">4.5.2 Table Object (mp_table)&nbsp;</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006510000000000000000">&nbsp;</A>
+<BR>
+4.5.1 Functions
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-18"><tt class="function">log_error</tt></a></b>(<var>message</var><big>[</big><var>, level, server</var><big>]</big>)
+<dd>
+An interface to the Apache
+<em class="citetitle"><a
+ href="http://dev.apache.org/apidoc/apidoc_ap_log_error.html"
+ title="ap_log_error()"
+ >ap_log_error()</a></em>
+function. <var>message</var> is a string with the error message, <var>level</var> is
+one of the following flags constants:
+
+<P>
+<dl><dd><pre class="verbatim">
+APLOG_EMERG
+APLOG_ALERT
+APLOG_CRIT
+APLOG_ERR
+APLOG_WARNING
+APLOG_NOTICE
+APLOG_INFO
+APLOG_DEBUG
+APLOG_NOERRNO
+</pre></dl>            
+
+<P>
+<var>server</var> is a reference to a <tt class="member">req.server</tt> object. If
+<var>server</var> is not specified, then the error will be logged to the
+default error log, otherwise it will be written to the error log for
+the appropriate virtual server. When <var>server</var> is not specified,
+the setting of LogLevel does not apply, the LogLevel is dictated by
+an httpd compile-time default, usually <code>warn</code>.
+
+<P>
+If you have a reference to a request object available, consider using
+<tt class="method">req.log_error</tt> intead, it will prepend request-specific
+information such as the source IP of the request to the log entry.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-19"><tt class="function">allow_methods</tt></a></b>(<big>[</big><var>*args</var><big>]</big>)
+<dd>
+A convenience function to set values in <tt class="member">req.allowed</tt>.
+<tt class="member">req.allowed</tt> is a bitmask that is used to construct the
+"Allow:" header. It should be set before returning a
+<code>HTTP_NOT_IMPLEMENTED</code> error.
+
+<P>
+Arguments can be one or more of the following:
+<dl><dd><pre class="verbatim">
+M_GET
+M_PUT
+M_POST
+M_DELETE
+M_CONNECT
+M_OPTIONS
+M_TRACE
+M_PATCH
+M_PROPFIND
+M_PROPPATCH
+M_MKCOL
+M_COPY
+M_MOVE
+M_LOCK
+M_UNLOCK
+M_VERSION_CONTROL
+M_CHECKOUT
+M_UNCHECKOUT
+M_CHECKIN
+M_UPDATE
+M_LABEL
+M_REPORT
+M_MKWORKSPACE
+M_MKACTIVITY
+M_BASELINE_CONTROL
+M_MERGE
+M_INVALID
+</pre></dl>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-20"><tt class="function">config_tree</tt></a></b>()
+<dd>
+Returns the server-level configuration tree. This tree does not
+include directives from .htaccess files. This is a <i>copy</i> of
+the tree, modifying it has no effect on the actual configuration.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-21"><tt class="function">server_root</tt></a></b>()
+<dd>
+Returns the value of ServerRoot.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-22"><tt class="function">make_table</tt></a></b>()
+<dd> 
+This function is obsolete and is an alias to <tt class="class">table</tt> (see below).
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-apache.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-apache.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mptable.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-apache.html">4.5 apache - Access</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-apache.html">4.5 apache - Access</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mptable.html">4.5.2 Table Object (mp_table)&nbsp;</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

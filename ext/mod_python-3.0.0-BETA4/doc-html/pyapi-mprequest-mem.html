@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5.3.2 Request Members</title>
+<META NAME="description" CONTENT="4.5.3.2 Request Members">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pyapi-mprequest-meth.html">
+<LINK REL="up" href="pyapi-mprequest.html">
+<LINK REL="next" href="pyapi-mpconn.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mprequest-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mprequest.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mprequest-meth.html">4.5.3.1 Request Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006532000000000000000">&nbsp;</A>
+<BR>
+4.5.3.2 Request Members
+</H3>
+
+<P>
+<dl><dt><b><a name="l2h-43"><tt class="member">connection</tt></a></b>
+<dd>
+A <code>connection</code> object associated with this request. See
+Connection Object below for details.
+<i>(Read-Only)</i>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-44"><tt class="member">server</tt></a></b>
+<dd>
+A server object associate with this request. See Server Object below
+for details.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-45"><tt class="member">next</tt></a></b>
+<dd>
+If this is an internal redirect, the request object we redirect to. 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-46"><tt class="member">prev</tt></a></b>
+<dd>
+If this is an internal redirect, the request object we redirect from.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-47"><tt class="member">main</tt></a></b>
+<dd>
+If this is a sub-request, pointer to the main request. 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-48"><tt class="member">the_request</tt></a></b>
+<dd>
+String containing the first line of the request.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-49"><tt class="member">assbackwards</tt></a></b>
+<dd>
+Is this an HTTP/0.9 "simple" request? 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-50"><tt class="member">proxyreq</tt></a></b>
+<dd>
+A proxy request: one of <tt class="constant">apache.PROXYREQ_*</tt> values.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-51"><tt class="member">header_only</tt></a></b>
+<dd>
+A boolean value indicating HEAD request, as opposed to GET. 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-52"><tt class="member">protocol</tt></a></b>
+<dd>
+Protocol, as given by the client, or "HTTP/0.9". Same as CGI <a class="envvar" name="l2h-99">SERVER_PROTOCOL</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-53"><tt class="member">proto_num</tt></a></b>
+<dd>
+Integer. Number version of protocol; 1.1 = 1001 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-54"><tt class="member">hostname</tt></a></b>
+<dd>
+String. Host, as set by full URI or Host: header.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-55"><tt class="member">request_time</tt></a></b>
+<dd>
+A long integer. When request started.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-56"><tt class="member">status_line</tt></a></b>
+<dd>
+Status line. E.g. "200 OK". 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-57"><tt class="member">status</tt></a></b>
+<dd>
+Status. One of <tt class="constant">apache.HTTP_*</tt> values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-58"><tt class="member">method</tt></a></b>
+<dd>
+A string containing the method - 'GET', 'HEAD', 'POST', etc.
+Same as CGI <a class="envvar" name="l2h-100">REQUEST_METHOD</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-59"><tt class="member">method_number</tt></a></b>
+<dd>
+Integer containg the method number.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-60"><tt class="member">allowed</tt></a></b>
+<dd>
+Integer. A bitvector of the allowed methods. Used to construct the
+Allowed: header when responding with
+<tt class="constant">HTTP_METHOD_NOT_ALLOWED</tt> or
+<tt class="constant">HTTP_NOT_IMPLEMENTED</tt>. This field is for Apache's internal
+use, to set the Allowed: methods use <tt class="method">req.allow_methods()</tt>
+method, described in section <A href="pyapi-mprequest-meth.html#pyapi-mprequest-meth">4.5.3</A>. 
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-61"><tt class="member">allowed_xmethods</tt></a></b>
+<dd>
+Tuple. Allowed extension methods.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-62"><tt class="member">allowed_methods</tt></a></b>
+<dd>
+Tuple. List of allowed methods. Used in relation with
+<tt class="constant">METHOD_NOT_ALLOWED</tt>. This member can be modified via <tt class="method">req.allow_methods()</tt> 
+described in section <A href="pyapi-mprequest-meth.html#pyapi-mprequest-meth">4.5.3</A>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-63"><tt class="member">sent_bodyct</tt></a></b>
+<dd>
+Integer. Byte count in stream is for body. (?)
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-64"><tt class="member">bytes_sent</tt></a></b>
+<dd>
+Long integer. Number of bytes sent.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-65"><tt class="member">mtime</tt></a></b>
+<dd>
+Long integer. Time the resource was last modified.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-66"><tt class="member">chunked</tt></a></b>
+<dd>
+Boolean value indicating when sending chunked transfer-coding.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-67"><tt class="member">range</tt></a></b>
+<dd>
+String. The <code>Range:</code> header.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-68"><tt class="member">clength</tt></a></b>
+<dd>
+Long integer. The "real" content length.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-69"><tt class="member">remaining</tt></a></b>
+<dd>
+Long integer. Bytes left to read. (Only makes sense inside a read
+operation.)
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-70"><tt class="member">read_length</tt></a></b>
+<dd>
+Long integer. Number of bytes read.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-71"><tt class="member">read_body</tt></a></b>
+<dd>
+Integer. How the request body should be read.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-72"><tt class="member">read_chunked</tt></a></b>
+<dd>
+Boolean. Read chunked transfer coding.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-73"><tt class="member">expecting_100</tt></a></b>
+<dd>
+Boolean. Is client waiting for a 100 (<tt class="constant">HTTP_CONTINUE</tt>) response.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-74"><tt class="member">headers_in</tt></a></b>
+<dd>
+A table object containing headers sent by the client.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-75"><tt class="member">headers_out</tt></a></b>
+<dd>
+A <code>table</code> object representing the headers to be sent to the
+client. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-76"><tt class="member">err_headers_out</tt></a></b>
+<dd>
+These headers get send with the error response, instead of
+headers_out.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-77"><tt class="member">subprocess_env</tt></a></b>
+<dd>
+A <code>table</code> object containing environment information typically usable for CGI.
+You may have to call <tt class="member">req.add_common_vars()</tt> first to fill in the information
+you need.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-78"><tt class="member">notes</tt></a></b>
+<dd>
+A <code>table</code> object that could be used to store miscellaneous
+general purpose info that lives for as long as the request lives. If
+you need to pass data between handlers, it's better to simply add
+members to the request object than to use <tt class="member">notes</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-79"><tt class="member">phase</tt></a></b>
+<dd>
+The phase currently being being processed, e.g. "PythonHandler".
+<i>(Read-Only)</i>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-80"><tt class="member">interpreter</tt></a></b>
+<dd>
+The name of the subinterpreter under which we're running.
+<i>(Read-Only)</i>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-81"><tt class="member">content_type</tt></a></b>
+<dd>
+String. The content type. Mod_python maintains an internal flag
+(<tt class="member">req._content_type_set</tt>) to keep track of whether
+<tt class="member">content_type</tt> was set manually from within Python. The
+publisher handler uses this flag in the following way: when
+<tt class="member">content_type</tt> isn't explicitely set, it attempts to guess the
+content type by examining the first few bytes of the output.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-82"><tt class="member">handler</tt></a></b>
+<dd>
+The name of the handler currently being processed. This is the handler
+set by mod_mime, not the mod_python handler. In most cases it will be
+"python-program". <i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-83"><tt class="member">content_encoding</tt></a></b>
+<dd>
+String. Content encoding.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-84"><tt class="member">vlist_validator</tt></a></b>
+<dd>
+Integer. Variant list validator (if negotiated).
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-85"><tt class="member">user</tt></a></b>
+<dd>
+If an authentication check is made, this will hold the user
+name. Same as CGI <a class="envvar" name="l2h-101">REMOTE_USER</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-86"><tt class="member">ap_auth_type</tt></a></b>
+<dd>
+Authentication type. Same as CGI <a class="envvar" name="l2h-102">AUTH_TYPE</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-87"><tt class="member">no_cache</tt></a></b>
+<dd>
+Boolean. No cache if true.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-88"><tt class="member">no_local_copy</tt></a></b>
+<dd>
+Boolean. No local copy exists.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-89"><tt class="member">unparsed_uri</tt></a></b>
+<dd>
+The URI without any parsing performed.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-90"><tt class="member">uri</tt></a></b>
+<dd>
+The path portion of the URI.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-91"><tt class="member">filename</tt></a></b>
+<dd>
+String. File name being requested.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-92"><tt class="member">canonical_filename</tt></a></b>
+<dd>
+String. The true filename (<tt class="member">req.filename</tt> is canonicalized if
+they dont match).  <i>(Read-Only)</i>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-93"><tt class="member">path_info</tt></a></b>
+<dd>
+String. What follows after the file name, but is before query args, if
+anything. Same as CGI <a class="envvar" name="l2h-103">PATH_INFO</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-94"><tt class="member">args</tt></a></b>
+<dd>
+String. Same as CGI <a class="envvar" name="l2h-104">QUERY_ARGS</a>.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-95"><tt class="member">finfo</tt></a></b>
+<dd>
+Tuple. A file information structure, analogous to POSIX stat,
+describing the file pointed to by the URI.  <code>(mode, ino,
+dev, nlink, uid, gid, size, atime, mtime, ctime, fname,
+name)</code>. The <code>apache</code> module defines a set of <tt class="constant">FINFO_*</tt>
+constants that should be used to access elements of this
+tuple. Example:
+<dl><dd><pre class="verbatim">
+fname = req.finfo[apache.FINFO_FNAME]
+</pre></dl>
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-96"><tt class="member">parsed_uri</tt></a></b>
+<dd>
+Tuple. The URI broken down into pieces.
+<code>(scheme, hostinfo, user, password, hostname, port, path, query, fragment)</code>. 
+The <code>apache</code> module defines a set of <tt class="constant">URI_*</tt> constants that
+should be used to access elements of this tuple. Example:
+<dl><dd><pre class="verbatim">
+fname = req.parsed_uri[apache.URI_PATH]
+</pre></dl>
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-97"><tt class="member">used_path_info</tt></a></b>
+<dd>
+Flag to accept or reject path_info on current request.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-98"><tt class="member">eos_sent</tt></a></b>
+<dd>
+Boolean. EOS bucket sent.
+<i>(Read-Only</i>)
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-mprequest-meth.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-mprequest.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-mpconn.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-mprequest-meth.html">4.5.3.1 Request Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-mprequest.html">4.5.3 Request Object&nbsp;</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-mpconn.html">4.5.4 Connection Object (mp_conn)&nbsp;</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

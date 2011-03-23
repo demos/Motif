@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5. Apache Configuration Directives</title>
+<META NAME="description" CONTENT="5. Apache Configuration Directives">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="handlers.html">
+<LINK REL="previous" href="pythonapi.html">
+<LINK REL="up" HREF="modpython.html">
+<LINK REL="next" href="dir-handlers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-funcs.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="modpython.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-funcs.html">4.6.3 Other functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="modpython.html">Mod_python Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007000000000000000000">&nbsp;</A>
+<BR>
+5. Apache Configuration Directives
+</H1>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dir-handlers.html">5.1 Request Handlers</a>
+<UL>
+<LI><A href="dir-handlers-syn.html">5.1.1 Python*Handler Directive Syntax</a>
+<LI><A href="dir-handlers-prrh.html">5.1.2 PythonPostReadRequestHandler</a>
+<LI><A href="dir-handlers-th.html">5.1.3 PythonTransHandler</a>
+<LI><A href="dir-handlers-hph.html">5.1.4 PythonHeaderParserHandler</a>
+<LI><A href="dir-handlers-pih.html">5.1.5 PythonInitHandler</a>
+<LI><A href="dir-handlers-ach.html">5.1.6 PythonAccessHandler</a>
+<LI><A href="node54.html">5.1.7 PythonAuthenHandler</a>
+<LI><A href="dir-handlers-auh.html">5.1.8 PythonAuthzHandler</a>
+<LI><A href="dir-handlers-tph.html">5.1.9 PythonTypeHandler</a>
+<LI><A href="dir-handlers-fuh.html">5.1.10 PythonFixupHandler</a>
+<LI><A href="dir-handlers-ph.html">5.1.11 PythonHandler</a>
+<LI><A href="dir-handlers-plh.html">5.1.12 PythonLogHandler</a>
+<LI><A href="dir-handlers-pch.html">5.1.13 PythonCleanupHandler</a>
+</ul>
+<LI><A href="dir-filter.html">5.2 Filters</a>
+<UL>
+<LI><A href="dir-filter-if.html">5.2.1 PythonInputFilter</a>
+<LI><A href="dir-filter-of.html">5.2.2 PythonOutputFilter</a>
+</ul>
+<LI><A href="dir-conn.html">5.3 Connection Handler</a>
+<UL>
+<LI><A href="dir-conn-ch.html">5.3.1 PythonConnectionHandler</a>
+</ul>
+<LI><A href="dir-other.html">5.4 Other Directives</a>
+<UL>
+<LI><A href="dir-other-epd.html">5.4.1 PythonEnablePdb</a>
+<LI><A href="dir-other-pd.html">5.4.2 PythonDebug</a>
+<LI><A href="node69.html">5.4.3 PythonImport</a>
+<LI><A href="dir-other-ipd.html">5.4.4 PythonInterpPerDirectory</a>
+<LI><A href="dir-other-ipdv.html">5.4.5 PythonInterpPerDirective</a>
+<LI><A href="dir-other-pi.html">5.4.6 PythonInterpreter</a>
+<LI><A href="dir-other-phm.html">5.4.7 PythonHandlerModule</a>
+<LI><A href="dir-other-par.html">5.4.8 PythonAutoReload</a>
+<LI><A href="dir-other-pomz.html">5.4.9 PythonOptimize</a>
+<LI><A href="dir-other-po.html">5.4.10 PythonOption</a>
+<LI><A href="dir-other-pp.html">5.4.11 PythonPath</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-funcs.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="modpython.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dir-handlers.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-funcs.html">4.6.3 Other functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="modpython.html">Mod_python Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dir-handlers.html">5.1 Request Handlers</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.6.2 Field class</title>
+<META NAME="description" CONTENT="4.6.2 Field class">
+<META NAME="keywords" CONTENT="modpython">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="modpython.css">
+<link rel="first" href="modpython.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyapi-util-funcs.html">
+<LINK REL="previous" href="pyapi-util-fstor.html">
+<LINK REL="up" href="pyapi-util.html">
+<LINK REL="next" href="pyapi-util-funcs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-fstor.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-util-funcs.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-fstor.html">4.6.1 FieldStorage class</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-util-funcs.html">4.6.3 Other functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006620000000000000000">&nbsp;</A>
+<BR>
+4.6.2 Field class
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-165"><tt class="class">Field</tt></a></b>()
+<dd>
+This class is used internally by <tt class="class">FieldStorage</tt> and is not
+meant to be instantiated by the user. Each instance of a <tt class="class">Field</tt>
+class represents an HTML Form input.
+
+<P>
+<tt class="class">Field</tt> instances have the following attributes:
+
+<P>
+<dl><dt><b><a name="l2h-166"><tt class="member">name</tt></a></b>
+<dd>
+The input name.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-167"><tt class="member">value</tt></a></b>
+<dd>
+The input value. This attribute can be used to read data from a file
+upload as well, but one has to excercise caution when dealing with
+large files since when accessed via <tt class="member">value</tt>, the whole file is
+read into memory.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-168"><tt class="member">file</tt></a></b>
+<dd>
+This is a file object. For file uploads it points to a temporary file.
+For simple values, it is a <tt class="class">StringIO</tt> object, so you can read
+simple string values via this attribute instead of using the <tt class="member">value</tt>
+attribute as well.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-169"><tt class="member">filename</tt></a></b>
+<dd>
+The name of the file as provided by the client.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-170"><tt class="member">type</tt></a></b>
+<dd>
+The content-type for this input as provided by the client.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-171"><tt class="member">type_opyions</tt></a></b>
+<dd>
+This is what follows the actual content type in the <code>content-type</code>
+header provided by the client, if anything. This is a dictionary.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-172"><tt class="member">disposition</tt></a></b>
+<dd>
+The value of the first part of the <code>content-disposition</code> header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-173"><tt class="member">disposition_options</tt></a></b>
+<dd>
+The second part (if any) of the <code>content-disposition</code> header in
+the form of a dictionary.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+<dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc1867.html"
+        title="Form-based File Upload in HTML"
+        >RFC 1867, <em>Form-based File Upload in HTML</em></a>
+    <dd>for a description of 
+form-based file uploads
+  </dl>
+</div>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyapi-util-fstor.html"><img src="icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pyapi-util.html"><img src="icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyapi-util-funcs.html"><img src="icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Mod_python Manual</td>
+<td><A href="contents.html"><img src="icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyapi-util-fstor.html">4.6.1 FieldStorage class</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pyapi-util.html">4.6 util - Miscellaneous</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyapi-util-funcs.html">4.6.3 Other functions</A>
+<hr>
+<span class="release-info">Release 3.0-BETA4, documentation updated on October 30, 2002.</span>
+</DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>
