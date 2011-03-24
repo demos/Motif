@@ -11,7 +11,7 @@ else
 
 <a href="#" id="cacher-<?=$id;?>">Plier / Déplier</a> 
 <div id="<?=$id;?>" <?=$style?> >
-	<pre class="brush: <?=$lang?>">
+	<pre class="brush: <?=$lang?>; smart-tabs: true;">
 		<enfants/>
 	</pre>
 </div>

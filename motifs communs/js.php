@@ -18,11 +18,33 @@
 
 /**
  * Simplification de script
+ * 
+ * + ajoute un prefixe d'uri via l'attribut base
+ * + permet de charger plusieurs source en ecrivant l'attribut sous la forme :
+ *     src="fichier1.js; fichier2.js; ... "
+ * + Permet l'execution directe d'un script enfant après le chargement des sources
  */
 
-if( isset($src) && $src!="" ) $src = " src=\"$src\"";
-else $src="";
+if( !isset($base) ) $base="";
+if( isset($src) )
+	$srcs = $this->attrListePhp( $src );
+else $srcs = array();
+
+if( $final ) { 
+	foreach( $srcs as $uri => $bool ) { 
+		?><script type="text/javascript" src="<?=$base.$uri;?>" > </script><?
+	}
+} else {
+	foreach( $srcs as $uri => $bool ) { 
+		?><script type="text/javascript" src="<?=$base.$uri;?>" > </script><?
+	}
+	?>
+		<script type="text/javascript">
+			<enfants type="cdata"/> 
+		</script>
+	<?
+}
+
+
+
 ?>
-<script type="text/javascript" <?=$src;?> >
-	<enfants/>
-</script>

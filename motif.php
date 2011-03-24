@@ -100,7 +100,7 @@ class Motif {
 	}
 
 
-	function charge( $modèle, $attributs=array() ) {					$t = $this; $conf = $t->conf;
+	function charge( $modèle, $attributs=array(), $emt=null ) {					$t = $this; $conf = $t->conf;
 		//$_SERVER['INCLUDE_SCRIPT_NAME'] = "http://".$_SERVER['HTTP_HOST']."/".$conf["racine"]."/modèles/".$modèle.".php";
 		$id = "anonyme";
 		// Transformation des attributs en variables php
@@ -113,6 +113,10 @@ class Motif {
 			else
 				eval("$".$clé."=\"".$val."\";");
 		}
+		// Le motif invoqué a-t-il des enfants?
+		if( $emt && !$emt->hasChildNodes() ) $final = true;
+		else $final = false;
+		
 		// Le modèle doit-il être chargé de manière asynchrone ou non?
 		if( isset($async) && $async == "basique") {
 			// chargement asynchrone du modèle
@@ -150,7 +154,7 @@ class Motif {
 				echo $xml;
 				echo "</pre>";
 				$xml = $t->cdataEnfants( "style", $xml);
-				$xml = $t->cdataEnfants( "script", $xml);
+				//$xml = $t->cdataEnfants( "script", $xml);
 				$dom->loadXML($xml);
 			}
 			$t->scane($dom);
@@ -176,10 +180,9 @@ class Motif {
 				$element = $occurences->item($j);
 				// préparation du noeud à insérer
 				// L'insertion se fait
-				$racineModèle = $t->charge($element->nodeName, $element->attributes);
+				$racineModèle = $t->charge($element->nodeName, $element->attributes, $element );
 				//echo "scane\n";
 				//scane($racineModèle);
-
 				
 				if( $racineModèle == null ) {
 					echo "Impossible de charger ".$element->nodeName."\n";
@@ -188,11 +191,30 @@ class Motif {
 				$racineModèle = $dom->importNode($racineModèle, true);
 
 				// Mise en place des enfants
+				// si l'attribut type d'enfants vaut cdata, on les encage dans <![CDATA[]]>
 				$enfants = $racineModèle->getElementsByTagName("enfants")->item(0);
 				if( $enfants ) {
-					while( $element->childNodes->length != 0 ) {
+					/**/
+					$type = $enfants->getAttribute("type");
+					if( $type == "cdata" ) {
 						$enfant = $element->childNodes->item(0);
-						$enfants->parentNode->insertBefore( $enfant, $enfants);
+						$données = "";
+						while( $element->childNodes->length != 0 ) {
+							$enfant = $element->childNodes->item(0);
+							if( get_class($enfant) == 'DOMElement')
+								$données .= $t->emtChaine($enfant);
+							else // Pour DOMText, DOMCdataSection et DOMComment
+								$données .= $enfant->substringData(0, $enfant->length);
+							$element->removeChild($enfant);
+						}
+						$cdata = $dom->createCDATASection($données);
+						$enfants->parentNode->appendChild( $cdata );
+					} else {/**/
+						while( $element->childNodes->length != 0 ) {
+							$enfant = $element->childNodes->item(0);
+							$enfants->parentNode->insertBefore( $enfant, $enfants );
+							//$enfants->parentNode->appendChild( $enfant );
+						}
 					}
 					$enfants->parentNode->removeChild($enfants);						// suppression de la balise enfants
 				}//*/
@@ -228,6 +250,25 @@ class Motif {
 		$xml .= "</motif>\n";
 		return $xml;
 	}
+
+	// équivalent de toXMLString sur un élément
+	function emtChaine( $emt ) {
+		$nom = $emt->tagName;
+		$rtr = "<$nom";
+		$attributs = $emt->attributes;
+		if( is_a( $attributs, 'DOMNamedNodeMap') )
+			$attributs = $this->attrPhp($attributs);
+		foreach( $attributs as $clé => $val ) {
+			$rtr .= " $clé=\"$val\"";
+		}
+		if( $emt->hasChildNodes() ) {
+			$rtr .= ">";
+			foreach( $emt->childNodes as $enfant )
+				$rtr .= $this->emtChaine($enfant);
+			$rtr .= "</$nom>";
+		} else $rtr .= "/>";
+		return $rtr;
+	}//*/
 
 	// Prepare un crochet xhr vers le motif voulu
 	function async( $nom, $attributs) {
@@ -279,16 +320,6 @@ class Motif {
 		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
 		return $chaineXML;
 	}
-
-	// Echappe les caractères clés html (a finir)
-	function htmlEnfants( $nom, $chaineXML ) {
-		// Passe le contenus des elements de type $nom en cdata
-		$modèle = '/(<'.$nom.'[^>]*>)(.*)(<\/'.$nom.'>)/i';
-		$nouveau = '$1'.'$2'.'$3';
-		$chaineXML = preg_replace($modèle, $nouveau, $chaineXML);
-		return $chaineXML;
-	}//*/
-	
 	
 	function cdataDoctype( $chaineXML ) {
 		// Protège les doctypes du traitement xml (inclusion dans un cdata)

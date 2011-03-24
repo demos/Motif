@@ -45,7 +45,6 @@ jquery.mousewheel.min.js
 			scrollbar:'<div></div>',
 			style_bouton:{
 				'background':'#cda042',
-				'cursor':'pointer',
 				'height':'50%',
 				'width':'100%',
 				//'max-height':'30px',
@@ -81,6 +80,7 @@ jquery.mousewheel.min.js
 				'overflow':'hidden'
 			};
 			var style_base_bouton = {
+				'cursor':'pointer',
 				'top':0+'px'
 			};
 			var style_base_conteneur = {
@@ -134,6 +134,7 @@ jquery.mousewheel.min.js
 			var init = function() {
 				hauteur_contenu = conteneur.scrollHeight;
 				intervale = hauteur_conteneur = conteneur.offsetHeight;
+				
 				dbg("intervale",  'Intervale : '+ intervale );
 				dbg("hauteurcontenu",  'Hauteur du contenu : '+ hauteur_contenu );
 				dbg("largeurcontenu",  'Largeur du contenu : '+ conteneur.offsetWidth );
@@ -142,9 +143,12 @@ jquery.mousewheel.min.js
 					'top': conteneur.offsetTop + 'px',
 					'height': hauteur_conteneur
 				} );
-				bouton.css( {
-					'height': hauteur_conteneur*hauteur_conteneur/hauteur_contenu+"px"
-				} );
+				var hauteur_btn = hauteur_conteneur*hauteur_conteneur/hauteur_contenu;
+				bouton.css( {'height': hauteur_btn+"px",} );
+				// on efface la barre si elle est inutile
+				if( hauteur_btn == intervale ) var visible =  "hidden";
+				else var visible =  "visible";
+				scrollbar.css( {'visibility':visible} );
 				if ( params.axe == 'x' ){
 					switch ( params.bord ) {
 						case 'droite':
@@ -189,6 +193,11 @@ jquery.mousewheel.min.js
 			bouton.mousedown(function( e ) {
 				//var sel = getSelection();
 				//sel.setSelectionRange(0,0);
+			});
+			
+			$(bouton[0].getElementsByTagName('IMG')).bind("dragstart", function( e ) {		// pour webkit uniquement
+				e.preventDefault();
+				return false;
 			});
 			
 			// Glisser/déposer

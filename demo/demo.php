@@ -24,33 +24,26 @@
 		<js src="ext/firebug-lite/build/firebug-lite.js"/>
 		<!-- syntaxhighlighter -->
 		<css src="demo/ext/syntaxhighlighter/styles/shCoreDefault.css"/>
-		<js src="demo/ext/syntaxhighlighter/scripts/shCore.js"/>
-		<js src="demo/ext/syntaxhighlighter/scripts/shBrushJScript.js"/>
-		<js src="demo/ext/syntaxhighlighter/scripts/shBrushXml.js"/>
-		<js src="demo/ext/syntaxhighlighter/scripts/shBrushPhp.js"/>
-		<js> SyntaxHighlighter.all(); </js>
-		<!-- JQuery -->
-		<js src="demo/ext/jquery/jquery-1.5.1.js"/>
-		<js src="demo/ext/jquery/jquery.debug.js"/>
-		<js>
-		$(document).ready(function(){
-			$.debug(true);
-			$.log("plain debug message");
-			$('#test1').log();
-			$('#test2').log("with message");
-		});
-		
+		<js base="demo/ext/syntaxhighlighter/scripts/"
+			src="shCore.js; shBrushJScript.js; shBrushXml.js; shBrushPhp.js; ">
+			SyntaxHighlighter.all();
 		</js>
-		<!--<js src="demo/ext/beautyofcode/jquery.beautyOfCode.js"/>-->
-		<!--<js src="demo/ext/jquery/jquery.tools.min.js"/>-->
+		<!-- JQuery -->
+		<js base="demo/ext/jquery/" 
+			src="jquery-1.5.1.js; jquery.debug.js; get$.js;">
+			// jquery.tools.min.js
+			$(document).ready(function(){
+				$.debug(true);
+				$.log("plain debug message");
+				$('#test1').log();
+				$('#test2').log("with message");
+			});
+		</js>
 		<!-- Barre de défilement -->
-		<js src="demo/ext/jquery/ui.core-1.7.2.js"/>
-		<js src="demo/ext/jquery/ui.draggable-1.7.2.js"/>
-		<js src="demo/ext/jquery/jquery.mousewheel.js"/>
-		<js src="demo/ext/jquery/plugin.scrollbar.js"/>
-		<!--<js src="demo/ext/jquery-1.2.6.min.js"/>-->
+		<js base="demo/ext/jquery/"
+			src="ui.core-1.7.2.js; ui.draggable-1.7.2.js; jquery.mousewheel.js; plugin.scrollbar.js; "/>
+		<!-- Lecteur RSS -->
 		<js src="demo/ext/rssreader/rssReader-src.js"/>
-		<js src="demo/ext/jquery/get$.js"/>
 		<style>
 			html, body {
 				width: 100%;
@@ -75,7 +68,6 @@
 			
 			#contenu {
 				position : absolute;
-				border-bottom: 1px solid #E6E6E6;
 				height: 76%;
 				width: 90%;
 				left: 5%;
@@ -122,31 +114,53 @@
 				text-align: left;
 				width: 300px;
 			}
+			
+			.btn-scrollbar {
+				border-collapse: collapse;
+				padding:0;
+				margin:0;
+			}
 
+			.btn-scrollbar tbody tr td img {
+			/*	max-height: 50px;	/* pour webkit*/
+			}
+			
+			.btn-scrollbar td {
+				padding:0;
+				margin:0;
+				line-height:1px;
+			}
+			
+			.btn-scrollbar img {
+				width:100%;
+				height:100%;
+			}
 
 		</style>
 	</head>
 	<body>
 		<logo href="/motif" src="demo/images/logo.png" txt="Motif" id="logo"/>
-		<js><![CDATA[
+		<js>
 		$(document).ready(function(){
 			var params = {
-				bouton:'<table style="border-collapse: collapse; padding:0;margin:0;"><tr><td style="line-height:7px;height:7px;padding:0"><img style="width:100%;height:100%;" src="demo/images/haut-btn-barre.png"/></td></tr><tr><td style="height:100%; padding:0;"><img style="width:100%;height:100%;" src="demo/images/milieu-btn-barre.png"/></td></tr><tr><td style="line-height:6px;height:7px;padding:0"><img style="width:100%;height:100%;" src="demo/images/bas-btn-barre.png"/></td></tr></table>',
+				bouton:'<table class="btn-scrollbar"><tr><td style="height:7px;"><img src="demo/images/haut-btn-barre.png"/></td></tr><tr><td style="height:100%"><img src="demo/images/milieu-btn-barre.png"/></td></tr><tr><td style="height:7px"><img src="demo/images/bas-btn-barre.png"/></td></tr></table>',
+				scrollbar:'<div><img style="position:absolute; left:5px; width:1px;height:100%;" src="demo/images/gris.png"/></div>',
 				style_barre:{
-					'width':'10px'
+					'width':'10px',
+					'margin-left':'-10px'
 				},
 				style_bouton:{
-					'width':'100%'
+					'width':'100%',
+					'max-height':'50px'
 				},
-				debug:false
+				debug:false,
+				bord:"gauche"
 			};
 			$("#contenu").scrollbar( params );
 			//$("#contenu").scrollbar();
 		});
-		]]>
 		</js>
 		<contenu id="contenu">
-
 			<fichier src="demo/contenu/projet.php" type="html" ctrl="(ctn=projet)|(^\/motif\/$)"/>
 			<fichier id="demonstration" src="demo/contenu/exp.php" type="html" ctrl="ctn=exp"/>
 			<fichier src="demo/contenu/GPL.php" type="html" ctrl="ctn=GPL"/>

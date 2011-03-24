@@ -66,12 +66,26 @@ END;
 
 	<titre label="Suivi du projet"/>
 	<rss id="fluxrss"/>
-	<js>
+	<js><![CDATA[
 	$(document).ready(function(){
-		$("#fluxrss").scrollbar({debug:false});
-		//$("#fluxrss").scrollbar();
+		var params = {
+			bouton:'<table class="btn-scrollbar"><tr><td style="height:7px;"><img src="demo/images/haut-btn-barre.png"/></td></tr><tr><td style="height:100%"><img src="demo/images/milieu-btn-barre.png"/></td></tr><tr><td style="height:7px"><img src="demo/images/bas-btn-barre.png"/></td></tr></table>',
+			scrollbar:'<div><img style="position:absolute; left:5px; width:1px;height:100%;" src="demo/images/gris.png"/></div>',
+			style_barre:{
+				'width':'10px',
+				'margin-left':'-10px'
+			},
+			style_bouton:{
+				'width':'100%',
+				'max-height':'25px'
+			},
+			debug:false,
+			bord:"gauche"
+		};
+		$("#fluxrss").scrollbar( params );
+		//$("#contenu").scrollbar();
 	});
-	</js>
+	]]></js>
 
 
 	<div id="liens">
