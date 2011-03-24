@@ -23,6 +23,10 @@
  * + permet de charger plusieurs source en ecrivant l'attribut sous la forme :
  *     src="fichier1.js; fichier2.js; ... "
  * + Permet l'execution directe d'un script enfant après le chargement des sources
+ * 
+ * bugs :
+ * les elements js incluant des > et < génèrent des erreurs d'interpretation du xml côté php
+ * 
  */
 
 if( !isset($base) ) $base="";

@@ -18,7 +18,32 @@
 
 /**
  * Simplification de style
+ * 
+ * voir le motif js
  */
 
+
+if( !isset($base) ) $base="";
+if( isset($src) )
+	$srcs = $this->attrListePhp( $src );
+else $srcs = array();
+
+if( $final ) { 
+	foreach( $srcs as $uri => $bool ) { 
+		?><link type="text/css" rel="stylesheet" href="<?=$base.$src;?>"/><?
+	}
+} else {
+	foreach( $srcs as $uri => $bool ) { 
+		?><link type="text/css" rel="stylesheet" href="<?=$base.$src;?>"/><?
+	}
+	?>
+		<style type="text/css">
+			<enfants type="cdata"/> 
+		</style>
+	<?
+}
+
+
+
 ?>
-<link type="text/css" rel="stylesheet" href="<?=$src;?>"/>
+

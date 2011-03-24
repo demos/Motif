@@ -147,14 +147,14 @@ class Motif {
 			//$dom->validateOnParse = true;
 			//$dom->substituteEntities = true;
 			//$dom->strictErrorChecking = false;
-			$tmp = $dom->loadXML($xml);
+			$tmp = @$dom->loadXML($xml);
 			if( !$tmp ) {
-				echo "<pre>";
-				echo "$modèle\n";
-				echo $xml;
-				echo "</pre>";
+				//echo "<pre>";
+				//echo "$modèle\n";
+				//echo $xml;
+				//echo "</pre>";
 				$xml = $t->cdataEnfants( "style", $xml);
-				//$xml = $t->cdataEnfants( "script", $xml);
+				$xml = $t->cdataEnfants( "script", $xml);
 				$dom->loadXML($xml);
 			}
 			$t->scane($dom);

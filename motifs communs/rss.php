@@ -65,7 +65,6 @@
 
 $(function(){
 	var conteneur = $('#<?=$id?>');
-	
     var o = function (a, b) {
         var c = a.split(/\s/);
         if (c.length <= b) return a;
